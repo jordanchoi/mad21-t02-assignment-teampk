@@ -14,6 +14,7 @@
         <activity android:name=".CategoryActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".LocationActivity" />
+
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -26,6 +27,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
