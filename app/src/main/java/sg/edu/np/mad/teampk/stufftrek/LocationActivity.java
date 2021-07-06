@@ -60,5 +60,18 @@ public class LocationActivity extends AppCompatActivity {
                 */
             }
         });
+
+        //testing code
+        DBHandler dbh = new DBHandler(this,null,null,1);
+
+        Location l = new Location();
+        l.Name="LocationTest";
+        l.LocationID = dbh.AddLocation(l);
+        System.out.println("Testing");
+        System.out.println(l.LocationID);
+        TextView text1 = (TextView) findViewById(R.id.textViewTest1);
+        TextView txt2 = (TextView) findViewById(R.id.textViewTest2);
+        text1.setText(l.Name);
+        txt2.setText(""+l.LocationID);
     }
 }
