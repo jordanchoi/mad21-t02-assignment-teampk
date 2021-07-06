@@ -12,6 +12,13 @@ import android.widget.TextView;
 
 public class CategoryActivity extends AppCompatActivity {
 
+    ActionBar actionBar;
+    View view;
+    Toolbar parent;
+    ImageButton backBtn;
+    ImageButton rightBtn;
+    TextView title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,22 +28,22 @@ public class CategoryActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
 
         // Action Bar Customization
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
         // actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7CCBCE")));
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         actionBar.setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.custom_actionbar);
-        View view = getSupportActionBar().getCustomView();
+        view = getSupportActionBar().getCustomView();
 
         // Remove the space at the start and end of the customized action bar
-        Toolbar parent =(Toolbar) view.getParent();
+        parent =(Toolbar) view.getParent();
         parent.setPadding(0,0,0,0); //for tab otherwise give space in tab
         parent.setContentInsetsAbsolute(0,0);
 
         // Widgets in the ActionBar
-        ImageButton backBtn = view.findViewById(R.id.backBtn);
-        ImageButton rightBtn = view.findViewById(R.id.rightBtn);
-        TextView title = view.findViewById(R.id.abTitleTV);
+        backBtn = view.findViewById(R.id.backBtn);
+        rightBtn = view.findViewById(R.id.rightBtn);
+        title = view.findViewById(R.id.abTitleTV);
 
         // Set Title in the Actionbar
         title.setText("Manage Categories");
