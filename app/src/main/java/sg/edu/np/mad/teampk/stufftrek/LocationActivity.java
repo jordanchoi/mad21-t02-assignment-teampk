@@ -61,6 +61,7 @@ public class LocationActivity extends AppCompatActivity {
             }
         });
 
+        /*
         //testing code
         DBHandler dbh = new DBHandler(this,null,null,1);
 
@@ -73,5 +74,7 @@ public class LocationActivity extends AppCompatActivity {
         TextView txt2 = (TextView) findViewById(R.id.textViewTest2);
         text1.setText(l.Name);
         txt2.setText(""+l.LocationID);
+
+         */
     }
 }
