@@ -21,9 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="48dp"
-            android:text="StuffTrek"
             android:textColor="#414141"
-            android:textSize="36dp"
+            android:textSize="36sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -95,10 +94,7 @@
                     android:layout_width="130dp"
                     android:layout_height="140dp"
                     android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
+                    android:shadowColor="#2C2C2C"
                     app:backgroundTint="#7CCBCE"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_search"
@@ -127,7 +123,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/montserrat"
-                    android:text="Location"
                     android:textAlignment="center" />
 
                 <Space
@@ -141,7 +136,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/montserrat"
-                    android:text="Search"
                     android:textAlignment="center" />
 
                 <Space
@@ -220,7 +214,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/montserrat"
-                    android:text="Category"
                     android:textAlignment="center" />
 
                 <Space
@@ -234,7 +227,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/montserrat"
-                    android:text="All Items"
                     android:textAlignment="center" />
 
                 <Space
@@ -296,7 +288,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
                     android:fontFamily="@font/montserrat"
-                    android:text="Unassigned Items"
                     android:textAlignment="center" />
 
                 <Space

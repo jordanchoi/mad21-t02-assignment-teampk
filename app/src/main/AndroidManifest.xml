@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StuffTrek">
-        <activity android:name=".UnassignedItemsActivity"></activity>
+        <activity android:name=".LocationRoomActivity"></activity>
+        <activity android:name=".UnassignedItemsActivity" />
         <activity android:name=".AllItemsActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".LocationActivity" />
-
         <activity android:name=".MenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -27,7 +27,6 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

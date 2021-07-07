@@ -3,6 +3,8 @@ package sg.edu.np.mad.teampk.stufftrek;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -11,15 +13,20 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class LocationActivity extends AppCompatActivity {
     ActionBar actionBar;
     View view;
     Toolbar parent;
     ImageButton backBtn;
     ImageButton rightBtn;
+
     TextView title;
     TextView locationTitle;
     TextView locationDesc;
+
+    ArrayList<Location> locationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,20 +84,25 @@ public class LocationActivity extends AppCompatActivity {
         locationTitle.setText("Your Locations");
         locationDesc.setText("Create and view your locations.\nE.g) Houses, Offices");
 
-        /*
-        //testing code
-        DBHandler dbh = new DBHandler(this,null,null,1);
+        // Construct DBHandler to retrieve DB information.
+        DBHandler db = new DBHandler(this, null, null, 1);
 
-        Location l = new Location();
-        l.Name="LocationTest";
-        l.LocationID = dbh.AddLocation(l);
-        System.out.println("Testing");
-        System.out.println(l.LocationID);
-        TextView text1 = (TextView) findViewById(R.id.textViewTest1);
-        TextView txt2 = (TextView) findViewById(R.id.textViewTest2);
-        text1.setText(l.Name);
-        txt2.setText(""+l.LocationID);
+        // To be removed - for testing purpose only.
+        for (int i = 0; i < 3; i++)
+        {
+            Location loc = new Location();
+            loc.Name = "Location " + i;
+            loc.setLocationID(i);
+            db.AddLocation(loc);
+        }
 
-         */
+        // Call GetAllLocation() from DBHandler to retrieve ALL locations.
+        locationList = db.GetAllLocation();
+
+        RecyclerView rv = findViewById(R.id.locationRv);
+        LocationAdapter locAdapter = new LocationAdapter(this, locationList);
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        rv.setLayoutManager(lm);
+        rv.setAdapter(locAdapter);
     }
 }
