@@ -102,7 +102,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public int AddLocation(Location l){
+    public Integer AddLocation(Location l){
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME,l.Name);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -110,8 +110,81 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
-        l.LocationID=Integer.parseInt(cursor.getString(0));
+        l.setLocationID(Integer.parseInt(cursor.getString(0)));
         db.close();
-        return l.LocationID;
+        return l.getLocationID();
+    }
+
+    public Integer AddRoom(Room r){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,r.Name);
+        values.put(COLUMN_LOCATIONID,r.getLocationID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        r.setRoomID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return r.getRoomID();
+    }
+
+    public Integer AddContainerCategory(ContainerCategory cc){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,cc.Name);
+        values.put(COLUMN_ROOMID,cc.getRoomID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_CONTAINERCATEGORY,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        cc.setContainerCategoryID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return cc.getContainerCategoryID();
+    }
+
+    public Integer AddContainer(Container c){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,c.Name);
+        values.put(COLUMN_CONTAINERCATEGORYID,c.getContainerCategoryID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        c.setContainerID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return c.getContainerID();
+    }
+
+    public Integer AddCategory(Category c ){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,c.Name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        c.setCategoryID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return c.getCategoryID();
+    }
+
+    public Integer AddItem(Item i){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,i.Name);
+        values.put(COLUMN_LOCATIONID,i.getLocationID());
+        values.put(COLUMN_ROOMID,i.getRoomID());
+        values.put(COLUMN_CATEGORYID,i.getCategoryID());
+        values.put(COLUMN_CONTAINERID,i.getContainerID());
+        values.put(COLUMN_CONTAINERCATEGORYID,i.getContainerCategoryID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        i.setItemID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return i.getItemID();
     }
 }
