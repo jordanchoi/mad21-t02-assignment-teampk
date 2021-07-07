@@ -19,6 +19,10 @@ public class CategoryActivity extends AppCompatActivity {
     ImageButton rightBtn;
     TextView title;
 
+    TextView categoryTitle;
+    TextView categoryDesc;
+    TextView existCatText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,5 +70,15 @@ public class CategoryActivity extends AppCompatActivity {
                 */
             }
         });
+
+        // Get the widgets in the activity by id.
+        categoryTitle = findViewById(R.id.catPageTitleTV);
+        categoryDesc = findViewById(R.id.catPageDescTV);
+        existCatText = findViewById(R.id.existingCatTV);
+
+        // Set the texts of the widgets
+        categoryTitle.setText("Categories");
+        categoryDesc.setText("Manage your categories and assign a category item for better organization.");
+        existCatText.setText("Existing Categories");
     }
 }
