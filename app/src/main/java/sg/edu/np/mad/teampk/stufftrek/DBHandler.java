@@ -198,9 +198,9 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Location l = new Location();
-                l.setLocationID(Integer.parseInt(cursor.getString(0)));
-                l.Name = cursor.getString(1);
+                Integer LocationID = Integer.parseInt(cursor.getString(0));
+                String Name = cursor.getString(1);
+                Location l = new Location(LocationID,Name);
                 locationArrayList.add(l);
                 cursor.moveToNext();
             }
@@ -215,11 +215,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Room r = new Room();
-                r.setRoomID(Integer.parseInt(cursor.getString(0)));
-                r.Name = cursor.getString(1);
-                r.Picture = cursor.getString(2);
-                r.setLocationID(Integer.parseInt(cursor.getString(3)));
+                Integer RoomID = Integer.parseInt(cursor.getString(0));
+                String Name = cursor.getString(1);
+                String Picture = cursor.getString(2);
+                Room r = new Room(RoomID,Name,Picture,LocationID);
                 roomArrayList.add(r);
                 cursor.moveToNext();
             }
@@ -234,10 +233,9 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                ContainerCategory cc = new ContainerCategory();
-                cc.setContainerCategoryID(Integer.parseInt(cursor.getString(0)));
-                cc.Name = cursor.getString(1);
-                cc.setRoomID(Integer.parseInt(cursor.getString(2)));
+                Integer ContainerCategoryID=Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                ContainerCategory cc = new ContainerCategory(ContainerCategoryID,Name,RoomID);
                 containerCategoryArrayList.add(cc);
                 cursor.moveToNext();
             }
@@ -252,11 +250,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Container c = new Container();
-                c.setContainerID(Integer.parseInt(cursor.getString(0)));
-                c.Name = cursor.getString(1);
-                c.Picture = cursor.getString(2);
-                c.setContainerCategoryID(Integer.parseInt(cursor.getString(3)));
+                Integer ContainerID =Integer.parseInt(cursor.getString(0));
+                String Name =cursor.getString(1);
+                String Picture= cursor.getString(2);
+                Container c = new Container(ContainerID,Name,Picture,ContainerCategoryID);
                 containerArrayList.add(c);
                 cursor.moveToNext();
             }
@@ -271,9 +268,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Category c = new Category();
-                c.setCategoryID(Integer.parseInt(cursor.getString(0)));
-                c.Name = cursor.getString(1);
+                Integer CategoryID =Integer.parseInt(cursor.getString(0));
+                String Name =cursor.getString(1);
+                Category c = new Category(CategoryID,Name);
+                categoryArrayList.add(c);
                 cursor.moveToNext();
             }
         }
@@ -287,20 +285,173 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
-                Item i = new Item();
-                i.setItemID(Integer.parseInt(cursor.getString(0)));
-                i.Name = cursor.getString(1);
-                i.Picture = cursor.getString(2);
-                i.Quantity = Integer.parseInt(cursor.getString(3));
-                i.setContainerID(Integer.parseInt(cursor.getString(4)));
-                i.setCategoryID(Integer.parseInt(cursor.getString(5)));
-                i.setRoomID(Integer.parseInt(cursor.getString(6)));
-                i.setLocationID(Integer.parseInt(cursor.getString(7)));
-                i.setContainerCategoryID(Integer.parseInt(cursor.getString(8)));
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
                 itemArrayList.add(i);
                 cursor.moveToNext();
             }
         }
         return itemArrayList;
+    }
+
+    public ArrayList<Item> GetAllItemFromRoom(Integer RoomID){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM+ " WHERE "+COLUMN_ROOMID+" = "+RoomID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
+    }
+
+    public ArrayList<Item> GetAllItemFromContainer(Integer ContainerID){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM+ " WHERE "+COLUMN_CONTAINERID+" = "+ContainerID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
+    }
+
+    public ArrayList<Item> GetAllItemFromCategory(Integer CategoryID){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM+ " WHERE "+COLUMN_CATEGORYID+" = "+CategoryID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
+    }
+
+    public ArrayList<Item> GetAllItem(){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
+    }
+
+    public ArrayList<Item> GetAllUnassingedItem(){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM+ " WHERE "+COLUMN_LOCATIONID+" IS NULL AND " +COLUMN_CONTAINERID+" IS NULL AND "+COLUMN_ROOMID+" IS NULL";
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Integer ItemID =Integer.parseInt(cursor.getString(0));
+                String Name=cursor.getString(1);
+                String Picture=cursor.getString(2);
+                Integer Quantity = Integer.parseInt(cursor.getString(3));
+                Item i = new Item(ItemID,Name,Quantity,Picture);
+                i = parseItemFK(cursor,i);
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
+    }
+
+
+    public Item parseItemFK(Cursor cursor,Item i){
+        try{
+            Integer ContainerID = Integer.parseInt(cursor.getString(4));
+            i.setContainerID(ContainerID);
+        }
+        catch(NumberFormatException e){
+            //havent figure out what to do with catch
+        }
+        try{
+            Integer CategoryID=Integer.parseInt(cursor.getString(5));
+            i.setCategoryID(CategoryID);
+        }
+        catch(NumberFormatException e){
+            //havent figure out what to do with catch
+        }
+        try{
+            Integer RoomID=Integer.parseInt(cursor.getString(6));
+            i.setRoomID(RoomID);
+        }
+        catch(NumberFormatException e){
+            //havent figure out what to do with catch
+        }
+        try{
+            Integer LocationID=Integer.parseInt(cursor.getString(7));
+            i.setLocationID(LocationID);
+        }
+        catch(NumberFormatException e){
+            //havent figure out what to do with catch
+        }
+        try{
+            Integer ContainerCategoryID=Integer.parseInt(cursor.getString(8));
+            i.setContainerCategoryID(ContainerCategoryID);
+        }
+        catch(NumberFormatException e){
+            //havent figure out what to do with catch
+        }
+
+        return i;
+    }
+
+    public boolean DeleteItem(Integer ItemID){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID +" = "+ItemID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()){
+            String deleteQuery = "DELETE FROM " +TABLE_ITEM +" WHERE "  +COLUMN_ITEMID +" = "+ItemID;
+            Cursor cursor2 = db.rawQuery(deleteQuery,null);
+            cursor.close();
+            cursor2.close();
+            result=true;
+        }
+        db.close();
+        return result;
     }
 }

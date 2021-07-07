@@ -5,7 +5,6 @@ public class Container {
     public String Name;
     public String Picture;
     private Integer ContainerCategoryID;
-
     public void setContainerID(Integer ID){
         this.ContainerID = ID;
     }
@@ -14,4 +13,18 @@ public class Container {
     }
     public Integer getContainerID(){return this.ContainerID;}
     public Integer getContainerCategoryID(){return this.ContainerCategoryID;}
+
+
+    public Container(Integer containerID, String name, String picture, Integer containerCategoryID) {
+        ContainerID = containerID;
+        Name = name;
+        Picture = picture;
+        ContainerCategoryID = containerCategoryID;
+    }
+    public Container(String name, String picture, Integer containerCategoryID) {
+        Name = name;
+        Picture = picture;
+        ContainerCategoryID = containerCategoryID;
+    }
+
 }

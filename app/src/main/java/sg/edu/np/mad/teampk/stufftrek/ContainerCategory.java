@@ -12,4 +12,16 @@ public class ContainerCategory {
     }
     public Integer getContainerCategoryID(){return this.ContainerCategoryID;}
     public Integer getRoomID(){return this.RoomID;}
+
+    public ContainerCategory(Integer containerCategoryID, String name, Integer roomID) {
+        ContainerCategoryID = containerCategoryID;
+        Name = name;
+        RoomID = roomID;
+    }
+
+    public ContainerCategory(String name, Integer roomID) {
+        Name = name;
+        RoomID = roomID;
+    }
+
 }

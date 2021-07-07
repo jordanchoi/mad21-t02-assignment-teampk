@@ -10,7 +10,6 @@ public class Item {
     private Integer RoomID;
     private Integer CategoryID;
     private Integer ContainerCategoryID;
-
     public void setItemID(Integer ID){
         this.ItemID=ID;
     }
@@ -36,5 +35,34 @@ public class Item {
     public Integer getContainerCategoryID(){return this.ContainerCategoryID;}
     public Integer getRoomID(){return this.RoomID;}
 
+    public Item(Integer itemID, String name, Integer quantity, String picture) {
+        ItemID = itemID;
+        Name = name;
+        Quantity = quantity;
+        Picture = picture;
+    }
 
+    public Item(Integer itemID, String name, Integer quantity, String picture, Integer containerID, Integer locationID, Integer roomID, Integer categoryID, Integer containerCategoryID) {
+        ItemID = itemID;
+        Name = name;
+        Quantity = quantity;
+        Picture = picture;
+        ContainerID = containerID;
+        LocationID = locationID;
+        RoomID = roomID;
+        CategoryID = categoryID;
+        ContainerCategoryID = containerCategoryID;
+    }
+    public Item(String name, Integer quantity, String picture, Integer containerID, Integer locationID, Integer roomID, Integer categoryID, Integer containerCategoryID) {
+        Name = name;
+        Quantity = quantity;
+        Picture = picture;
+        ContainerID = containerID;
+        LocationID = locationID;
+        RoomID = roomID;
+        CategoryID = categoryID;
+        ContainerCategoryID = containerCategoryID;
+    }
+
+    public Item(){};
 }

@@ -14,4 +14,16 @@ public class Room {
     public Integer getRoomID(){return this.RoomID;}
     public Integer getLocationID(){return this.LocationID;}
 
+    public Room(String name, String picture, Integer locationID) {
+        Name = name;
+        Picture = picture;
+        LocationID = locationID;
+    }
+
+    public Room(Integer roomID, String name, String picture, Integer locationID) {
+        RoomID = roomID;
+        Name = name;
+        Picture = picture;
+        LocationID = locationID;
+    }
 }
