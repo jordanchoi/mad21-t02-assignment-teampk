@@ -19,10 +19,14 @@ public class UnassignedItemsActivity extends AppCompatActivity {
     ImageButton rightBtn;
     TextView title;
 
+    TextView unassignedTitle;
+    TextView unassignedDesc;
+    TextView unassignedItemsText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_unassigned_items);
+        setContentView(R.layout.activity_category);
 
         // Receive Intent
         Intent receiveIntent = getIntent();
@@ -58,5 +62,15 @@ public class UnassignedItemsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Get the widgets in the activity by id.
+        unassignedTitle = findViewById(R.id.sharedPageTitleTV);
+        unassignedDesc = findViewById(R.id.sharedPageDescTV);
+        unassignedItemsText = findViewById(R.id.sharedComponentTV);
+
+        // Set the texts of the widgets
+        unassignedTitle.setText("Unassigned Items");
+        unassignedDesc.setText("These items are not assigned to a location as their containers or locations has been deleted.");
+        unassignedItemsText.setText("Your Unassigned Items");
     }
 }

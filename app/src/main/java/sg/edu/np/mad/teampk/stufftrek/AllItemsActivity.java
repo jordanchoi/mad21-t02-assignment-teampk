@@ -18,6 +18,10 @@ public class AllItemsActivity extends AppCompatActivity {
     ImageButton rightBtn;
     TextView title;
 
+    TextView itemsTitle;
+    TextView itemsDesc;
+    TextView allItemsText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,16 @@ public class AllItemsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // Get the widgets in the activity by id.
+        itemsTitle = findViewById(R.id.sharedPageTitleTV);
+        itemsDesc = findViewById(R.id.sharedPageDescTV);
+        allItemsText = findViewById(R.id.sharedComponentTV);
+
+        // Set the texts of the widgets
+        itemsTitle.setText("All Items");
+        itemsDesc.setText("List and detail of all added items");
+        allItemsText.setText("Your Items");
 
     }
 }

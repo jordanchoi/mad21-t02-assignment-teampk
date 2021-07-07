@@ -72,13 +72,13 @@ public class CategoryActivity extends AppCompatActivity {
         });
 
         // Get the widgets in the activity by id.
-        categoryTitle = findViewById(R.id.catPageTitleTV);
-        categoryDesc = findViewById(R.id.catPageDescTV);
-        existCatText = findViewById(R.id.existingCatTV);
+        categoryTitle = findViewById(R.id.sharedPageTitleTV);
+        categoryDesc = findViewById(R.id.sharedPageDescTV);
+        existCatText = findViewById(R.id.sharedComponentTV);
 
         // Set the texts of the widgets
         categoryTitle.setText("Categories");
-        categoryDesc.setText("Manage your categories and assign a category item for better organization.");
+        categoryDesc.setText("Manage your categories and assign a category to an item for better organization.");
         existCatText.setText("Existing Categories");
     }
 }
