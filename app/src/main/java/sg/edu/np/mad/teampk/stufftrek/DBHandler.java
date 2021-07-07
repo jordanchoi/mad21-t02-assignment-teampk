@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DBHandler extends SQLiteOpenHelper {
     public static int DATABASE_VERSION = 1;
@@ -102,7 +104,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-    public int AddLocation(Location l){
+    public Integer AddLocation(Location l){
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME,l.Name);
         SQLiteDatabase db = this.getWritableDatabase();
@@ -110,8 +112,195 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
-        l.LocationID=Integer.parseInt(cursor.getString(0));
+        l.setLocationID(Integer.parseInt(cursor.getString(0)));
         db.close();
-        return l.LocationID;
+        return l.getLocationID();
+    }
+
+    public Integer AddRoom(Room r){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,r.Name);
+        values.put(COLUMN_LOCATIONID,r.getLocationID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        r.setRoomID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return r.getRoomID();
+    }
+
+    public Integer AddContainerCategory(ContainerCategory cc){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,cc.Name);
+        values.put(COLUMN_ROOMID,cc.getRoomID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_CONTAINERCATEGORY,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        cc.setContainerCategoryID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return cc.getContainerCategoryID();
+    }
+
+    public Integer AddContainer(Container c){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,c.Name);
+        values.put(COLUMN_CONTAINERCATEGORYID,c.getContainerCategoryID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        c.setContainerID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return c.getContainerID();
+    }
+
+    public Integer AddCategory(Category c ){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,c.Name);
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        c.setCategoryID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return c.getCategoryID();
+    }
+
+    public Integer AddItem(Item i){
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,i.Name);
+        values.put(COLUMN_LOCATIONID,i.getLocationID());
+        values.put(COLUMN_ROOMID,i.getRoomID());
+        values.put(COLUMN_CATEGORYID,i.getCategoryID());
+        values.put(COLUMN_CONTAINERID,i.getContainerID());
+        values.put(COLUMN_CONTAINERCATEGORYID,i.getContainerCategoryID());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(TABLE_ROOM,null,values);
+        String query = "SELECT last_insert_rowid();";
+        Cursor cursor = db.rawQuery(query,null);
+        cursor.moveToFirst();
+        i.setItemID(Integer.parseInt(cursor.getString(0)));
+        db.close();
+        return i.getItemID();
+    }
+
+    //READ
+    public ArrayList<Location> GetAllLocation(){
+        ArrayList<Location> locationArrayList = new ArrayList<Location>();
+        String query = "SELECT * FROM " +TABLE_LOCATION;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Location l = new Location();
+                l.setLocationID(Integer.parseInt(cursor.getString(0)));
+                l.Name = cursor.getString(1);
+                locationArrayList.add(l);
+                cursor.moveToNext();
+            }
+        }
+        return locationArrayList;
+    }
+
+    public ArrayList<Room> GetAllRoomFromLocation(Integer LocationID){
+        ArrayList<Room> roomArrayList = new ArrayList<Room>();
+        String query = "SELECT * FROM " +TABLE_ROOM + " WHERE "+COLUMN_LOCATIONID+" = "+LocationID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Room r = new Room();
+                r.setRoomID(Integer.parseInt(cursor.getString(0)));
+                r.Name = cursor.getString(1);
+                r.Picture = cursor.getString(2);
+                r.setLocationID(Integer.parseInt(cursor.getString(3)));
+                roomArrayList.add(r);
+                cursor.moveToNext();
+            }
+        }
+        return roomArrayList;
+    }
+
+    public ArrayList<ContainerCategory> GetAllContainerCategoryFromRoom(Integer RoomID){
+        ArrayList<ContainerCategory> containerCategoryArrayList = new ArrayList<ContainerCategory>();
+        String query = "SELECT * FROM " +TABLE_CONTAINERCATEGORY + " WHERE "+COLUMN_ROOMID+" = "+RoomID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                ContainerCategory cc = new ContainerCategory();
+                cc.setContainerCategoryID(Integer.parseInt(cursor.getString(0)));
+                cc.Name = cursor.getString(1);
+                cc.setRoomID(Integer.parseInt(cursor.getString(2)));
+                containerCategoryArrayList.add(cc);
+                cursor.moveToNext();
+            }
+        }
+        return containerCategoryArrayList;
+    }
+
+    public ArrayList<Container> GetAllContainerFromContainerCategory(Integer ContainerCategoryID){
+        ArrayList<Container> containerArrayList = new ArrayList<Container>();
+        String query = "SELECT * FROM " +TABLE_CONTAINER+ " WHERE "+COLUMN_CONTAINERCATEGORYID+" = "+ContainerCategoryID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Container c = new Container();
+                c.setContainerID(Integer.parseInt(cursor.getString(0)));
+                c.Name = cursor.getString(1);
+                c.Picture = cursor.getString(2);
+                c.setContainerCategoryID(Integer.parseInt(cursor.getString(3)));
+                containerArrayList.add(c);
+                cursor.moveToNext();
+            }
+        }
+        return containerArrayList;
+    }
+
+    public ArrayList<Category> GetAllCategory(){
+        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        String query = "SELECT * FROM " +TABLE_CATEGORY;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Category c = new Category();
+                c.setCategoryID(Integer.parseInt(cursor.getString(0)));
+                c.Name = cursor.getString(1);
+                cursor.moveToNext();
+            }
+        }
+        return categoryArrayList;
+    }
+
+    public ArrayList<Item> GetAllItemFromLocation(Integer LocationID){
+        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        String query = "SELECT * FROM " +TABLE_ITEM+ " WHERE "+COLUMN_LOCATIONID+" = "+LocationID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                Item i = new Item();
+                i.setItemID(Integer.parseInt(cursor.getString(0)));
+                i.Name = cursor.getString(1);
+                i.Picture = cursor.getString(2);
+                i.Quantity = Integer.parseInt(cursor.getString(3));
+                i.setContainerID(Integer.parseInt(cursor.getString(4)));
+                i.setCategoryID(Integer.parseInt(cursor.getString(5)));
+                i.setRoomID(Integer.parseInt(cursor.getString(6)));
+                i.setLocationID(Integer.parseInt(cursor.getString(7)));
+                i.setContainerCategoryID(Integer.parseInt(cursor.getString(8)));
+                itemArrayList.add(i);
+                cursor.moveToNext();
+            }
+        }
+        return itemArrayList;
     }
 }
