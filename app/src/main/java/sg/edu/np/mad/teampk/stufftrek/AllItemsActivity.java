@@ -21,7 +21,7 @@ public class AllItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_items);
+        setContentView(R.layout.activity_category); // can do this?
 
         // Receive Intent
         Intent receiveIntent = getIntent();
