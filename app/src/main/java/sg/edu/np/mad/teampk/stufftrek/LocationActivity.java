@@ -28,6 +28,7 @@ public class LocationActivity extends ActionBarActivity {
 
     TextView createTitle;
     EditText createField;
+    TextView errorMsgText;
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
 
@@ -105,7 +106,9 @@ public class LocationActivity extends ActionBarActivity {
 
                         if(locationName.length() == 0)
                         {
-                            createField.setText("Location name cannot be empty!");
+                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                            errorMsgText.setText("Location name cannot be empty!");
+                            errorMsgText.setVisibility(View.VISIBLE);
                         }
                         else
                         {

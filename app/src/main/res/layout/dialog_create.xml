@@ -20,27 +20,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
+            android:fontFamily="@font/montserrat"
             android:textColor="#414141"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/dialogFieldET"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
-            android:autoText="false"
-            android:autofillHints=""
-            android:background="#FFFFFF"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:padding="6dp"
-            android:textColor="#414141"
-            app:layout_constraintBottom_toTopOf="@+id/dialogAddBtn"
-            app:layout_constraintEnd_toEndOf="@+id/dialogCancelBtn"
-            app:layout_constraintStart_toStartOf="@+id/dialogTitleTV"
-            app:layout_constraintTop_toBottomOf="@+id/dialogTitleTV" />
 
         <ImageButton
             android:id="@+id/dialogCancelBtn"
@@ -54,6 +37,38 @@
             app:srcCompat="@android:drawable/ic_notification_clear_all"
             app:tint="@android:color/holo_red_dark" />
 
+        <EditText
+            android:id="@+id/dialogFieldET"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:autoText="false"
+            android:autofillHints=""
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:fontFamily="@font/montserrat"
+            android:inputType="textPersonName"
+            android:padding="6dp"
+            android:textColor="#414141"
+            app:layout_constraintBottom_toTopOf="@+id/dialogAddBtn"
+            app:layout_constraintEnd_toEndOf="@+id/dialogCancelBtn"
+            app:layout_constraintStart_toStartOf="@+id/dialogTitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitleTV" />
+
+        <TextView
+            android:id="@+id/errorMsgTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/montserrat"
+            android:textColor="@color/design_default_color_error"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/dialogAddBtn"
+            app:layout_constraintStart_toStartOf="@+id/dialogFieldET"
+            app:layout_constraintTop_toBottomOf="@+id/dialogFieldET" />
+
         <Button
             android:id="@+id/dialogAddBtn"
             android:layout_width="0dp"
@@ -64,4 +79,5 @@
             app:layout_constraintEnd_toEndOf="@+id/dialogFieldET"
             app:layout_constraintStart_toStartOf="@+id/dialogFieldET" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
