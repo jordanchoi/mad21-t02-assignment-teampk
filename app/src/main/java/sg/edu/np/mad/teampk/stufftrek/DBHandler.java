@@ -97,11 +97,23 @@ public class DBHandler extends SQLiteOpenHelper {
                 +", FOREIGN KEY("+COLUMN_CATEGORYID+") REFERENCES "+TABLE_CATEGORY+"("+COLUMN_CATEGORYID+")"
                 +")";
         db.execSQL(CREATE_ITEM_TABLE);
+
+
+        /* POPULATING TABLE SAMPLE DATA */
+        // To be removed - for testing purpose only.
+        /*
+        for (int i = 1; i <= 3; i++)
+        {
+        }
+         */
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        if (oldVersion != newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS Location");
+            onCreate(db);
+        }
     }
 
     public Integer AddLocation(Location l){

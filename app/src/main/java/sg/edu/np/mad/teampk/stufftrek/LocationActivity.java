@@ -1,32 +1,35 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import java.util.ArrayList;
 
-public class LocationActivity extends AppCompatActivity {
-    ActionBar actionBar;
-    View view;
-    Toolbar parent;
-    ImageButton backBtn;
-    ImageButton rightBtn;
-
-    TextView title;
+public class LocationActivity extends ActionBarActivity {
     TextView locationTitle;
     TextView locationDesc;
-
     ArrayList<Location> locationList;
+    TextView noLocationText;
+
+    TextView createTitle;
+    EditText createField;
+    ImageButton dialogCancelBtn;
+    Button dialogAddBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,73 +39,95 @@ public class LocationActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
 
-        // Action Bar Customization
-        actionBar = getSupportActionBar();
-        // actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#7CCBCE")));
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        actionBar.setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_actionbar);
-        view = getSupportActionBar().getCustomView();
-
-        // Remove the space at the start and end of the customized action bar
-        parent = (Toolbar) view.getParent();
-        parent.setPadding(0,0,0,0); //for tab otherwise give space in tab
-        parent.setContentInsetsAbsolute(0,0);
-
-        // Widgets in the ActionBar
-        backBtn = view.findViewById(R.id.backBtn);
-        rightBtn = view.findViewById(R.id.rightBtn);
-        title = view.findViewById(R.id.abTitleTV);
-
         // Set Title in the Actionbar
-        title.setText("Manage Location");
+        ActionBarActivity.abTitle.setText("Manage Location");
+
+        // Construct DBHandler to retrieve DB information.
+        DBHandler db = new DBHandler(this, null, null, 1);
+        // Call GetAllLocation() from DBHandler to retrieve ALL locations.
+        locationList = db.GetAllLocation();
+
 
         // rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-        // OnClickListener for buttons in the actionbar
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                finish();
-            }
-        });
-
-        rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                /* TO REMOVE THE COMMENT WHEN CreateLocationActivity is created.
-                Intent createLocationActivity = new Intent(LocationActivity.this, CreateLocationActivity.class);
-                startActivity(createLocationActivity);
-                */
-            }
-        });
 
         // Get the header widgets of the activity - Title and Description TextView
         locationTitle = findViewById(R.id.locationPageTitleTV);
         locationDesc = findViewById(R.id.locationPageDescTV);
-
-        // Set the texts of the respective header widgets of the activity.
-        locationTitle.setText("Your Locations");
-        locationDesc.setText("Create and view your locations.\nE.g) Houses, Offices");
-
-        // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
-
-        // To be removed - for testing purpose only.
-        for (int i = 0; i < 3; i++)
-        {
-            Location loc = new Location();
-            loc.Name = "Location " + i;
-            loc.setLocationID(i);
-            db.AddLocation(loc);
-        }
-
-        // Call GetAllLocation() from DBHandler to retrieve ALL locations.
-        locationList = db.GetAllLocation();
+        noLocationText = findViewById(R.id.noLocationTV);
 
         RecyclerView rv = findViewById(R.id.locationRv);
         LocationAdapter locAdapter = new LocationAdapter(this, locationList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
         rv.setAdapter(locAdapter);
+
+        // Set the texts of the respective header widgets of the activity.
+        locationTitle.setText("Your Locations");
+        locationDesc.setText("Create and view your locations.\nE.g) Houses, Offices");
+
+        if (locationList.size() == 0)
+        {
+            noLocationText.setText("You do not have any locations created.");
+            noLocationText.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            noLocationText.setVisibility(View.GONE);
+        }
+
+        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v)
+            {
+                BottomSheetDialog dialog = new BottomSheetDialog(LocationActivity.this);
+                dialog.setContentView(LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_create, findViewById(R.id.content), false));
+
+                // Get the respective items in the view
+                createTitle = dialog.findViewById(R.id.dialogTitleTV);
+                createField = dialog.findViewById(R.id.dialogFieldET);
+                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
+                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
+
+                // Set the respective texts of the items in the view
+                createTitle.setText("Location Name: ");
+                dialogAddBtn.setText("Add Location");
+
+                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String locationName = createField.getText().toString();
+
+                        if(locationName.length() == 0)
+                        {
+                            createField.setText("Location name cannot be empty!");
+                        }
+                        else
+                        {
+                            if (locationList.size() == 0)
+                            {
+                                noLocationText.setVisibility(View.GONE);
+                            }
+
+                            Location loc = new Location(locationName);
+                            loc.setLocationID(db.AddLocation(loc));
+                            locationList.add(loc);
+                            locAdapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    }
+                });
+
+                Window window = dialog.getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.show();
+            }
+        });
     }
+
 }

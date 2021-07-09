@@ -20,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
     Button searchBtn;
     Button categoryBtn;
     Button itemsBtn;
-    Button unassignBtn;
+    Button unassignedBtn;
 
     // Menu Texts
     TextView locationTV;
@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.searchBtn);
         categoryBtn = findViewById(R.id.categoryBtn);
         itemsBtn = findViewById(R.id.itemsBtn);
-        unassignBtn = findViewById(R.id.unassignBtn);
+        unassignedBtn = findViewById(R.id.unassignBtn);
 
         // Get menu texts by their id
         locationTV = findViewById(R.id.locationTV);
@@ -101,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        unassignBtn.setOnClickListener(new View.OnClickListener(){
+        unassignedBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V)
             {
                 Intent unassignedItemsActivity = new Intent(MenuActivity.this, UnassignedItemsActivity.class);

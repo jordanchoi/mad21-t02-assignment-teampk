@@ -45,14 +45,17 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationViewHolder> {
         holder.locationContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent locationRoomsActivity = new Intent(context, LocationRoomActivity.class);
+                // Move to the LocationDetailsActivity
+                Intent locationDetailsActivity = new Intent(context, LocationDetailsActivity.class);
 
+                // Pass the following information along with the intent.
                 Bundle locationInformation = new Bundle();
-                locationInformation.putString("Name", loc.Name);
+                locationInformation.putString("LocationName", loc.Name);
                 locationInformation.putInt("LocationID", loc.getLocationID());
+                locationDetailsActivity.putExtras(locationInformation);
 
-                locationRoomsActivity.putExtras(locationInformation);
-                context.startActivity(locationRoomsActivity);
+                // Trigger Activity
+                context.startActivity(locationDetailsActivity);
             }
         });
     }
