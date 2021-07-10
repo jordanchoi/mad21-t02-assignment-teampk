@@ -10,6 +10,13 @@ public class Item {
     private Integer RoomID;
     private Integer CategoryID;
     private Integer ContainerCategoryID;
+    public String CategoryName;
+    public String LocationName;
+    public String ContainerCategoryName;
+    public String RoomName;
+    public String ContainerName;
+
+
     public void setItemID(Integer ID){
         this.ItemID=ID;
     }
@@ -42,27 +49,4 @@ public class Item {
         Picture = picture;
     }
 
-    public Item(Integer itemID, String name, Integer quantity, String picture, Integer containerID, Integer locationID, Integer roomID, Integer categoryID, Integer containerCategoryID) {
-        ItemID = itemID;
-        Name = name;
-        Quantity = quantity;
-        Picture = picture;
-        ContainerID = containerID;
-        LocationID = locationID;
-        RoomID = roomID;
-        CategoryID = categoryID;
-        ContainerCategoryID = containerCategoryID;
-    }
-    public Item(String name, Integer quantity, String picture, Integer containerID, Integer locationID, Integer roomID, Integer categoryID, Integer containerCategoryID) {
-        Name = name;
-        Quantity = quantity;
-        Picture = picture;
-        ContainerID = containerID;
-        LocationID = locationID;
-        RoomID = roomID;
-        CategoryID = categoryID;
-        ContainerCategoryID = containerCategoryID;
-    }
-
-    public Item(){};
 }

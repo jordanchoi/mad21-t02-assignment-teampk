@@ -20,7 +20,7 @@ public class LocationDetailsActivity extends ActionBarActivity {
         // Set Title in the Actionbar
         ActionBarActivity.abTitle.setText(LocationName);
 
-        // rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
         ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V)
             {
