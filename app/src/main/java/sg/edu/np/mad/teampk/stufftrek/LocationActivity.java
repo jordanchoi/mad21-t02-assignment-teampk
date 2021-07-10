@@ -48,9 +48,6 @@ public class LocationActivity extends ActionBarActivity {
         // Call GetAllLocation() from DBHandler to retrieve ALL locations.
         locationList = db.GetAllLocation();
 
-
-        // rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-
         // Get the header widgets of the activity - Title and Description TextView
         locationTitle = findViewById(R.id.locationPageTitleTV);
         locationDesc = findViewById(R.id.locationPageDescTV);
