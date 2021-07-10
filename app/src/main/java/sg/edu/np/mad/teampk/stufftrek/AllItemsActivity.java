@@ -40,7 +40,7 @@ public class AllItemsActivity extends ActionBarActivity {
         itemsTitle = findViewById(R.id.sharedPageTitleTV);
         itemsDesc = findViewById(R.id.sharedPageDescTV);
         allItemsText = findViewById(R.id.sharedComponentTV);
-
+        noItemsText = findViewById(R.id.sharedNoItemsTV);
         // Set the texts of the widgets
         itemsTitle.setText("All Items");
         itemsDesc.setText("List and detail of all added items");
@@ -59,7 +59,6 @@ public class AllItemsActivity extends ActionBarActivity {
 
         if (allItemsList.size() == 0)
         {
-            noItemsText = findViewById(R.id.sharedNoItemsTV);
             noItemsText.setText("You have no items created");
         }
         else

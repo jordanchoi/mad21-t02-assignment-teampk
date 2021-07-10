@@ -19,60 +19,44 @@
 
     <TextView
         android:id="@+id/itemNameTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/itemImgIV"
         app:layout_constraintTop_toTopOf="@+id/itemImgIV" />
 
     <TextView
         android:id="@+id/itemCatTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/itemNameTV"
         app:layout_constraintTop_toBottomOf="@+id/itemNameTV" />
 
     <TextView
         android:id="@+id/itemQtyTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/itemCatTV"
         app:layout_constraintTop_toBottomOf="@+id/itemCatTV" />
 
     <TextView
         android:id="@+id/itemPathTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemQtyTV"
-        app:layout_constraintTop_toBottomOf="@+id/itemQtyTV" />
-
-    <item
-        android:layout_width="0dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <shape>
-
-            <size android:height="1dp" />
-
-            <solid android:color="#17a2e3" />
-        </shape>
-    </item>
+        app:layout_constraintStart_toStartOf="@+id/itemQtyTV"
+        app:layout_constraintTop_toBottomOf="@+id/itemQtyTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

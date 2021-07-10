@@ -22,7 +22,7 @@ public class ItemsWithPathViewHolder extends RecyclerView.ViewHolder {
         itemsNameText = itemView.findViewById(R.id.itemNameTV);
         itemsCatText = itemView.findViewById(R.id.itemCatTV);
         itemsQtyText = itemView.findViewById(R.id.itemQtyTV);
-        itemsPathText = itemView.findViewById(R.id.itemImgIV);
+        itemsPathText = itemView.findViewById(R.id.itemPathTV);
         itemsImage = itemView.findViewById(R.id.itemImgIV);
         itemsContainer = itemView.findViewById(R.id.itemsContainer);
     }

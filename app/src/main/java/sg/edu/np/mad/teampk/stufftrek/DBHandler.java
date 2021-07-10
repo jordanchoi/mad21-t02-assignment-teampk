@@ -415,12 +415,12 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public ArrayList<Item> GetAllItem(){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
-                + " INNER JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
-                + " INNER JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
-                + " INNER JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
-                + " INNER JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
-                + " INNER JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
+        String query = "SELECT ITEM.*, Location.Name, Room.Name, ContainerCategory.Name, Container.Name, Category.Name FROM " +TABLE_ITEM
+                + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
+                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
+                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
+                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
+                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
                 ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -466,7 +466,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 Item i = new Item(ItemID,Name,Quantity,Picture);
                 i = parseItemFK(cursor,i);
                 String LocationName =cursor.getString(9);
-                String RoomName =cursor.getString(10);
+                String RoomName = cursor.getString(10);
                 String ContainerCategoryName =cursor.getString(11);
                 String ContainerName =cursor.getString(12);
                 String CategoryName =cursor.getString(13);

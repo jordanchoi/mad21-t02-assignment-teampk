@@ -37,9 +37,9 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathView
     public void onBindViewHolder(@NonNull ItemsWithPathViewHolder holder, int position) {
         Item item = allItemsList.get(position);
         holder.itemsNameText.setText(item.Name);
-        holder.itemsCatText.setText("" + item.getCategoryID());
-        holder.itemsQtyText.setText("" + item.Quantity);
-        holder.itemsPathText.setText("" + item.getLocationID() + "/" + item.getRoomID() + "/" + item.getContainerID());
+        holder.itemsCatText.setText(item.CategoryName);
+        holder.itemsQtyText.setText("Qty: " + item.Quantity);
+        holder.itemsPathText.setText("" + item.LocationName + "/" + item.RoomName + "/" + item.ContainerName);
         holder.itemsImage.setImageResource(R.drawable.ic_launcher_foreground);
     }
 
