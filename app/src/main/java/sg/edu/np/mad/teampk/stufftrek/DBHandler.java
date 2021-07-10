@@ -100,9 +100,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME,"Unassigned");
-        values.put(COLUMN_CATEGORYID,1);
         db.insert(TABLE_CATEGORY,null,values);
-        db.close();
 
         /* POPULATING TABLE SAMPLE DATA */
         // To be removed - for testing purpose only.
