@@ -98,7 +98,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 +")";
         db.execSQL(CREATE_ITEM_TABLE);
 
-        InstantiateUnassingedCategory();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME,"Unassigned");
+        values.put(COLUMN_CATEGORYID,1);
+        db.insert(TABLE_CATEGORY,null,values);
+        db.close();
 
         /* POPULATING TABLE SAMPLE DATA */
         // To be removed - for testing purpose only.
@@ -117,14 +121,6 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-    public void InstantiateUnassingedCategory(){
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME,"Unassigned");
-        values.put(COLUMN_CATEGORYID,1);
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_CATEGORY,null,values);
-        db.close();
-    }
 
     public Integer AddLocation(Location l){
         ContentValues values = new ContentValues();
@@ -397,11 +393,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Item> GetAllUnassginedItem(){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT * FROM " +TABLE_ITEM
-                +" WHERE "+COLUMN_CATEGORYID +" IS NULL AND"
-                +" WHERE "+COLUMN_LOCATIONID +" IS NULL AND"
-                +" WHERE "+COLUMN_CONTAINERID +" IS NULL AND"
-                +" WHERE "+COLUMN_CONTAINERCATEGORYID +" IS NULL AND"
-                +" WHERE "+COLUMN_ROOMID +" IS NULL"
+                +" WHERE "+COLUMN_CATEGORYID +" IS NULL AND "
+                +COLUMN_LOCATIONID +" IS NULL AND "
+                +COLUMN_CONTAINERID +" IS NULL AND "
+                +COLUMN_CONTAINERCATEGORYID +" IS NULL AND "
+                +COLUMN_ROOMID +" IS NULL"
                 ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
