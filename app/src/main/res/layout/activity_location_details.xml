@@ -33,7 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="TextView"
+                android:text="Rooms"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTV"
                 app:layout_constraintTop_toBottomOf="@+id/locationDetailsPageTitleTV" />
 
@@ -60,6 +62,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="Items"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/roomTitleTV"
                 app:layout_constraintTop_toBottomOf="@+id/roomRV" />
 
