@@ -442,7 +442,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     i.RoomName = cursor.getString(10);
                 }
 
-                if (cursor.getString(11) == "null")
+                if (cursor.getString(11) == null)
                 {
                     i.ContainerCategoryName = "";
                 }
@@ -460,7 +460,15 @@ public class DBHandler extends SQLiteOpenHelper {
                     i.ContainerName = cursor.getString(12);
                 }
 
-                i.LocationName = cursor.getString(9);
+                if (cursor.getString(9) == null)
+                {
+                    i.LocationName = "";
+                }
+                else
+                {
+                    i.LocationName = cursor.getString(9);
+                }
+
                 i.CategoryName = cursor.getString(13);
 
 //                String LocationName =cursor.getString(9);

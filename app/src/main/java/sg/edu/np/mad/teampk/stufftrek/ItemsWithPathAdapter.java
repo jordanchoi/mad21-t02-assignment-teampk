@@ -1,6 +1,7 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,30 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathView
         holder.itemsNameText.setText(item.Name);
         holder.itemsCatText.setText(item.CategoryName);
         holder.itemsQtyText.setText("Qty: " + item.Quantity);
-        holder.itemsPathText.setText("" + item.LocationName + "/" + item.RoomName + "/" + item.ContainerName);
         holder.itemsImage.setImageResource(R.drawable.ic_launcher_foreground);
+
+        String locName = item.LocationName;
+        String roomName = item.RoomName;
+
+        if (item.RoomName.length() > 0) {
+            locName = locName + "/";
+        }
+
+        if (item.ContainerName.length() > 0)
+        {
+            roomName = roomName + "/";
+        }
+
+
+        if (item.LocationName.length() == 0)
+        {
+            holder.itemsPathText.setTextColor(Color.RED);
+            holder.itemsPathText.setText("Item is unassigned, no location found.");
+        }
+        else
+        {
+            holder.itemsPathText.setText(locName + roomName + item.ContainerName);
+        }
     }
 
     @Override
