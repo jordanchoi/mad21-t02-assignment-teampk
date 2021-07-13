@@ -45,24 +45,23 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathView
         String locName = item.LocationName;
         String roomName = item.RoomName;
 
-        if (item.RoomName.length() > 0) {
-            locName = locName + "/";
+        if (item.RoomName!=null ) {
+            if (item.RoomName.length() > 0) {
+                locName = locName + "/";
+            }
         }
-
-        if (item.ContainerName.length() > 0)
-        {
-            roomName = roomName + "/";
+        if (item.ContainerName!=null ) {
+            if (item.ContainerName.length() > 0 | item.ContainerName == null) {
+                roomName = roomName + "/";
+            }
         }
-
-
-        if (item.LocationName.length() == 0)
-        {
-            holder.itemsPathText.setTextColor(Color.RED);
-            holder.itemsPathText.setText("Item is unassigned, no location found.");
-        }
-        else
-        {
-            holder.itemsPathText.setText(locName + roomName + item.ContainerName);
+        if (item.LocationName!=null ) {
+            if (item.LocationName.length() == 0 | item.LocationName == null) {
+                holder.itemsPathText.setTextColor(Color.RED);
+                holder.itemsPathText.setText("Item is unassigned, no location found.");
+            } else {
+                holder.itemsPathText.setText(locName + roomName + item.ContainerName);
+            }
         }
     }
 

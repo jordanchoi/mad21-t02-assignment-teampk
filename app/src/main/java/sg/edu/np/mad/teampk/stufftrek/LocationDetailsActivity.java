@@ -21,6 +21,7 @@ public class LocationDetailsActivity extends ActionBarActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         String LocationName = receiveIntent.getStringExtra("LocationName");
+        Integer LocationID = receiveIntent.getIntExtra("LocationID",0);
 
         // Set Title in the Actionbar
         ActionBarActivity.abTitle.setText("Manage Rooms");
@@ -36,14 +37,52 @@ public class LocationDetailsActivity extends ActionBarActivity {
             }
         });
 
+        // Set Title for location
         TextView locationDetailsTitle = findViewById(R.id.locationDetailsPageTitleTV);
         locationDetailsTitle.setText(LocationName);
-        RecyclerView rv = findViewById(R.id.roomRV);
+
+        // Construct DBHandler to retrieve DB information.
         DBHandler db = new DBHandler(this, null, null, 1);
-        ArrayList<Room> roomList = db.GetAllRoomFromLocation(1);
+
+        // Call GetAllRoomFromLocation to retrieve all rooms in location
+        ArrayList<Room> roomList = db.GetAllRoomFromLocation(LocationID);
+        // RV for rooms
+        RecyclerView roomrv = findViewById(R.id.roomRV);
         RoomAdapter adapter = new RoomAdapter(this,roomList);
         LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        rv.setLayoutManager(lm);
-        rv.setAdapter(adapter);
+        roomrv.setLayoutManager(lm);
+        roomrv.setAdapter(adapter);
+        // Handler for no items found
+        TextView noRoomTV = findViewById(R.id.noRoomTV);
+        if (roomList.size() == 0)
+        {
+            noRoomTV.setText("You have no rooms created");
+        }
+        else
+        {
+            noRoomTV.setVisibility(View.GONE);
+        }
+
+        // Call GetAllItemFromLocation() from DBHandler to retrieve ALL items in location.
+        ArrayList<Item> locationItemList = db.GetAllItemFromLocation(LocationID);
+        System.out.println(locationItemList.toArray().length);
+
+        RecyclerView itemrv = findViewById(R.id.itemRV);
+        ItemsWithPathAdapter itemsAdapter = new ItemsWithPathAdapter(this, locationItemList);
+        LinearLayoutManager lm2 = new LinearLayoutManager(this);
+        itemrv.setLayoutManager(lm2);
+        itemrv.setAdapter(itemsAdapter);
+
+
+        // Handler for no items found
+        TextView noItemTV = findViewById(R.id.noItemTV);
+        if (locationItemList.size() == 0)
+        {
+            noItemTV.setText("You have no items created");
+        }
+        else
+        {
+            noItemTV.setVisibility(View.GONE);
+        }
     }
 }
