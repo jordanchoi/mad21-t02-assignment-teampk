@@ -65,8 +65,8 @@ public class LocationDetailsActivity extends ActionBarActivity {
 
         // Call GetAllItemFromLocation() from DBHandler to retrieve ALL items in location.
         ArrayList<Item> locationItemList = db.GetAllItemFromLocation(LocationID);
-        System.out.println(locationItemList.toArray().length);
 
+        // RV for items
         RecyclerView itemrv = findViewById(R.id.itemRV);
         ItemsWithPathAdapter itemsAdapter = new ItemsWithPathAdapter(this, locationItemList);
         LinearLayoutManager lm2 = new LinearLayoutManager(this);
