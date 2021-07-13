@@ -40,28 +40,45 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathView
         holder.itemsNameText.setText(item.Name);
         holder.itemsCatText.setText(item.CategoryName);
         holder.itemsQtyText.setText("Qty: " + item.Quantity);
-        holder.itemsImage.setImageResource(R.drawable.ic_launcher_foreground);
+        holder.itemsImage.setImageResource(R.drawable.ic_launcher_foreground); // supposed to be item pic
 
         String locName = item.LocationName;
         String roomName = item.RoomName;
+        String containerName = item.ContainerName;
 
-        if (item.RoomName!=null ) {
+        if (item.RoomName != null ) {
             if (item.RoomName.length() > 0) {
-                locName = locName + "/";
+                locName = locName + " > ";
             }
         }
-        if (item.ContainerName!=null ) {
+        else
+        {
+            roomName = "";
+        }
+        if (item.ContainerName != null ) {
             if (item.ContainerName.length() > 0 | item.ContainerName == null) {
-                roomName = roomName + "/";
+                roomName = roomName + " > ";
             }
         }
-        if (item.LocationName!=null ) {
-            if (item.LocationName.length() == 0 | item.LocationName == null) {
+        else
+        {
+            containerName = "";
+        }
+
+        if (item.LocationName == null) {
+            if (context instanceof AllItemsActivity || context instanceof SearchActivity)
+            {
                 holder.itemsPathText.setTextColor(Color.RED);
                 holder.itemsPathText.setText("Item is unassigned, no location found.");
-            } else {
-                holder.itemsPathText.setText(locName + roomName + item.ContainerName);
             }
+            else
+            {
+                holder.itemsPathText.setText("");
+            }
+        }
+        else
+        {
+            holder.itemsPathText.setText(locName + roomName + containerName);
         }
     }
 

@@ -442,51 +442,51 @@ public class DBHandler extends SQLiteOpenHelper {
                 Item i = new Item(ItemID,Name,Quantity,Picture);
 //                i = parseItemFK(cursor,i);
 
-                if (cursor.getString(10) == null)
-                {
-                    i.RoomName = "";
-                }
-                else
-                {
-                    i.RoomName = cursor.getString(10);
-                }
-
-                if (cursor.getString(11) == null)
-                {
-                    i.ContainerCategoryName = "";
-                }
-                else
-                {
-                    i.ContainerCategoryName = cursor.getString(12);
-                }
-
-                if (cursor.getString(12) == null)
-                {
-                    i.ContainerName = "";
-                }
-                else
-                {
-                    i.ContainerName = cursor.getString(12);
-                }
-
-                if (cursor.getString(9) == null)
-                {
-                    i.LocationName = "";
-                }
-                else
-                {
-                    i.LocationName = cursor.getString(9);
-                }
-
-                i.CategoryName = cursor.getString(13);
-
+//                if (cursor.getString(10) == null)
+//                {
+//                    i.RoomName = "";
+//                }
+//                else
+//                {
+//                    i.RoomName = cursor.getString(10);
+//                }
+//
+//                if (cursor.getString(11) == null)
+//                {
+//                    i.ContainerCategoryName = "";
+//                }
+//                else
+//                {
+//                    i.ContainerCategoryName = cursor.getString(12);
+//                }
+//
+//                if (cursor.getString(12) == null)
+//                {
+//                    i.ContainerName = "";
+//                }
+//                else
+//                {
+//                    i.ContainerName = cursor.getString(12);
+//                }
+//
+//                if (cursor.getString(9) == null)
+//                {
+//                    i.LocationName = "";
+//                }
+//                else
+//                {
+//                    i.LocationName = cursor.getString(9);
+//                }
+//
+//                i.CategoryName = cursor.getString(13);
+//
 //                String LocationName =cursor.getString(9);
 //                String RoomName =cursor.getString(10);
 //                String ContainerCategoryName =cursor.getString(11);
 //                String ContainerName =cursor.getString(12);
 //                String CategoryName =cursor.getString(13);
-//                i = parseItemFK(cursor,i);
-//                i=parseItemFKName(cursor,i);
+                i = parseItemFK(cursor,i);
+                i=parseItemFKName(cursor,i);
 
                 itemArrayList.add(i);
                 cursor.moveToNext();
