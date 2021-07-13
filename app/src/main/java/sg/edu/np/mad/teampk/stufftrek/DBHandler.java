@@ -357,11 +357,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Item> GetAllItemFromCategory(Integer CategoryID){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
-                + " INNER JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
-                + " INNER JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
-                + " INNER JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
-                + " INNER JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
-                + " INNER JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
+                + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
+                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
+                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
+                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
+                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
                 + " WHERE "+COLUMN_CATEGORYID+" = "+CategoryID;
         ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
@@ -488,11 +488,11 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Item> SearchItem(String itemName){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
-                + " INNER JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
-                + " INNER JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
-                + " INNER JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
-                + " INNER JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
-                + " INNER JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
+                + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
+                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
+                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
+                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
+                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
                 + " WHERE "+COLUMN_NAME+" ~* '"+itemName+"'";
 
         SQLiteDatabase db = this.getWritableDatabase(); //readable
