@@ -58,17 +58,6 @@ public class CategoryActivity extends ActionBarActivity {
         rv.setLayoutManager(lm);
         rv.setAdapter(catAdapter);
 
-        // OnClickListener for the right button of the ActionBar
-        rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                /* TO REMOVE THE COMMENT WHEN CreateCategoryActivity is created.
-                Intent createLocationActivity = new Intent(LocationActivity.this, CreateCategoryActivity.class);
-                startActivity(createCategoryActivity);
-                */
-            }
-        });
-
         // Get the widgets in the activity by id.
         categoryTitle = findViewById(R.id.sharedPageTitleTV);
         categoryDesc = findViewById(R.id.sharedPageDescTV);

@@ -384,7 +384,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
                 + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
                 + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
-                + " WHERE "+COLUMN_CATEGORYID+" = "+CategoryID;
+                + " WHERE Item."+COLUMN_CATEGORYID+" = "+CategoryID;
         ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);

@@ -48,7 +48,10 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         holder.categoryContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent i = new Intent(context,CategoryItemsActivity.class);
+                i.putExtra("catName",cat.Name);
+                i.putExtra("catID",cat.getCategoryID());
+                context.startActivity(i);
             }
         });
     }
