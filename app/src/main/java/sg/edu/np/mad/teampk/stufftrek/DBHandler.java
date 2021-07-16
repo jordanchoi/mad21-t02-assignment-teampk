@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -179,7 +180,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME,c.Name);
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_ROOM,null,values);
+        db.insert(TABLE_CATEGORY,null,values);
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
@@ -277,7 +278,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return containerArrayList;
     }
 
-    public ArrayList<Category> GetAllCategory(){
+    public ArrayList<Category> GetAllCategories(){
         ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         String query = "SELECT * FROM " +TABLE_CATEGORY;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
@@ -292,6 +293,18 @@ public class DBHandler extends SQLiteOpenHelper {
             }
         }
         return categoryArrayList;
+    }
+
+    public Integer GetCategoryCount(Integer catID){
+        Integer count = 0;
+        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        String query = "SELECT COUNT(*) FROM " +TABLE_ITEM + " WHERE " + COLUMN_CATEGORYID + " = " + catID;
+        SQLiteDatabase db = this.getWritableDatabase(); //readable
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            count = Integer.parseInt(cursor.getString(0));
+        }
+        return count;
     }
 
     public ArrayList<Item> GetAllItemFromLocation(Integer LocationID){
