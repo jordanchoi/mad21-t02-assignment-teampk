@@ -11,6 +11,8 @@
         android:layout_width="110dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
+        app:backgroundTint="#7CCBCE"
+        app:cornerRadius="12dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
