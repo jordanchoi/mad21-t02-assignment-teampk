@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StuffTrek">
-        <activity android:name=".ItemsActivity"></activity>
+        <activity android:name=".ContainerActivity"></activity>
+        <activity android:name=".ItemsActivity" />
         <activity android:name=".RoomActivity" />
         <activity android:name=".ActionBarActivity" />
         <activity android:name=".LocationDetailsActivity" />
