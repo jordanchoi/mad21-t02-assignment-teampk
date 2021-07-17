@@ -35,8 +35,9 @@ public class RoomAdapter  extends RecyclerView.Adapter<RoomViewHolder> {
         holder.roomBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context,RoomActivity.class);
-                i.putExtra("roomID",r.getRoomID());
+                Intent i = new Intent(context, RoomActivity.class);
+                i.putExtra("RoomID", r.getRoomID());
+                i.putExtra("RoomName", r.Name);
                 context.startActivity(i);
             }
         });
