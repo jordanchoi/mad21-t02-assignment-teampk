@@ -24,7 +24,7 @@ public class ItemsActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
         String ContainerName = receiveIntent.getStringExtra("ContainerName");
         Integer ContainerID = receiveIntent.getIntExtra("ContainerID",0);
-
+        System.out.println(ContainerID);
         // Set Title in the Actionbar
         ActionBarActivity.abTitle.setText(ContainerName);
 
