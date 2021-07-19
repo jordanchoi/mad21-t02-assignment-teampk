@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +14,14 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class UnassignedItemsActivity extends AppCompatActivity {
 
     TextView unassignedTitle;
     TextView unassignedDesc;
     TextView unassignedItemsText;
+    TextView noItemTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,33 @@ public class UnassignedItemsActivity extends AppCompatActivity {
         unassignedTitle.setText("Unassigned Items");
         unassignedDesc.setText("These items are not assigned to a location as their containers or locations has been deleted.");
         unassignedItemsText.setText("Your Unassigned Items");
+
+        // Construct DBHandler to retrieve DB information.
+        DBHandler db = new DBHandler(this, null, null, 1);
+
+        // Call GetAllItemFromContainer to retrieve all items in container
+        ArrayList<Item> itemList = db.GetAllUnassignedItem();
+        // RV for Items
+        RecyclerView sharedRv = findViewById(R.id.sharedRv);
+        ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this,itemList);
+        LinearLayoutManager lm = new LinearLayoutManager(this);
+        sharedRv.setLayoutManager(lm);
+        sharedRv.setAdapter(adapter);
+        // Handler for no items found
+        noItemTV = findViewById(R.id.sharedNoItemsTV);
+        if (itemList.size() == 0)
+        {
+            noItemTV.setText("You have no items unassigned");
+        }
+        else
+        {
+            noItemTV.setVisibility(View.GONE);
+        }
     }
+
+
+
+
 
     // ActionBar items
     @Override
