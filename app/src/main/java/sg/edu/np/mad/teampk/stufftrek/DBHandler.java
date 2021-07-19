@@ -412,10 +412,10 @@ public class DBHandler extends SQLiteOpenHelper {
         return itemArrayList;
     }
 
-    public ArrayList<Item> GetAllUnassginedItem(){
+    public ArrayList<Item> GetAllUnassignedItem(){
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT * FROM " +TABLE_ITEM
-                +" WHERE "+COLUMN_CATEGORYID +" IS NULL AND "
+                +" WHERE "
                 +COLUMN_LOCATIONID +" IS NULL AND "
                 +COLUMN_CONTAINERID +" IS NULL AND "
                 +COLUMN_CONTAINERCATEGORYID +" IS NULL AND "
