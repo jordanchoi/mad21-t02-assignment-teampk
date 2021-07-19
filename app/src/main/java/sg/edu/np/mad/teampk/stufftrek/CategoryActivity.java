@@ -82,7 +82,7 @@ public class CategoryActivity extends AppCompatActivity {
                 c.remove();
             }
         }
-        // Sorts the list in alphabetical order
+        // Sort the categoryList by alphabetical order
         sortList();
 
         rv = findViewById(R.id.sharedRv);
@@ -117,23 +117,21 @@ public class CategoryActivity extends AppCompatActivity {
         }
     }
 
+    // Swipe to delete function
     private void enableSwipeToDelete() {
         CategorySwipeDeleteCallback swipeToDeleteCallback = new CategorySwipeDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-
+                // Gets the position of the deleted item
                 final int position = viewHolder.getAdapterPosition();
+
                 final Category item = categoryList.get(position);
 
-                if(item.Name.equals("Unassigned")) {
-                    Snackbar snackbar = Snackbar
-                            .make(mainLayout, item.Name + " cannot be deleted.", Snackbar.LENGTH_LONG);
-                    snackbar.show();
-                    catAdapter.notifyDataSetChanged();
-                } else if(item.getCount() >= 1) {
+                // Shows confirmation box if deleted category has items tagged to it
+                if(item.getCount() >= 1) {
                     new AlertDialog.Builder(CategoryActivity.this)
                             .setTitle("Delete Category")
-                            .setMessage("The category \"" + item.Name + "\" has " + item.getCount() + " items tagged to it.\nAre you sure you want to delete it?")
+                            .setMessage("The category \"" + item.Name + "\" has " + item.getCount() + " item(s) tagged to it.\nAre you sure you want to delete it?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     db.DeleteCategory(item.getCategoryID());
@@ -149,17 +147,22 @@ public class CategoryActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                     catAdapter.notifyDataSetChanged();
+                // Deleted category has no items tagged to it
                 } else {
-                    db.DeleteCategory(item.getCategoryID());
+                    // Deletes category from database
                     catAdapter.removeItem(position);
+                    // Sort the categoryList by alphabetical order
                     sortList();
                     catAdapter.notifyDataSetChanged();
 
                     Snackbar snackbar = Snackbar.make(mainLayout, item.Name + " was removed from the list.", Snackbar.LENGTH_LONG);
+                    // Adds a undo button in case user accidentally deletes
                     snackbar.setAction("UNDO", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            // Re-add the deleted item to the database
                             catAdapter.restoreItem(item);
+                            // Sort the categoryList by alphabetical order
                             sortList();
                             catAdapter.notifyDataSetChanged();
                             rv.scrollToPosition(position);
@@ -172,15 +175,17 @@ public class CategoryActivity extends AppCompatActivity {
             }
         };
 
+        // Attaches the swipe to delete function to the recycler view
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(rv);
     }
 
+    // Sort the categoryList by alphabetical order
     private void sortList() {
         Collections.sort(categoryList, new Comparator<Category>() {
             @Override
             public int compare(Category lhs, Category rhs) {
-                return lhs.Name.compareTo(rhs.Name);
+                return lhs.Name.toLowerCase().compareTo(rhs.Name.toLowerCase());
             }
         });
     }
@@ -224,8 +229,10 @@ public class CategoryActivity extends AppCompatActivity {
                 dialogAddBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        // retrieve the category name that the user entered
                         String categoryName = createField.getText().toString();
 
+                        // If user did not enter anything
                         if(categoryName.length() == 0)
                         {
                             errorMsgText = dialog.findViewById(R.id.errorMsgTV);
@@ -239,9 +246,11 @@ public class CategoryActivity extends AppCompatActivity {
                                 noCatText.setVisibility(View.GONE);
                             }
 
+                            // Creates a new category class and adds it to the database
                             Category cat = new Category(categoryName);
                             cat.setCategoryID(db.AddCategory(cat));
                             categoryList.add(cat);
+                            sortList();
                             catAdapter.notifyDataSetChanged();
                             dialog.cancel();
                         }
