@@ -12,6 +12,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 public class DBHandler extends SQLiteOpenHelper {
     public static int DATABASE_VERSION = 1;
     public static String DATABASE_NAME = "stufftrekDB.db";
@@ -638,5 +640,26 @@ public class DBHandler extends SQLiteOpenHelper {
         }
         db.close();
         return result;
+    }
+
+    public void DeleteCategory(Integer catID){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " +TABLE_CATEGORY +" WHERE "  +COLUMN_CATEGORYID +" = "+catID);
+        db.close();
+    }
+
+    public void ReassignCategory(Integer oldCatID){
+        ArrayList<Item> list = GetAllItemFromCategory(oldCatID);
+        for(Item i : list) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            String query = "SELECT * FROM " + TABLE_CATEGORY + " WHERE " + COLUMN_NAME + " = 'Unassigned'";
+            Cursor cursor = db.rawQuery(query,null);
+            if (cursor.moveToFirst()) {
+                Integer unassignedID =Integer.parseInt(cursor.getString(0));
+                ContentValues cv = new ContentValues();
+                cv.put(COLUMN_CATEGORYID,unassignedID);
+                db.update(TABLE_ITEM, cv, COLUMN_ITEMID + " = " + i.getItemID(), null);
+            }
+        }
     }
 }
