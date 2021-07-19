@@ -94,11 +94,6 @@ public class CategoryActivity extends AppCompatActivity {
         // initializes the swipe to delete feature
         enableSwipeToDelete();
 
-        ArrayList<Item> test = db.GetAllItem();
-        for(Item i : test) {
-            Log.d("vroom", i.CategoryName + ", " + i.Name + ", " + i.getCategoryID());
-        }
-
         // Get the widgets in the activity by id.
         categoryTitle = findViewById(R.id.sharedPageTitleTV);
         categoryDesc = findViewById(R.id.sharedPageDescTV);

@@ -814,8 +814,8 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             String updateQuery = "UPDATE " +TABLE_ITEM+" SET "+COLUMN_CATEGORYID+ " = 1 WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
             String deleteQuery = "DELETE FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
-            db.execSQL(deleteQuery);
             db.execSQL(updateQuery);
+            db.execSQL(deleteQuery);
             cursor.close();
             result=true;
         }
