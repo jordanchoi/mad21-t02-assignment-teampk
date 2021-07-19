@@ -662,9 +662,9 @@ public class DBHandler extends SQLiteOpenHelper {
             String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_CONTAINERID+ " = NULL"
                     +" WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
             String deleteContainerQuery = "DELETE FROM "+TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
-            Cursor cursor2 = db.rawQuery(updateQuery,null);
+
             cursor.close();
-            cursor2.close();
+            db.execSQL(updateQuery);
             db.execSQL(deleteContainerQuery);
             result=true;
         }
@@ -695,9 +695,9 @@ public class DBHandler extends SQLiteOpenHelper {
                     +" WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+ContainerCategoryID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+ContainerCategoryID;
             String deleteContainerCategoryQuery = "DELETE FROM " +TABLE_CONTAINERCATEGORY + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+ContainerCategoryID;
-            Cursor cursor2 = db.rawQuery(updateQuery,null);
+
             cursor.close();
-            cursor2.close();
+            db.execSQL(updateQuery);
             db.execSQL(deleteContainerQuery);
             db.execSQL(deleteContainerCategoryQuery);
             result=true;
@@ -735,9 +735,8 @@ public class DBHandler extends SQLiteOpenHelper {
                     +RoomID+")";
             String deleteRoomQuery = "DELETE FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+RoomID;
 
-            Cursor cursor2 = db.rawQuery(updateQuery,null);
             cursor.close();
-            cursor2.close();
+            db.execSQL(updateQuery);
             db.execSQL(deleteContainerQuery);
             db.execSQL(deleteContainerCategoryQuery);
             db.execSQL(deleteRoomQuery);
@@ -779,9 +778,8 @@ public class DBHandler extends SQLiteOpenHelper {
             String deleteLocationQuery = "DELETE FROM " +TABLE_LOCATION + " WHERE " +COLUMN_LOCATIONID +" = "+LocationID;
 
 
-            Cursor cursor2 = db.rawQuery(updateQuery,null);
             cursor.close();
-            cursor2.close();
+            db.execSQL(updateQuery);
             db.execSQL(deleteContainerQuery);
             db.execSQL(deleteContainerCategoryQuery);
             db.execSQL(deleteRoomQuery);
@@ -815,11 +813,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
             String updateQuery = "UPDATE " +TABLE_ITEM+" SET "+COLUMN_CATEGORYID+ " = 1 WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
-            Cursor cursor2 = db.rawQuery(updateQuery,null);
             String deleteQuery = "DELETE FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
             db.execSQL(deleteQuery);
+            db.execSQL(updateQuery);
             cursor.close();
-            cursor2.close();
             result=true;
         }
         db.close();
