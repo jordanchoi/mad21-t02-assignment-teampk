@@ -1,14 +1,22 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -24,17 +32,16 @@ public class CategoryItemsActivity extends AppCompatActivity {
         String categoryName = receiveIntent.getStringExtra("catName");
         Integer categoryID = receiveIntent.getIntExtra("catID", 0);
 
-//        // Set Title in the Actionbar
-//        ActionBarActivity.abTitle.setText(categoryName);
 
-//        ActionBarActivity.rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-//        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View V)
-//            {
-//                //To be added
-//            }
-//        });
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
 
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle(categoryName);
 
         // Construct DBHandler to retrieve DB information.
         DBHandler db = new DBHandler(this, null, null, 1);
@@ -43,22 +50,27 @@ public class CategoryItemsActivity extends AppCompatActivity {
         ArrayList<Item> itemList = db.GetAllItemFromCategory(categoryID);
         // RV for Items
         RecyclerView itemrv = findViewById(R.id.itemsRV);
-        ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this,itemList);
+        ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adapter);
         // Handler for no items found
         TextView noItemTV = findViewById(R.id.noItemsTV);
-        if (itemList.size() == 0)
-        {
+        if (itemList.size() == 0) {
             noItemTV.setText("You have no items created");
-        }
-        else
-        {
+        } else {
             noItemTV.setVisibility(View.GONE);
         }
-
-
     }
 
+    // ActionBar items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
