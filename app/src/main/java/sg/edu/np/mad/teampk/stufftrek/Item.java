@@ -49,4 +49,10 @@ public class Item {
         Picture = picture;
     }
 
+    public Item(String name, Integer quantity, String picture) {
+        Name = name;
+        Quantity = quantity;
+        Picture = picture;
+    }
+
 }
