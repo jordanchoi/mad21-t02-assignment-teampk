@@ -124,7 +124,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
             case R.id.mAddItem:
                 // code here if add Item. Intent to create item activity + bundle locationId, roomId, etc?
-                BottomSheetDialog dialog = new BottomSheetDialog(LocationDetailsActivity.this);
+                BottomSheetDialog dialog = new BottomSheetDialog(LocationDetailsActivity.this, R.style.BottomSheetStyle);
                 dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view
@@ -179,7 +179,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
             case R.id.mAddRoom:
                 // code here if add Room. This one no need intent, just use bottomsheetdialog from category/location
-                dialog = new BottomSheetDialog(LocationDetailsActivity.this);
+                dialog = new BottomSheetDialog(LocationDetailsActivity.this, R.style.BottomSheetStyle);
                 dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view

@@ -106,7 +106,7 @@ public class LocationActivity extends AppCompatActivity {
                 break;
             // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Location
             case R.id.mAdd:
-                BottomSheetDialog dialog = new BottomSheetDialog(LocationActivity.this);
+                BottomSheetDialog dialog = new BottomSheetDialog(LocationActivity.this, R.style.BottomSheetStyle);
                 dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view

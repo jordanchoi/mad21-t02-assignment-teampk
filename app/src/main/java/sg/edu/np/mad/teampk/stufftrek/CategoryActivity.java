@@ -204,9 +204,9 @@ public class CategoryActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 break;
-            // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Location
+            // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Category
             case R.id.mAdd:
-                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this);
+                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this, R.style.BottomSheetStyle);
                 dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view
