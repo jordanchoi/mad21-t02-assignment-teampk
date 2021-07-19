@@ -170,7 +170,7 @@ public class CategoryActivity extends ActionBarActivity {
                             .setMessage("The category \"" + item.Name + "\" has " + item.getCount() + " items tagged to it.\nAre you sure you want to delete it?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    //db.ReassignCategory(item.getCategoryID());
+                                    db.DeleteCategory(item.getCategoryID());
                                     catAdapter.removeItem(position);
                                     sortList();
                                     catAdapter.notifyDataSetChanged();
@@ -184,6 +184,7 @@ public class CategoryActivity extends ActionBarActivity {
                             .show();
                     catAdapter.notifyDataSetChanged();
                 } else {
+                    db.DeleteCategory(item.getCategoryID());
                     catAdapter.removeItem(position);
                     sortList();
                     catAdapter.notifyDataSetChanged();

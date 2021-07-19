@@ -66,7 +66,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     }
 
     public void removeItem(int position) {
-        //db.DeleteCategory(categoryList.get(position).getCategoryID());
+        db.DeleteCategory(categoryList.get(position).getCategoryID());
         categoryList.remove(position);
     }
 
