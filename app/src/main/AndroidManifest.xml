@@ -12,7 +12,6 @@
         <activity android:name=".ContainerActivity"></activity>
         <activity android:name=".ItemsActivity" />
         <activity android:name=".RoomActivity" />
-        <activity android:name=".ActionBarActivity" />
         <activity android:name=".LocationDetailsActivity" />
         <activity android:name=".UnassignedItemsActivity" />
         <activity android:name=".AllItemsActivity" />

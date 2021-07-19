@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class AllItemsActivity extends ActionBarActivity {
+public class AllItemsActivity extends AppCompatActivity {
     TextView itemsTitle;
     TextView itemsDesc;
     TextView allItemsText;
@@ -30,11 +30,11 @@ public class AllItemsActivity extends ActionBarActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("All Items");
-
-        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
-        ActionBarActivity.rightBtn.setVisibility(View.GONE);
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText("All Items");
+//
+//        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
+//        ActionBarActivity.rightBtn.setVisibility(View.GONE);
 
         // Get the widgets in the activity by id.
         itemsTitle = findViewById(R.id.sharedPageTitleTV);

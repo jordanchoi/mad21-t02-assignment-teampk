@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CategoryItemsActivity extends ActionBarActivity {
+public class CategoryItemsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +24,16 @@ public class CategoryItemsActivity extends ActionBarActivity {
         String categoryName = receiveIntent.getStringExtra("catName");
         Integer categoryID = receiveIntent.getIntExtra("catID", 0);
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText(categoryName);
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText(categoryName);
 
-        ActionBarActivity.rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                //To be added
-            }
-        });
+//        ActionBarActivity.rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+//        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View V)
+//            {
+//                //To be added
+//            }
+//        });
 
 
         // Construct DBHandler to retrieve DB information.

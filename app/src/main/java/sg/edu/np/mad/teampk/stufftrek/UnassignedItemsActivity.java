@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class UnassignedItemsActivity extends ActionBarActivity {
+public class UnassignedItemsActivity extends AppCompatActivity {
 
     TextView unassignedTitle;
     TextView unassignedDesc;
@@ -25,11 +25,11 @@ public class UnassignedItemsActivity extends ActionBarActivity {
         Intent receiveIntent = getIntent();
 
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("Unassigned Items");
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText("Unassigned Items");
 
-        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
-        rightBtn.setVisibility(View.GONE);
+//        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
+//        rightBtn.setVisibility(View.GONE);
 
         // Get the widgets in the activity by id.
         unassignedTitle = findViewById(R.id.sharedPageTitleTV);

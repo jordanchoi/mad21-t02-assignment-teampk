@@ -6,13 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class RoomActivity extends ActionBarActivity {
+public class RoomActivity extends AppCompatActivity {
     TextView itemsTitle;
     TextView containersTitle;
     TextView noContainersText;
@@ -28,10 +30,10 @@ public class RoomActivity extends ActionBarActivity {
         int roomId = receiveIntent.getIntExtra("RoomID", -1);
         String roomName = receiveIntent.getStringExtra("RoomName");
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText(roomName);
-        // Change the right button of the action bar.
-        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText(roomName);
+//        // Change the right button of the action bar.
+//        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
 
         // Respective texts within the activity
         itemsTitle = findViewById(R.id.itemsTitleTV);
@@ -83,10 +85,33 @@ public class RoomActivity extends ActionBarActivity {
         {
             noItemsText.setVisibility(View.GONE);
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId()) {
+            case R.id.addContainerCat:
+                Toast
+                        .makeText(
+                                getApplicationContext(),
+                                "calculator menu",
+                                Toast.LENGTH_SHORT)
+                        .show();
+                return (true);
 
+            case R.id.addContainer:
+                finish();
+                return (true);
 
-
-
+            case R.id.addItem:
+                finish();
+                return (true);
+        }
+        return (super.onOptionsItemSelected(item));
     }
 }

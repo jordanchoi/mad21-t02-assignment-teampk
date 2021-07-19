@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Hide the Action Bar
-        getSupportActionBar().hide();
+//        // Hide the Action Bar
+//        getSupportActionBar().hide();
 
         // Find the respective widgets in the view by id.
         appNameTitle = findViewById(R.id.stuffTrekTV);

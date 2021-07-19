@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class LocationDetailsActivity extends ActionBarActivity {
+public class LocationDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,19 +23,19 @@ public class LocationDetailsActivity extends ActionBarActivity {
         String LocationName = receiveIntent.getStringExtra("LocationName");
         Integer LocationID = receiveIntent.getIntExtra("LocationID",0);
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("Manage Rooms");
-
-        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                /* TO REMOVE THE COMMENT WHEN CreateLocationActivity is created.
-                Intent createLocationActivity = new Intent(LocationActivity.this, CreateLocationActivity.class);
-                startActivity(createLocationActivity);
-                */
-            }
-        });
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText("Manage Rooms");
+//
+//        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+//        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View V)
+//            {
+//                /* TO REMOVE THE COMMENT WHEN CreateLocationActivity is created.
+//                Intent createLocationActivity = new Intent(LocationActivity.this, CreateLocationActivity.class);
+//                startActivity(createLocationActivity);
+//                */
+//            }
+//        });
 
         // Set Title for location
         TextView locationDetailsTitle = findViewById(R.id.locationDetailsPageTitleTV);
