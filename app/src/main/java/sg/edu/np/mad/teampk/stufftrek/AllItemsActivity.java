@@ -1,5 +1,6 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,16 +27,20 @@ public class AllItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category); // can do this?
+        setContentView(R.layout.activity_category);
 
         // Receive Intent
         Intent receiveIntent = getIntent();
 
-//        // Set Title in the Actionbar
-//        ActionBarActivity.abTitle.setText("All Items");
-//
-//        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
-//        ActionBarActivity.rightBtn.setVisibility(View.GONE);
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
+
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle("All Items");
 
         // Get the widgets in the activity by id.
         itemsTitle = findViewById(R.id.sharedPageTitleTV);
@@ -65,6 +71,16 @@ public class AllItemsActivity extends AppCompatActivity {
         {
             noItemsText.setVisibility(View.GONE);
         }
+    }
 
+    // ActionBar items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -46,15 +46,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         DBHandler db = new DBHandler(context, null, null, 1);
         int count = db.GetCategoryCount(cat.getCategoryID());
         cat.setCount(count);
-        holder.categoryCount.setText(String.valueOf(count));
+        holder.categoryCount.setText(String.valueOf(count) + " items");
 
         // OnClickListener for the ViewHolder
         holder.categoryContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(context,CategoryItemsActivity.class);
-                i.putExtra("catName",cat.Name);
-                i.putExtra("catID",cat.getCategoryID());
+                i.putExtra("catName", cat.Name);
+                i.putExtra("catID", cat.getCategoryID());
                 context.startActivity(i);
             }
         });

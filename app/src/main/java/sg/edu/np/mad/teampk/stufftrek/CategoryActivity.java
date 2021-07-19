@@ -105,62 +105,6 @@ public class CategoryActivity extends AppCompatActivity {
         {
             noCatText.setVisibility(View.GONE);
         }
-
-//        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View v)
-//            {
-//                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this);
-//                dialog.setContentView(LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_create, findViewById(R.id.content), false));
-//
-//                // Get the respective items in the view
-//                createTitle = dialog.findViewById(R.id.dialogTitleTV);
-//                createField = dialog.findViewById(R.id.dialogFieldET);
-//                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
-//                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
-//
-//                // Set the respective texts of the items in the view
-//                createTitle.setText("Category Name: ");
-//                dialogAddBtn.setText("Add Category");
-//
-//                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.cancel();
-//                    }
-//                });
-//
-//                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        String categoryName = createField.getText().toString();
-//
-//                        if(categoryName.length() == 0)
-//                        {
-//                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
-//                            errorMsgText.setText("Category name cannot be empty!");
-//                            errorMsgText.setVisibility(View.VISIBLE);
-//                        }
-//                        else
-//                        {
-//                            if (categoryList.size() == 0)
-//                            {
-//                                noCatText.setVisibility(View.GONE);
-//                            }
-//
-//                            Category cat = new Category(categoryName);
-//                            cat.setCategoryID(db.AddCategory(cat));
-//                            categoryList.add(cat);
-//                            catAdapter.notifyDataSetChanged();
-//                            dialog.cancel();
-//                        }
-//                    }
-//                });
-//
-//                Window window = dialog.getWindow();
-//                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-//                dialog.show();
-//            }
-//        });
     }
 
     private void enableSwipeToDeleteAndUndo() {
