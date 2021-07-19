@@ -632,10 +632,9 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
-            String deleteQuery = "DELETE FROM " +TABLE_ITEM +" WHERE "  +COLUMN_ITEMID +" = "+ItemID;
-            Cursor cursor2 = db.rawQuery(deleteQuery,null);
+            String deleteItemQuery = "DELETE FROM " +TABLE_ITEM +" WHERE "  +COLUMN_ITEMID +" = "+ItemID;
+            db.execSQL(deleteItemQuery);
             cursor.close();
-            cursor2.close();
             result=true;
         }
         db.close();
@@ -662,12 +661,11 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()){
             String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_CONTAINERID+ " = NULL"
                     +" WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
-            String deleteQuery = "DELETE FROM "+TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
+            String deleteContainerQuery = "DELETE FROM "+TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
             Cursor cursor2 = db.rawQuery(updateQuery,null);
-            Cursor cursor3 = db.rawQuery(deleteQuery,null);
             cursor.close();
             cursor2.close();
-            cursor3.close();
+            db.execSQL(deleteContainerQuery);
             result=true;
         }
         db.close();
@@ -698,12 +696,10 @@ public class DBHandler extends SQLiteOpenHelper {
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+ContainerCategoryID;
             String deleteContainerCategoryQuery = "DELETE FROM " +TABLE_CONTAINERCATEGORY + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+ContainerCategoryID;
             Cursor cursor2 = db.rawQuery(updateQuery,null);
-            Cursor cursor3 = db.rawQuery(deleteContainerQuery,null);
-            Cursor cursor4 = db.rawQuery(deleteContainerCategoryQuery,null);
             cursor.close();
             cursor2.close();
-            cursor3.close();
-            cursor4.close();
+            db.execSQL(deleteContainerQuery);
+            db.execSQL(deleteContainerCategoryQuery);
             result=true;
         }
         db.close();
@@ -740,14 +736,11 @@ public class DBHandler extends SQLiteOpenHelper {
             String deleteRoomQuery = "DELETE FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+RoomID;
 
             Cursor cursor2 = db.rawQuery(updateQuery,null);
-            Cursor cursor3 = db.rawQuery(deleteContainerQuery,null);
-            Cursor cursor4 = db.rawQuery(deleteContainerCategoryQuery,null);
-            Cursor cursor5 = db.rawQuery(deleteRoomQuery,null);
             cursor.close();
             cursor2.close();
-            cursor3.close();
-            cursor4.close();
-            cursor5.close();
+            db.execSQL(deleteContainerQuery);
+            db.execSQL(deleteContainerCategoryQuery);
+            db.execSQL(deleteRoomQuery);
             result=true;
         }
         db.close();
@@ -787,16 +780,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
             Cursor cursor2 = db.rawQuery(updateQuery,null);
-            Cursor cursor3 = db.rawQuery(deleteContainerQuery,null);
-            Cursor cursor4 = db.rawQuery(deleteContainerCategoryQuery,null);
-            Cursor cursor5 = db.rawQuery(deleteRoomQuery,null);
-            Cursor cursor6 = db.rawQuery(deleteLocationQuery,null);
             cursor.close();
             cursor2.close();
-            cursor3.close();
-            cursor4.close();
-            cursor5.close();
-            cursor6.close();
+            db.execSQL(deleteContainerQuery);
+            db.execSQL(deleteContainerCategoryQuery);
+            db.execSQL(deleteRoomQuery);
+            db.execSQL(deleteLocationQuery);
+
             result=true;
         }
         db.close();
@@ -820,34 +810,33 @@ public class DBHandler extends SQLiteOpenHelper {
     // Deletes Category (True/False:Success/Failure)
     public boolean DeleteCategory(Integer CategoryID){
         boolean result = false;
-//        String query = "SELECT * FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery(query,null);
-//        if (cursor.moveToFirst()){
-//            String updateQuery = "UPDATE " +TABLE_ITEM+" SET "+COLUMN_CATEGORYID+ " = 1 WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
-//            Cursor cursor2 = db.rawQuery(updateQuery,null);
-//            String deleteQuery = "DELETE FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
-//            Cursor cursor3 = db.rawQuery(deleteQuery,null);
-//            cursor.close();
-//            cursor2.close();
-//            cursor3.close();
-//            result=true;
-//        }
-//        db.close();
+        String query = "SELECT * FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " +TABLE_CATEGORY +" WHERE "  +COLUMN_CATEGORYID +" = "+CategoryID);
-        ArrayList<Item> list = GetAllItemFromCategory(CategoryID);
-        for(Item i : list) {
-            String query = "SELECT * FROM " + TABLE_CATEGORY + " WHERE " + COLUMN_NAME + " = 'Unassigned'";
-            Cursor cursor = db.rawQuery(query,null);
-            if (cursor.moveToFirst()) {
-                Integer unassignedID =Integer.parseInt(cursor.getString(0));
-                ContentValues cv = new ContentValues();
-                cv.put(COLUMN_CATEGORYID,unassignedID);
-                db.update(TABLE_ITEM, cv, COLUMN_ITEMID + " = " + i.getItemID(), null);
-            }
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()){
+            String updateQuery = "UPDATE " +TABLE_ITEM+" SET "+COLUMN_CATEGORYID+ " = 1 WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
+            Cursor cursor2 = db.rawQuery(updateQuery,null);
+            String deleteQuery = "DELETE FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+CategoryID;
+            db.execSQL(deleteQuery);
+            cursor.close();
+            cursor2.close();
+            result=true;
         }
         db.close();
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        db.execSQL("DELETE FROM " +TABLE_CATEGORY +" WHERE "  +COLUMN_CATEGORYID +" = "+CategoryID);
+//        ArrayList<Item> list = GetAllItemFromCategory(CategoryID);
+//        for(Item i : list) {
+//            String query = "SELECT * FROM " + TABLE_CATEGORY + " WHERE " + COLUMN_NAME + " = 'Unassigned'";
+//            Cursor cursor = db.rawQuery(query,null);
+//            if (cursor.moveToFirst()) {
+//                Integer unassignedID =Integer.parseInt(cursor.getString(0));
+//                ContentValues cv = new ContentValues();
+//                cv.put(COLUMN_CATEGORYID,unassignedID);
+//                db.update(TABLE_ITEM, cv, COLUMN_ITEMID + " = " + i.getItemID(), null);
+//            }
+//        }
+//        db.close();
         return result;
     }
 }
