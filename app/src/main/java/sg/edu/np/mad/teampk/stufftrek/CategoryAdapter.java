@@ -20,11 +20,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     // for the constructor parameter
     ArrayList<Category> categoryList;
 
+    DBHandler db = null;
+
     // Constructor for CategoryAdapter
     public CategoryAdapter(Context ctx, ArrayList<Category> catList)
     {
         context = ctx;
         categoryList = catList;
+        db = new DBHandler(context, null, null, 1);
     }
 
     @NonNull
@@ -42,6 +45,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         holder.categoryName.setText(cat.Name);
         DBHandler db = new DBHandler(context, null, null, 1);
         int count = db.GetCategoryCount(cat.getCategoryID());
+        cat.setCount(count);
         holder.categoryCount.setText(String.valueOf(count));
 
         // OnClickListener for the ViewHolder
@@ -59,5 +63,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     @Override
     public int getItemCount() {
         return categoryList.size();
+    }
+
+    public void removeItem(int position) {
+        //db.DeleteCategory(categoryList.get(position).getCategoryID());
+        categoryList.remove(position);
+    }
+
+    public void restoreItem(Category item) {
+        categoryList.add(item);
+        db.AddCategory(item);
     }
 }

@@ -41,7 +41,7 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersViewHolder
         holder.containerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent containerActivity = new Intent(context, ContainerActivity.class);
+                Intent containerActivity = new Intent(context, ItemsActivity.class);
                 containerActivity.putExtra("ContainerID", container.getContainerID());
                 containerActivity.putExtra("ContainerName", container.Name);
                 context.startActivity(containerActivity);
