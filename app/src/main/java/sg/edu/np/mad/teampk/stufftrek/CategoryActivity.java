@@ -185,7 +185,7 @@ public class CategoryActivity extends AppCompatActivity {
         Collections.sort(categoryList, new Comparator<Category>() {
             @Override
             public int compare(Category lhs, Category rhs) {
-                return lhs.Name.compareTo(rhs.Name);
+                return lhs.Name.toLowerCase().compareTo(rhs.Name.toLowerCase());
             }
         });
     }
