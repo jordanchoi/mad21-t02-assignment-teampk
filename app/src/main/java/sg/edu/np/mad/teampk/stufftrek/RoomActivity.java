@@ -11,8 +11,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -22,6 +29,19 @@ public class RoomActivity extends AppCompatActivity {
     TextView noContainersText;
     TextView noItemsText;
 
+    TextView createTitle;
+    EditText createField;
+    TextView errorMsgText;
+    ImageButton dialogCancelBtn;
+    Button dialogAddBtn;
+
+    DBHandler db = null;
+    ContainersCategoryAdapter ccAdapter = null;
+    ArrayList<ContainerCategory> containerCategoriesList;
+
+    int roomId;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +49,7 @@ public class RoomActivity extends AppCompatActivity {
 
         // Receive Intent
         Intent receiveIntent = getIntent();
-        int roomId = receiveIntent.getIntExtra("RoomID", -1);
+        roomId = receiveIntent.getIntExtra("RoomID", -1);
         String roomName = receiveIntent.getStringExtra("RoomName");
 
         // Toolbar for LocationActivity
@@ -51,14 +71,14 @@ public class RoomActivity extends AppCompatActivity {
         containersTitle.setText("Containers");
 
         // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
+        db = new DBHandler(this, null, null, 1);
 
         // Containers RecyclerView
         // Call DBHandler method to retrieve all container categories within the room
-        ArrayList<ContainerCategory> containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
+        containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
         RecyclerView ccRv = findViewById(R.id.containersRV);
-        ContainersCategoryAdapter ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList);
+        ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList);
         LinearLayoutManager ccLm = new LinearLayoutManager(this);
         ccRv.setLayoutManager(ccLm);
         ccRv.setAdapter(ccAdapter);
@@ -108,6 +128,56 @@ public class RoomActivity extends AppCompatActivity {
 
             case R.id.addContainerCat:
                 // codes here - bottomsheetdialog
+                BottomSheetDialog dialog = new BottomSheetDialog(RoomActivity.this, R.style.BottomSheetStyle);
+                dialog.setContentView(R.layout.dialog_create);
+
+                // Get the respective items in the view
+                createTitle = dialog.findViewById(R.id.dialogTitleTV);
+                createField = dialog.findViewById(R.id.dialogFieldET);
+                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
+                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
+
+                // Set the respective texts of the items in the view
+                createTitle.setText("Container Category Name: ");
+                dialogAddBtn.setText("Create New Container Category");
+
+                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String newContainerCat = createField.getText().toString();
+
+                        if(newContainerCat.length() == 0)
+                        {
+                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                            errorMsgText.setText("Container Category's name cannot be empty!");
+                            errorMsgText.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            if (containerCategoriesList.size() == 0)
+                            {
+                                noContainersText.setVisibility(View.GONE);
+                            }
+
+                            ContainerCategory cc = new ContainerCategory(newContainerCat, roomId);
+                            cc.setContainerCategoryID(db.AddContainerCategory(cc));
+                            containerCategoriesList.add(cc);
+                            ccAdapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    }
+                });
+
+                Window window = dialog.getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.show();
                 return (true);
 
             case R.id.addContainer:

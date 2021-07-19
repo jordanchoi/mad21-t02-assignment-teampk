@@ -5,9 +5,11 @@
     </style>
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
         <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->
-        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
         <!-- actionMenuTextColor is the color of the text of action (menu) items  -->
         <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
+        <item name="android:fontFamily">@font/montserrat</item>
     </style>
 
     <style name="BottomSheetStyle" parent="Theme.Design.Light.BottomSheetDialog">
@@ -15,7 +17,7 @@
         <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
 
-    <!-- This configures the styles for the title within the Toolbar  -->
+        <!-- This configures the styles for the title within the Toolbar  -->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">16sp</item>
         <item name="android:fontFamily">@font/montserrat</item>
