@@ -1,5 +1,8 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.Toolbar;
+
 public class EmptyClass {
 // class for notes or removed widgets in case required again
 
@@ -23,5 +26,16 @@ public class EmptyClass {
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
                 alertDialog.show();
                  */
+
+    // CODE FOR ACTIONBAR
+    // Toolbar for LocationActivity
+//    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+//    // Sets the Toolbar to act as the ActionBar for this Activity window.
+//    setSupportActionBar(toolbar);
+//
+//    ActionBar tb = getSupportActionBar();
+//        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+//        tb.setDisplayHomeAsUpEnabled(true);
+//        tb.setTitle(LocationName);
 
 }

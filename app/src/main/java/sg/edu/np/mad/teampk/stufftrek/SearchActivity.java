@@ -19,9 +19,6 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
         // Widgets in the Internal ActionBar
         backBtn = findViewById(R.id.searchBackBtn);
 

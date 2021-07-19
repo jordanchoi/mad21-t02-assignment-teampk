@@ -1,5 +1,9 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,6 +12,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,7 +26,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
-public class LocationActivity extends ActionBarActivity {
+public class LocationActivity extends AppCompatActivity {
     TextView locationTitle;
     TextView locationDesc;
     ArrayList<Location> locationList;
@@ -32,6 +38,9 @@ public class LocationActivity extends ActionBarActivity {
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
 
+    DBHandler db;
+    LocationAdapter locAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +49,18 @@ public class LocationActivity extends ActionBarActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("Manage Location");
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
+
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle("Manage Location");
 
         // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
+        db = new DBHandler(this, null, null, 1);
         // Call GetAllLocation() from DBHandler to retrieve ALL locations.
         locationList = db.GetAllLocation();
 
@@ -54,7 +70,7 @@ public class LocationActivity extends ActionBarActivity {
         noLocationText = findViewById(R.id.noLocationTV);
 
         RecyclerView rv = findViewById(R.id.locationRv);
-        LocationAdapter locAdapter = new LocationAdapter(this, locationList);
+        locAdapter = new LocationAdapter(this, locationList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
         rv.setAdapter(locAdapter);
@@ -72,12 +88,26 @@ public class LocationActivity extends ActionBarActivity {
         {
             noLocationText.setVisibility(View.GONE);
         }
+    }
 
-        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
+    // Inflate Menu for LocationActivity into the ActionBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu_add, menu);
+        return true;
+    }
+
+    // Actionbar Menu Items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+            // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Location
+            case R.id.mAdd:
                 BottomSheetDialog dialog = new BottomSheetDialog(LocationActivity.this);
-                dialog.setContentView(LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_create, findViewById(R.id.content), false));
+                dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view
                 createTitle = dialog.findViewById(R.id.dialogTitleTV);
@@ -126,8 +156,8 @@ public class LocationActivity extends ActionBarActivity {
                 Window window = dialog.getWindow();
                 window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 dialog.show();
-            }
-        });
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
-
 }

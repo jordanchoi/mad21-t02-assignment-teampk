@@ -1,16 +1,18 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class UnassignedItemsActivity extends ActionBarActivity {
+public class UnassignedItemsActivity extends AppCompatActivity {
 
     TextView unassignedTitle;
     TextView unassignedDesc;
@@ -24,12 +26,15 @@ public class UnassignedItemsActivity extends ActionBarActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
 
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("Unassigned Items");
-
-        // Hide the right button as it is not required in this activity. Users not allowed to create items from this activity.
-        rightBtn.setVisibility(View.GONE);
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle("Unassigned Items");
 
         // Get the widgets in the activity by id.
         unassignedTitle = findViewById(R.id.sharedPageTitleTV);
@@ -40,5 +45,16 @@ public class UnassignedItemsActivity extends ActionBarActivity {
         unassignedTitle.setText("Unassigned Items");
         unassignedDesc.setText("These items are not assigned to a location as their containers or locations has been deleted.");
         unassignedItemsText.setText("Your Unassigned Items");
+    }
+
+    // ActionBar items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
