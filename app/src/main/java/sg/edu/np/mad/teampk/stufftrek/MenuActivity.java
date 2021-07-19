@@ -34,8 +34,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        // Hide the Action Bar
-        getSupportActionBar().hide();
+//        // Hide the Action Bar
+//        getSupportActionBar().hide();
 
         // Get the activity header by their id
         appTitle = findViewById(R.id.pageTitleTV);

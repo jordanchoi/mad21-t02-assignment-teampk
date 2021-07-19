@@ -1,6 +1,9 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,6 +16,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,15 +32,16 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
 
-public class CategoryActivity extends ActionBarActivity {
-    ConstraintLayout mainLayout;
+public class CategoryActivity extends AppCompatActivity {
     TextView categoryTitle;
     TextView categoryDesc;
     ArrayList<Category> categoryList;
     TextView existCatText;
     TextView noCatText;
     RecyclerView rv;
+    ConstraintLayout mainLayout;
 
     TextView createTitle;
     EditText createField;
@@ -54,8 +60,15 @@ public class CategoryActivity extends ActionBarActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
 
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText("Manage Categories");
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
+
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle("Manage Categories");
 
         // Construct DBHandler to retrieve DB information.
         db = new DBHandler(this, null, null, 1);
@@ -92,63 +105,6 @@ public class CategoryActivity extends ActionBarActivity {
         {
             noCatText.setVisibility(View.GONE);
         }
-
-        ActionBarActivity.rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v)
-            {
-                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this);
-                dialog.setContentView(LayoutInflater.from(v.getContext()).inflate(R.layout.dialog_create, findViewById(R.id.content), false));
-
-                // Get the respective items in the view
-                createTitle = dialog.findViewById(R.id.dialogTitleTV);
-                createField = dialog.findViewById(R.id.dialogFieldET);
-                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
-                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
-
-                // Set the respective texts of the items in the view
-                createTitle.setText("Category Name: ");
-                dialogAddBtn.setText("Add Category");
-
-                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-
-                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String categoryName = createField.getText().toString();
-
-                        if(categoryName.length() == 0)
-                        {
-                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
-                            errorMsgText.setText("Category name cannot be empty!");
-                            errorMsgText.setVisibility(View.VISIBLE);
-                        }
-                        else
-                        {
-                            if (categoryList.size() == 0)
-                            {
-                                noCatText.setVisibility(View.GONE);
-                            }
-
-                            Category cat = new Category(categoryName);
-                            cat.setCategoryID(db.AddCategory(cat));
-                            categoryList.add(cat);
-                            sortList();
-                            catAdapter.notifyDataSetChanged();
-                            dialog.cancel();
-                        }
-                    }
-                });
-
-                Window window = dialog.getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                dialog.show();
-            }
-        });
     }
 
     private void enableSwipeToDeleteAndUndo() {
@@ -217,5 +173,76 @@ public class CategoryActivity extends ActionBarActivity {
                 return lhs.Name.compareTo(rhs.Name);
             }
         });
+    }
+
+    // Inflate Menu for LocationActivity into the ActionBar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.actionbar_menu_add, menu);
+        return true;
+    }
+
+    // Actionbar Menu Items
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+            // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Location
+            case R.id.mAdd:
+                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this);
+                dialog.setContentView(R.layout.dialog_create);
+
+                // Get the respective items in the view
+                createTitle = dialog.findViewById(R.id.dialogTitleTV);
+                createField = dialog.findViewById(R.id.dialogFieldET);
+                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
+                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
+
+                // Set the respective texts of the items in the view
+                createTitle.setText("Category Name: ");
+                dialogAddBtn.setText("Add Category");
+
+                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String categoryName = createField.getText().toString();
+
+                        if(categoryName.length() == 0)
+                        {
+                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                            errorMsgText.setText("Category name cannot be empty!");
+                            errorMsgText.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            if (categoryList.size() == 0)
+                            {
+                                noCatText.setVisibility(View.GONE);
+                            }
+
+                            Category cat = new Category(categoryName);
+                            cat.setCategoryID(db.AddCategory(cat));
+                            categoryList.add(cat);
+                            catAdapter.notifyDataSetChanged();
+                            dialog.cancel();
+                        }
+                    }
+                });
+
+                Window window = dialog.getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.show();
+            }
+
+        return super.onOptionsItemSelected(item);
     }
 }

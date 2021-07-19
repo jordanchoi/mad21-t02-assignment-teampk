@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static sg.edu.np.mad.teampk.stufftrek.ActionBarActivity.rightBtn;
+//import static sg.edu.np.mad.teampk.stufftrek.ActionBarActivity.rightBtn;
 
 public class ItemsActivity extends AppCompatActivity {
 
@@ -24,20 +24,20 @@ public class ItemsActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
         String ContainerName = receiveIntent.getStringExtra("ContainerName");
         Integer ContainerID = receiveIntent.getIntExtra("ContainerID",0);
-        System.out.println(ContainerID);
-        // Set Title in the Actionbar
-        ActionBarActivity.abTitle.setText(ContainerName);
 
-        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
-        rightBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                /* TO REMOVE THE COMMENT WHEN CreateLocationActivity is created.
-                Intent createLocationActivity = new Intent(LocationActivity.this, CreateLocationActivity.class);
-                startActivity(createLocationActivity);
-                */
-            }
-        });
+//        // Set Title in the Actionbar
+//        ActionBarActivity.abTitle.setText(ContainerName);
+//
+//        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+//        rightBtn.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View V)
+//            {
+//                /* TO REMOVE THE COMMENT WHEN CreateLocationActivity is created.
+//                Intent createLocationActivity = new Intent(LocationActivity.this, CreateLocationActivity.class);
+//                startActivity(createLocationActivity);
+//                */
+//            }
+//        });
 
 
         // Construct DBHandler to retrieve DB information.

@@ -12,4 +12,5 @@
     <color name="gray_400">#FFBDBDBD</color>
     <color name="gray_600">#FF757575</color>
     <color name="overlay">#AD000000</color>
+    <color name="stufftrek_primary">#7CCBCE</color>
 </resources>
