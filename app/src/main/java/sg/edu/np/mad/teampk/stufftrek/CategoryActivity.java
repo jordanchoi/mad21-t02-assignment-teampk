@@ -32,6 +32,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Locale;
 
 public class CategoryActivity extends AppCompatActivity {
@@ -72,8 +73,16 @@ public class CategoryActivity extends AppCompatActivity {
 
         // Construct DBHandler to retrieve DB information.
         db = new DBHandler(this, null, null, 1);
-        // Call GetAllCategories() from DBHandler to retrieve ALL locations.
+        // Call GetAllCategories() from DBHandler to retrieve ALL categories.
         categoryList = db.GetAllCategories();
+        // Loop through categoryList to remove the "Unassigned" field
+        for (Iterator<Category> c = categoryList.iterator(); c.hasNext(); ) {
+            Category value = c.next();
+            if (value.Name.equals("Unassigned")) {
+                c.remove();
+            }
+        }
+        // Sorts the list in alphabetical order
         sortList();
 
         rv = findViewById(R.id.sharedRv);
@@ -82,7 +91,13 @@ public class CategoryActivity extends AppCompatActivity {
         rv.setLayoutManager(lm);
         rv.setAdapter(catAdapter);
 
-        enableSwipeToDeleteAndUndo();
+        // initializes the swipe to delete feature
+        enableSwipeToDelete();
+
+        ArrayList<Item> test = db.GetAllItem();
+        for(Item i : test) {
+            Log.d("vroom", i.CategoryName + ", " + i.Name + ", " + i.getCategoryID());
+        }
 
         // Get the widgets in the activity by id.
         categoryTitle = findViewById(R.id.sharedPageTitleTV);
@@ -107,7 +122,7 @@ public class CategoryActivity extends AppCompatActivity {
         }
     }
 
-    private void enableSwipeToDeleteAndUndo() {
+    private void enableSwipeToDelete() {
         CategorySwipeDeleteCallback swipeToDeleteCallback = new CategorySwipeDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
