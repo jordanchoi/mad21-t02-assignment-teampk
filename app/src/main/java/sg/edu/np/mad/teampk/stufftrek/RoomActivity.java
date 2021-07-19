@@ -1,6 +1,8 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,10 +32,15 @@ public class RoomActivity extends AppCompatActivity {
         int roomId = receiveIntent.getIntExtra("RoomID", -1);
         String roomName = receiveIntent.getStringExtra("RoomName");
 
-//        // Set Title in the Actionbar
-//        ActionBarActivity.abTitle.setText(roomName);
-//        // Change the right button of the action bar.
-//        rightBtn.setImageResource(R.drawable.ic_more); // for future usage
+        // Toolbar for LocationActivity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        setSupportActionBar(toolbar);
+
+        ActionBar tb = getSupportActionBar();
+        tb.setHomeAsUpIndicator(R.drawable.ic_back);
+        tb.setDisplayHomeAsUpEnabled(true);
+        tb.setTitle(roomName);
 
         // Respective texts within the activity
         itemsTitle = findViewById(R.id.itemsTitleTV);
@@ -95,21 +102,20 @@ public class RoomActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                break;
+
             case R.id.addContainerCat:
-                Toast
-                        .makeText(
-                                getApplicationContext(),
-                                "calculator menu",
-                                Toast.LENGTH_SHORT)
-                        .show();
+                // codes here - bottomsheetdialog
                 return (true);
 
             case R.id.addContainer:
-                finish();
+                // codes here to intent
                 return (true);
 
             case R.id.addItem:
-                finish();
+                // codes here to intent;
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
