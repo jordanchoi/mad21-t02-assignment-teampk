@@ -83,13 +83,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         containerCatText.setText("Container Category");
         createContainerBtn.setText("Create New Container");
 
-        // onclicklistener for EditText to reset the placeholder text - improve UX
-        inputContainerName.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                inputContainerName.setText("");
-            }
-        });
+        inputContainerName.setSelectAllOnFocus(true);
 
         // Initialize DBHandler to retrieve the container categories within the room
         db = new DBHandler(this, null, null, 1);
@@ -97,6 +91,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
 
         // ArrayList for the Spinner
         ArrayList<String> containerCatSpinnerItems = new ArrayList<String>();
+        containerCatSpinnerItems.add("Please select a container category");
 
         categorySpinner.setOnItemSelectedListener(this);
 
