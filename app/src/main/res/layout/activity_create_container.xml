@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateContainerActivity">
+
+    <include
+        android:id="@+id/toolbar_main"
+        layout="@layout/custom_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/createContainerTitleTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Create Container"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_main" />
+
+    <TextView
+        android:id="@+id/createContainerDescTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/createContainerTitleTV"
+        app:layout_constraintStart_toStartOf="@+id/createContainerTitleTV"
+        app:layout_constraintTop_toBottomOf="@+id/createContainerTitleTV" />
+
+    <ImageButton
+        android:id="@+id/captureBtn"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="false"
+        android:background="@color/darker_white"
+        app:layout_constraintStart_toStartOf="@+id/createContainerDescTV"
+        app:layout_constraintTop_toBottomOf="@+id/createContainerDescTV"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <TextView
+        android:id="@+id/captureDescTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/createContainerDescTV"
+        app:layout_constraintStart_toStartOf="@+id/captureBtn"
+        app:layout_constraintTop_toBottomOf="@+id/captureBtn" />
+
+    <TextView
+        android:id="@+id/containerNamePromptTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Container Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/captureDescTV"
+        app:layout_constraintTop_toBottomOf="@+id/captureDescTV" />
+
+    <EditText
+        android:id="@+id/containerNameET"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:inputType="textPersonName"
+        android:text="Enter new container name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/containerNamePromptTV"
+        app:layout_constraintTop_toBottomOf="@+id/containerNamePromptTV" />
+
+    <TextView
+        android:id="@+id/containerCatPromptTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat"
+        android:text="Container Category"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/containerNameET"
+        app:layout_constraintTop_toBottomOf="@+id/cNameErrorMsgTV" />
+
+    <Spinner
+        android:id="@+id/containerCatSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/containerCatPromptTV"
+        app:layout_constraintStart_toStartOf="@+id/containerCatPromptTV"
+        app:layout_constraintTop_toBottomOf="@+id/containerCatPromptTV" />
+
+    <Button
+        android:id="@+id/createContainerBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="Create New Container"
+        app:backgroundTint="@color/stufftrek_primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/containerCatSpinner"
+        app:layout_constraintStart_toStartOf="@+id/containerCatSpinner" />
+
+    <TextView
+        android:id="@+id/cNameErrorMsgTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat"
+        android:text="TextView"
+        android:textColor="@color/design_default_color_error"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/containerNameET"
+        app:layout_constraintStart_toStartOf="@+id/containerNameET"
+        app:layout_constraintTop_toBottomOf="@+id/containerNameET" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,7 +40,7 @@ public class RoomActivity extends AppCompatActivity {
     ArrayList<ContainerCategory> containerCategoriesList;
 
     int roomId;
-
+    String roomName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class RoomActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         roomId = receiveIntent.getIntExtra("RoomID", -1);
-        String roomName = receiveIntent.getStringExtra("RoomName");
+        roomName = receiveIntent.getStringExtra("RoomName");
 
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -182,6 +182,15 @@ public class RoomActivity extends AppCompatActivity {
 
             case R.id.addContainer:
                 // codes here to intent
+                Intent createContainerActivity = new Intent(RoomActivity.this, CreateContainerActivity.class);
+                Bundle roomInformation = new Bundle();
+
+                roomInformation.putInt("RoomID", roomId);
+                roomInformation.putString("RoomName", roomName);
+
+                createContainerActivity.putExtras(roomInformation);
+                startActivity(createContainerActivity);
+
                 return (true);
 
             case R.id.addItem:
@@ -189,5 +198,36 @@ public class RoomActivity extends AppCompatActivity {
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ccAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }

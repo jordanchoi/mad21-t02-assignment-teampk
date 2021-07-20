@@ -166,10 +166,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public Integer AddContainer(Container c){
         ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME,c.Name);
-        values.put(COLUMN_CONTAINERCATEGORYID,c.getContainerCategoryID());
+        values.put(COLUMN_NAME, c.Name);
+        values.put(COLUMN_CONTAINERCATEGORYID, c.getContainerCategoryID());
         SQLiteDatabase db = this.getWritableDatabase();
-        db.insert(TABLE_ROOM,null,values);
+        db.insert(TABLE_CONTAINER,null, values);
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
