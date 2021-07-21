@@ -12,7 +12,6 @@
         android:theme="@style/Theme.StuffTrek">
         <activity android:name=".CreateItemActivity"></activity>
         <activity android:name=".CreateContainerActivity" />
-        <activity android:name=".ContainerActivity" />
         <activity android:name=".ItemsActivity" />
         <activity android:name=".RoomActivity" />
         <activity android:name=".LocationDetailsActivity" />
