@@ -2,6 +2,7 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,10 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersViewHolder
     public void onBindViewHolder(@NonNull ContainersViewHolder holder, int position) {
         Container container = containerList.get(position);
         holder.containerName.setText(container.Name);
-
+        if (container.Picture != null)
+        {
+            holder.containerBtn.setImageBitmap(BitmapFactory.decodeFile(container.Picture));
+        }
         // code to change the container imagebutton image resource
 
         // Intent to respective containerActivity when imagebutton is clicked.

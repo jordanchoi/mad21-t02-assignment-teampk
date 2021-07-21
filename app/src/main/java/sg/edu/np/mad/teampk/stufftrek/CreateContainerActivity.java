@@ -9,8 +9,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +23,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +36,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +134,8 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         categorySpinner.setAdapter(dataAdapter);
 
         // OnClickListener for create button
-        createContainerBtn.setOnClickListener(new View.OnClickListener(){
+        createContainerBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
                 String selectedCat = containerCatSpinnerItems.get(categorySpinner.getSelectedItemPosition());
@@ -150,7 +158,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
                 }
                 else
                 {
-                    Container newContainer = new Container(newContainerName, null, containerCatId);
+                    Container newContainer = new Container(newContainerName, picturePath, containerCatId);
                     newContainer.setContainerID(db.AddContainer(newContainer));
                     finish();
                 }
@@ -269,7 +277,8 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        cameraBtn.setImageBitmap(selectedImage);
+                        picturePath = saveImage(selectedImage);
+                        cameraBtn.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                     }
                     break;
                 case 1:
@@ -291,5 +300,39 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
                     break;
             }
         }
+    }
+
+    public String saveImage(Bitmap image)
+    {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        File directory = cw.getDir("images" + File.pathSeparator + "containers", Context.MODE_PRIVATE);
+
+        String filename = String.valueOf(inputContainerName.getText());
+
+        if (filename.length() == 0 || filename == "Enter the new container name") // container name not set yet.
+        {
+            filename = roomName + "_" + roomId + "_" + System.currentTimeMillis() + ".jpg";
+        }
+        else
+        {
+            filename = roomName + "_" + roomId + "_" + filename + "_" + System.currentTimeMillis() + ".jpg";
+        }
+
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        File mypath = new File(directory, filename);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+        } catch (Exception e) {
+            Log.e("SAVE_IMAGE", e.getMessage(), e);
+        }
+
+        return mypath.getAbsolutePath();
     }
 }

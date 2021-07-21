@@ -7,14 +7,17 @@
 
     <ImageButton
         android:id="@+id/containerIB"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
         android:layout_marginEnd="8dp"
-        android:foreground="@color/overlay"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:foreground="@color/overlay_light"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
+        app:srcCompat="@color/gray_400" />
 
     <TextView
         android:id="@+id/containerNameTV"
