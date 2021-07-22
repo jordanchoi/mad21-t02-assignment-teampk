@@ -2,6 +2,7 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,11 @@ public class RoomAdapter  extends RecyclerView.Adapter<RoomViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, RoomActivity.class);
-                i.putExtra("RoomID", r.getRoomID());
-                i.putExtra("RoomName", r.Name);
-                i.putExtra("LocationID",LocationID);
+                Bundle roomInformation = new Bundle();
+                roomInformation.putInt("RoomID", r.getRoomID());
+                roomInformation.putInt("LocationID",LocationID);
+                roomInformation.putString("RoomName", r.Name);
+                i.putExtras(roomInformation);
                 context.startActivity(i);
             }
         });
