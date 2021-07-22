@@ -74,11 +74,12 @@
                 android:id="@+id/roomIV"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:scaleType="fitXY"
+                android:background="@color/gray_400"
+                android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/splash_bg" />
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
             <TextView
                 android:id="@+id/noContainersText"
