@@ -314,7 +314,11 @@ public class DBHandler extends SQLiteOpenHelper {
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
-                " WHERE "+COLUMN_LOCATIONID+" = "+LocationID;
+                " WHERE "+COLUMN_LOCATIONID+" = "+LocationID
+                +" AND " +COLUMN_ROOMID +" = NULL"
+                +" AND " +COLUMN_CONTAINERID +" = NULL"
+                +" AND " +COLUMN_CONTAINERCATEGORYID +" = NULL"
+                ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
@@ -337,7 +341,10 @@ public class DBHandler extends SQLiteOpenHelper {
         ArrayList<Item> itemArrayList = new ArrayList<Item>();
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
-                " WHERE "+COLUMN_ROOMID+" = "+RoomID;
+                " WHERE "+COLUMN_ROOMID+" = "+RoomID
+                +" AND " +COLUMN_CONTAINERID +" = NULL"
+                +" AND " +COLUMN_CONTAINERCATEGORYID +" = NULL"
+                ;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
@@ -361,6 +368,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
                 " WHERE "+COLUMN_CONTAINERID+" = "+ContainerID;
+
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
