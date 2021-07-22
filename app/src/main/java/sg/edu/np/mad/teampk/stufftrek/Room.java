@@ -26,4 +26,10 @@ public class Room {
         Picture = picture;
         LocationID = locationID;
     }
+
+    public Room(Integer roomID, String name, Integer locationID) {
+        Name = name;
+        RoomID=roomID;
+        LocationID = locationID;
+    }
 }
