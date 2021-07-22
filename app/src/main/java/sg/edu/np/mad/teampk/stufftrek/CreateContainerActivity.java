@@ -110,7 +110,6 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         inputContainerName.setHint("Enter the new container name");
         containerCatText.setText("Container Category");
         createContainerBtn.setText("Create New Container");
-//        inputContainerName.setSelectAllOnFocus(true);
 
         // Initialize DBHandler to retrieve the container categories within the room
         db = new DBHandler(this, null, null, 1);
@@ -310,7 +309,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
 
         String filename = String.valueOf(inputContainerName.getText());
 
-        if (filename.length() == 0 || filename == "Enter the new container name") // container name not set yet.
+        if (filename.length() == 0) // container name not set yet.
         {
             filename = roomName + "_" + roomId + "_" + System.currentTimeMillis() + ".jpg";
         }
