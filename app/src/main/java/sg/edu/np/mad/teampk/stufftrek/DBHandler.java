@@ -65,7 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_LOCATION_TABLE);
 
         String CREATE_ROOM_TABLE = "CREATE TABLE " + TABLE_ROOM+
-                "(" + COLUMN_ROOMID + " INTEGER NOT NULL PRIMARY KEY," + COLUMN_NAME+ " TEXT NOT NULL,"+COLUMN_PICTURE+"TEXT,"
+                "(" + COLUMN_ROOMID + " INTEGER NOT NULL PRIMARY KEY," + COLUMN_NAME+ " TEXT NOT NULL,"+COLUMN_PICTURE+" TEXT,"
                 +COLUMN_LOCATIONID+" INTEGER NOT NULL"+
                 ", FOREIGN KEY("+COLUMN_LOCATIONID+") REFERENCES "+TABLE_LOCATION+"("+COLUMN_LOCATIONID+")" +")";
         db.execSQL(CREATE_ROOM_TABLE);
@@ -870,8 +870,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = " + path
-                    + " WHERE " + COLUMN_ROOMID + " = " + roomID;
+            String updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = \"" + path
+                    + "\" WHERE " + COLUMN_ROOMID + " = " + roomID;
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
@@ -886,8 +886,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_ITEM + " SET " + COLUMN_PICTURE + " = " + path
-                    + " WHERE " + COLUMN_ITEMID + " = " + itemID;
+            String updateQuery = "UPDATE " + TABLE_ITEM + " SET "+ COLUMN_PICTURE + " = \"" + path
+                    + "\" WHERE " + COLUMN_ITEMID + " = " + itemID;
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
@@ -902,8 +902,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = " + path
-                    + " WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            String updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = \"" + path
+                    + "\" WHERE " +COLUMN_CONTAINERID +" = "+containerID;
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
