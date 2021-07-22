@@ -14,10 +14,12 @@ import java.util.ArrayList;
 public class RoomAdapter  extends RecyclerView.Adapter<RoomViewHolder> {
     Context context;
     ArrayList<Room> data;
+    Integer LocationID;
 
-    public RoomAdapter(Context c, ArrayList<Room> d){
+    public RoomAdapter(Context c, ArrayList<Room> d,Integer id){
         context=c;
         data=d;
+        LocationID=id;
     }
 
     @NonNull
@@ -38,6 +40,7 @@ public class RoomAdapter  extends RecyclerView.Adapter<RoomViewHolder> {
                 Intent i = new Intent(context, RoomActivity.class);
                 i.putExtra("RoomID", r.getRoomID());
                 i.putExtra("RoomName", r.Name);
+                i.putExtra("LocationID",LocationID);
                 context.startActivity(i);
             }
         });
