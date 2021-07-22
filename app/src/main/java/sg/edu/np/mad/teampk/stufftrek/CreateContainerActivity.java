@@ -84,6 +84,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
+        // Toolbar Settings
         ActionBar tb = getSupportActionBar();
         tb.setHomeAsUpIndicator(R.drawable.ic_back);
         tb.setDisplayHomeAsUpEnabled(true);
@@ -109,7 +110,6 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         inputContainerName.setText("Enter the new container name");
         containerCatText.setText("Container Category");
         createContainerBtn.setText("Create New Container");
-
         inputContainerName.setSelectAllOnFocus(true);
 
         // Initialize DBHandler to retrieve the container categories within the room

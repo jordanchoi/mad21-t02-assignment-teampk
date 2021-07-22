@@ -1,13 +1,28 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,24 +31,34 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RoomActivity extends AppCompatActivity {
+    // for camera and file storage
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
+    String picturePath = null;
+
     TextView itemsTitle;
     TextView containersTitle;
     TextView noContainersText;
     TextView noItemsText;
+    ImageView roomImage;
 
     TextView createTitle;
     EditText createField;
     TextView errorMsgText;
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
+
 
     DBHandler db = null;
     ContainersCategoryAdapter ccAdapter = null;
@@ -62,13 +87,16 @@ public class RoomActivity extends AppCompatActivity {
         tb.setDisplayHomeAsUpEnabled(true);
         tb.setTitle(roomName);
 
-        // Respective texts within the activity
+        // Respective items within the view
         itemsTitle = findViewById(R.id.itemsTitleTV);
         containersTitle = findViewById(R.id.containerTitleTV);
         noContainersText = findViewById(R.id.noContainersText);
         noItemsText = findViewById(R.id.noItemsText);
+        roomImage = findViewById(R.id.roomIV);
         itemsTitle.setText("Items");
         containersTitle.setText("Containers");
+
+        // load image from db
 
         // Construct DBHandler to retrieve DB information.
         db = new DBHandler(this, null, null, 1);
@@ -112,6 +140,17 @@ public class RoomActivity extends AppCompatActivity {
         {
             noItemsText.setVisibility(View.GONE);
         }
+
+        // ImageView triggers camera setonclicklistener
+        roomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(checkAndRequestPermissions(RoomActivity.this)){
+                    selectImage(RoomActivity.this);
+                }
+            }
+        });
+
     }
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -195,9 +234,143 @@ public class RoomActivity extends AppCompatActivity {
 
             case R.id.addItem:
                 // codes here to intent;
+                Intent createItemActivity = new Intent(RoomActivity.this, CreateItemActivity.class);
+                Bundle roomInformationToItem = new Bundle();
+                roomInformationToItem.putInt("RoomID", roomId);
+                roomInformationToItem.putString("RoomName", roomName);
+
+                createItemActivity.putExtras(roomInformationToItem);
+                startActivity(createItemActivity);
                 return (true);
         }
         return (super.onOptionsItemSelected(item));
+    }
+
+    // Camera and File Storage Permission
+    // function to check permission
+    public static boolean checkAndRequestPermissions(final Activity context) {
+        int WExtstorePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int cameraPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA);
+        List<String> listPermissionsNeeded = new ArrayList<>();
+
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED)
+        {
+            listPermissionsNeeded.add(Manifest.permission.CAMERA);
+        }
+        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED)
+        {
+            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        if (!listPermissionsNeeded.isEmpty())
+        {
+            ActivityCompat.requestPermissions(context, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            return false;
+        }
+        return true;
+    }
+
+    // Handled permission Result
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_ID_MULTIPLE_PERMISSIONS:
+                if (ContextCompat.checkSelfPermission(RoomActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Camera permissions is required to capture container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
+                } else if (ContextCompat.checkSelfPermission(RoomActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Storage permissions is required to save container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
+                } else {
+                    selectImage(RoomActivity.this);
+                }
+                break;
+        }
+    }
+
+    // function to let's the user to choose image from camera or gallery
+    private void selectImage(Context context){
+        final CharSequence[] optionsMenu = {"Take Photo", "Choose from Gallery", "Exit" }; // create a menuOption Array
+        // create a dialog for showing the optionsMenu
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        // set the items in builder
+        builder.setItems(optionsMenu, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(optionsMenu[i].equals("Take Photo")){
+                    // Open the camera and get the photo
+                    Intent takePicture = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, 0);
+                }
+                else if(optionsMenu[i].equals("Choose from Gallery")){
+                    // choose from  external storage
+                    Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto , 1);
+                }
+                else if (optionsMenu[i].equals("Exit")) {
+                    dialogInterface.cancel();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_CANCELED) {
+            switch (requestCode) {
+                case 0:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        picturePath = saveImage(selectedImage);
+                        roomImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                        // to update room image path in db room table here
+                    }
+                    break;
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage = data.getData();
+                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                        if (selectedImage != null)
+                        {
+                            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                            if (cursor != null) {
+                                cursor.moveToFirst();
+                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                                picturePath = cursor.getString(columnIndex);
+                                roomImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                                cursor.close();
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    public String saveImage(Bitmap image)
+    {
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        File directory = cw.getDir("images" + File.pathSeparator + "rooms", Context.MODE_PRIVATE);
+
+        String filename = roomName + "_" + roomId + "_" + System.currentTimeMillis() + ".jpg";
+
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        File mypath = new File(directory, filename);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.close();
+        } catch (Exception e) {
+            Log.e("SAVE_IMAGE", e.getMessage(), e);
+        }
+
+        return mypath.getAbsolutePath();
     }
 
     @Override
