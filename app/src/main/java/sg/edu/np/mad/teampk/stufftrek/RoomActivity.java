@@ -59,11 +59,11 @@ public class RoomActivity extends AppCompatActivity {
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
 
-
     DBHandler db = null;
     ContainersCategoryAdapter ccAdapter = null;
     ArrayList<ContainerCategory> containerCategoriesList;
 
+    Room currentRoom = null;
     int roomId;
     String roomName;
 
@@ -100,12 +100,13 @@ public class RoomActivity extends AppCompatActivity {
         db = new DBHandler(this, null, null, 1);
 
         // load image from db if exist
-        Room currentRoom = db.GetRoomWithID(roomId);
+        currentRoom = db.GetRoomWithID(roomId);
+
         if (currentRoom.Picture != null)
         {
+            roomImage.setScaleType(ImageView.ScaleType.FIT_XY);
             roomImage.setImageBitmap(BitmapFactory.decodeFile(currentRoom.Picture));
         }
-
 
         // Containers RecyclerView
         // Call DBHandler method to retrieve all container categories within the room
@@ -329,7 +330,8 @@ public class RoomActivity extends AppCompatActivity {
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         picturePath = saveImage(selectedImage);
-                        roomImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+                        currentRoom.Picture = picturePath;
+                        roomImage.setImageBitmap(BitmapFactory.decodeFile(currentRoom.Picture));
                         db.UpdateRoomPhoto(roomId, picturePath);
                     }
                     break;
