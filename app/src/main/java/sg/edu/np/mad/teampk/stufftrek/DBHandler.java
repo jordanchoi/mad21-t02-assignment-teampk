@@ -122,7 +122,7 @@ public class DBHandler extends SQLiteOpenHelper {
         }
     }
 
-
+    //CreateHandler
     public Integer AddLocation(Location l){
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME,l.Name);
@@ -210,7 +210,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return i.getItemID();
     }
 
-    //READ
+    //GetHandler
     public ArrayList<Location> GetAllLocation(){
         ArrayList<Location> locationArrayList = new ArrayList<Location>();
         String query = "SELECT * FROM " +TABLE_LOCATION;
@@ -627,6 +627,30 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return i;
     }
+
+    public Room GetRoomWithID(Integer roomID){
+        String query = "SELECT * FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+roomID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        Room r = null;
+        if (cursor.moveToFirst()){
+            String Name=cursor.getString(1);
+            String Picture;
+            Integer LocationID=Integer.parseInt(cursor.getString(3));
+            try{
+                Picture = cursor.getString(2);
+                r = new Room(roomID,Name,Picture,LocationID);
+            }
+            catch(IllegalStateException e){
+                r = new Room(roomID,Name,LocationID);
+            }
+        }
+        db.close();
+        return r;
+    }
+
+    //DeleteHandler
+
     public boolean DeleteItem(Integer ItemID){
         boolean result = false;
         String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID +" = "+ItemID;
@@ -835,6 +859,56 @@ public class DBHandler extends SQLiteOpenHelper {
 //            }
 //        }
 //        db.close();
+        return result;
+    }
+
+    //UpdateHandler
+
+    public boolean UpdateRoomPhoto(Integer roomID,String path){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+roomID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = " + path
+                    + " WHERE " + COLUMN_ROOMID + " = " + roomID;
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateItemPhoto(Integer itemID,String path){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID +" = "+itemID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE " + TABLE_ITEM + " SET " + COLUMN_PICTURE + " = " + path
+                    + " WHERE " + COLUMN_ITEMID + " = " + itemID;
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateContainerPhoto(Integer containerID,String path){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = " + path
+                    + " WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
         return result;
     }
 }
