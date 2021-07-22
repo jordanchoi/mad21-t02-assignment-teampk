@@ -107,10 +107,10 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         createContainerDesc.setText("Create containers within a room to contain items for better organization.");
         cameraDesc.setText("Add an image of the container for easy reference");
         containerNameText.setText("Container Name");
-        inputContainerName.setText("Enter the new container name");
+        inputContainerName.setHint("Enter the new container name");
         containerCatText.setText("Container Category");
         createContainerBtn.setText("Create New Container");
-        inputContainerName.setSelectAllOnFocus(true);
+//        inputContainerName.setSelectAllOnFocus(true);
 
         // Initialize DBHandler to retrieve the container categories within the room
         db = new DBHandler(this, null, null, 1);
@@ -149,6 +149,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
                         break;
                     }
                 }
+
                 String newContainerName = String.valueOf(inputContainerName.getText());
 
                 if (newContainerName.length() == 0)
