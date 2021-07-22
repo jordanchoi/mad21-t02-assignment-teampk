@@ -96,10 +96,16 @@ public class RoomActivity extends AppCompatActivity {
         itemsTitle.setText("Items");
         containersTitle.setText("Containers");
 
-        // load image from db
-
         // Construct DBHandler to retrieve DB information.
         db = new DBHandler(this, null, null, 1);
+
+        // load image from db if exist
+        Room currentRoom = db.GetRoomWithID(roomId);
+        if (currentRoom.Picture != null)
+        {
+            roomImage.setImageBitmap(BitmapFactory.decodeFile(currentRoom.Picture));
+        }
+
 
         // Containers RecyclerView
         // Call DBHandler method to retrieve all container categories within the room
@@ -324,7 +330,7 @@ public class RoomActivity extends AppCompatActivity {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
                         picturePath = saveImage(selectedImage);
                         roomImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                        // to update room image path in db room table here
+                        db.UpdateRoomPhoto(roomId, picturePath);
                     }
                     break;
                 case 1:
