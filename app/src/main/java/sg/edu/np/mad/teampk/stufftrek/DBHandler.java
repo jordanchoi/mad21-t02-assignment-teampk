@@ -227,6 +227,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return locationArrayList;
     }
 
@@ -245,6 +247,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return roomArrayList;
     }
 
@@ -262,6 +266,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return containerCategoryArrayList;
     }
 
@@ -280,6 +286,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return containerArrayList;
     }
 
@@ -297,6 +305,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return categoryArrayList;
     }
 
@@ -309,6 +319,8 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             count = Integer.parseInt(cursor.getString(0));
         }
+        cursor.close();
+        db.close();
         return count;
     }
 
@@ -336,7 +348,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
-        System.out.println(query);
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -363,6 +376,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -387,6 +402,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -421,6 +438,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -446,6 +465,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -519,6 +540,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
     public ArrayList<Item> SearchItem(String itemName){
@@ -555,7 +578,8 @@ public class DBHandler extends SQLiteOpenHelper {
         }else{
             System.out.println("No result");
         }
-        System.out.println(itemArrayList.toArray().length);
+        cursor.close();
+        db.close();
         return itemArrayList;
     }
 
@@ -656,6 +680,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 r = new Room(roomID,Name,LocationID);
             }
         }
+        cursor.close();
         db.close();
         return r;
     }
