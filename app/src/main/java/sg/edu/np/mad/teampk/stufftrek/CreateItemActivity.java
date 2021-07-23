@@ -171,51 +171,66 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         createItemBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 // Validate inputs
-                String itemName = inputItemName.getText().toString();
-                Integer itemQty = Integer.parseInt(String.valueOf(inputItemQty));
-                if (itemName.length() == 0)
+                String itemName = String.valueOf(inputItemName.getText());
+                String itemQtyStr = String.valueOf(inputItemQty.getText());
+                Integer itemQty = 1;
+
+                if (itemQtyStr == "" || itemQtyStr.length() == 0)
+                {
+                    qtyErrorMsg.setText("Enter Item Quantity!");
+                    qtyErrorMsg.setVisibility(View.VISIBLE);
+                }
+                else if (itemName.length() == 0)
                 {
                     nameErrorMsg.setText("Name cannot be empty!");
                     nameErrorMsg.setVisibility(View.VISIBLE);
                 }
-                else if (itemQty < 1)
-                {
-                    qtyErrorMsg.setText("Item quantity cannot be less than 1");
-                    qtyErrorMsg.setVisibility(View.VISIBLE);
-                }
-                else
-                {
-                    String selectedCat = itemCatSpinnerItems.get(inputItemCatSpinner.getSelectedItemPosition());
-                    Integer catId = null;
 
-                    for (Category c : categoriesList)
-                    {
-                        if (selectedCat == c.Name)
-                        {
-                            catId = c.getCategoryID();
-                        }
-                    }
-
-
-                    Item newItem = new Item(itemName, itemQty, picturePath);
-                    // change foreign keys to null if it is -1
-                    // locationId cannot be -1
-
-                    if (roomId == -1)
-                    {
-                        roomId = null;
-                    }
-                    if (containerCatId == -1)
-                    {
-                        containerCatId = null;
-                    }
-                    if (containerId == -1)
-                    {
-                        containerId = null;
-                    }
-
+                else {
                     try {
+                        itemQty = Integer.parseInt(String.valueOf(inputItemQty.getText()));
+                    }
+                    catch (NumberFormatException nfe)
+                    {
+                        nfe.printStackTrace();
+                        itemQty = 1;
+                        qtyErrorMsg.setText("An unknown error occurred.");
+                        qtyErrorMsg.setVisibility(View.VISIBLE);
+                    }
+
+                    if (itemQty == 0)
+                    {
+                        qtyErrorMsg.setText("Item quantity cannot be less than 1");
+                        qtyErrorMsg.setVisibility(View.VISIBLE);
+                    }
+                    // Input is valid
+                    else {
+                        String selectedCat = itemCatSpinnerItems.get(inputItemCatSpinner.getSelectedItemPosition());
+                        Integer catId = null;
+
+                        for (Category c : categoriesList) {
+                            if (selectedCat == c.Name) {
+                                catId = c.getCategoryID();
+                            }
+                        }
+
+                        Item newItem = new Item(itemName, itemQty, picturePath);
+
+                        // change foreign keys to null if it is -1
+                        // locationId cannot be -1
+
+                        if (roomId == -1) {
+                            roomId = null;
+                        }
+                        if (containerCatId == -1) {
+                            containerCatId = null;
+                        }
+                        if (containerId == -1) {
+                            containerId = null;
+                        }
+
                         newItem.setLocationID(locationId);
                         newItem.setContainerCategoryID(containerCatId);
                         newItem.setContainerID(containerId);
@@ -223,9 +238,6 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                         newItem.setCategoryID(catId);
                         newItem.setItemID(db.AddItem(newItem));
                         finish();
-                    }
-                    catch (Exception e) {
-                        e.printStackTrace();
                     }
                 }
             }

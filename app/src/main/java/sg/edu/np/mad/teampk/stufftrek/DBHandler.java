@@ -198,6 +198,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(COLUMN_LOCATIONID,i.getLocationID());
         values.put(COLUMN_ROOMID,i.getRoomID());
         values.put(COLUMN_CATEGORYID,i.getCategoryID());
+        values.put(COLUMN_QUANTITY, i.Quantity);
         values.put(COLUMN_CONTAINERID,i.getContainerID());
         values.put(COLUMN_CONTAINERCATEGORYID,i.getContainerCategoryID());
         values.put(COLUMN_PICTURE, i.Picture);
