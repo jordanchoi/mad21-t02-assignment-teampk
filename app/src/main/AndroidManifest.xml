@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StuffTrek">
-        <activity android:name=".FirebaseSignInActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".FirebaseSignInActivity" />
         <activity android:name=".CreateItemActivity" />
         <activity android:name=".CreateContainerActivity" />
         <activity android:name=".ItemsActivity" />
