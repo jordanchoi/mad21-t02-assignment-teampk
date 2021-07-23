@@ -113,7 +113,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
-                android:inputType="text"
+                android:inputType="textCapWords"
                 android:maxLength="80"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/itemNamePromptTV"
