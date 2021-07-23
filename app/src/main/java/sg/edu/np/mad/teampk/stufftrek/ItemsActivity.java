@@ -24,6 +24,11 @@ import java.util.ArrayList;
 
 public class ItemsActivity extends AppCompatActivity {
 
+    int ContainerID;
+    int containerCatId;
+    int roomId;
+    int locationId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,10 @@ public class ItemsActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         String ContainerName = receiveIntent.getStringExtra("ContainerName");
-        Integer ContainerID = receiveIntent.getIntExtra("ContainerID",0);
+        ContainerID = receiveIntent.getIntExtra("ContainerID",-1);
+        containerCatId = receiveIntent.getIntExtra("ContainerCatID", -1);
+        roomId = receiveIntent.getIntExtra("RoomID", -1);
+        locationId = receiveIntent.getIntExtra("LocationID", -1);
 
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -81,10 +89,15 @@ public class ItemsActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 break;
-            // Add Button is selected, creates new BottomSheetDialog to allow users to create a new Location
+            // Add Button is selected, intent to createitemactivity to allow users to create a new Item
             case R.id.mAdd:
-                BottomSheetDialog dialog = new BottomSheetDialog(ItemsActivity.this, R.style.BottomSheetStyle);
-                dialog.setContentView(R.layout.dialog_create);
+                Intent createItemActivity = new Intent(ItemsActivity.this, CreateItemActivity.class);
+                Bundle containerInformation = new Bundle();
+                containerInformation.putInt("ContainerID", ContainerID);
+                containerInformation.putInt("ContainerCatID", containerCatId);
+                containerInformation.putInt("LocationID", locationId);
+                containerInformation.putInt("RoomID", roomId);
+                startActivity(createItemActivity);
         }
         return super.onOptionsItemSelected(item);
     }

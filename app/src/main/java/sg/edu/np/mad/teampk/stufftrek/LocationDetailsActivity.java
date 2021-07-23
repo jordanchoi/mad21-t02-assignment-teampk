@@ -36,7 +36,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
     RoomAdapter roomAdapter;
     ItemsWithPathAdapter itemsAdapter;
     TextView noRoomTV;
-    Integer LocationID;
+    Integer locationID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         String LocationName = receiveIntent.getStringExtra("LocationName");
-        LocationID = receiveIntent.getIntExtra("LocationID",0);
+        locationID = receiveIntent.getIntExtra("LocationID",0);
 
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -68,10 +68,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
         db = new DBHandler(this, null, null, 1);
 
         // Call GetAllRoomFromLocation to retrieve all rooms in location
-        roomList = db.GetAllRoomFromLocation(LocationID);
+        roomList = db.GetAllRoomFromLocation(locationID);
         // RV for rooms
         RecyclerView roomrv = findViewById(R.id.roomRV);
-        roomAdapter = new RoomAdapter(this,roomList,LocationID);
+        roomAdapter = new RoomAdapter(this,roomList,locationID);
         LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         roomrv.setLayoutManager(lm);
         roomrv.setAdapter(roomAdapter);
@@ -87,7 +87,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         }
 
         // Call GetAllItemFromLocation() from DBHandler to retrieve ALL items in location.
-        locationItemList = db.GetAllItemFromLocation(LocationID);
+        locationItemList = db.GetAllItemFromLocation(locationID);
 
         // RV for items
         RecyclerView itemrv = findViewById(R.id.itemRV);
@@ -124,62 +124,16 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
             case R.id.mAddItem:
                 // code here if add Item. Intent to create item activity + bundle locationId, roomId, etc?
-                BottomSheetDialog dialog = new BottomSheetDialog(LocationDetailsActivity.this, R.style.BottomSheetStyle);
-                dialog.setContentView(R.layout.dialog_create);
-
-                // Get the respective items in the view
-                createTitle = dialog.findViewById(R.id.dialogTitleTV);
-                createField = dialog.findViewById(R.id.dialogFieldET);
-                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
-                dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
-
-                // Set the respective texts of the items in the view
-                createTitle.setText("Item Name: ");
-                dialogAddBtn.setText("Add Item");
-
-                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
-                    }
-                });
-
-                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        String itemName = createField.getText().toString();
-
-                        if(itemName.length() == 0)
-                        {
-                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
-                            errorMsgText.setText("Item name cannot be empty!");
-                            errorMsgText.setVisibility(View.VISIBLE);
-                        }
-                        else
-                        {
-                            if (locationItemList.size() == 0)
-                            {
-                                noItemTV.setVisibility(View.GONE);
-                            }
-
-                            Item i = new Item(itemName,1,null);
-                            i.setLocationID(LocationID);
-                            i.setItemID(db.AddItem(i));
-                            locationItemList.add(i);
-                            itemsAdapter.notifyDataSetChanged();
-                            dialog.cancel();
-                        }
-                    }
-                });
-
-                Window window = dialog.getWindow();
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-                dialog.show();
+                Intent createItemActivity = new Intent(LocationDetailsActivity.this, CreateItemActivity.class);
+                Bundle locationInfo = new Bundle();
+                locationInfo.putInt("LocationID",  locationID);
+                createItemActivity.putExtras(locationInfo);
+                startActivity(createItemActivity);
                 return true;
 
             case R.id.mAddRoom:
                 // code here if add Room. This one no need intent, just use bottomsheetdialog from category/location
-                dialog = new BottomSheetDialog(LocationDetailsActivity.this, R.style.BottomSheetStyle);
+                BottomSheetDialog dialog = new BottomSheetDialog(LocationDetailsActivity.this, R.style.BottomSheetStyle);
                 dialog.setContentView(R.layout.dialog_create);
 
                 // Get the respective items in the view
@@ -217,7 +171,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
                                 noRoomTV.setVisibility(View.GONE);
                             }
 
-                            Room r = new Room(roomName,null,LocationID);
+                            Room r = new Room(roomName,null, locationID);
                             r.setRoomID(db.AddRoom(r));
                             roomList.add(r);
                             roomAdapter.notifyDataSetChanged();
@@ -226,7 +180,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
                     }
                 });
 
-                window = dialog.getWindow();
+                Window window = dialog.getWindow();
                 window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 dialog.show();
                 return true;

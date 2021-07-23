@@ -16,11 +16,15 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersViewHolder
 
     Context context;
     ArrayList<Container> containerList;
+    int locationId;
+    int roomId;
 
-    public ContainersAdapter(Context c, ArrayList<Container> cList)
+    public ContainersAdapter(Context c, ArrayList<Container> cList, int locId, int rmId)
     {
         context = c;
         containerList = cList;
+        locationId = locId;
+        roomId = rmId;
     }
 
     @NonNull
@@ -45,10 +49,13 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersViewHolder
         holder.containerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent containerActivity = new Intent(context, ItemsActivity.class);
-                containerActivity.putExtra("ContainerID", container.getContainerID());
-                containerActivity.putExtra("ContainerName", container.Name);
-                context.startActivity(containerActivity);
+                Intent itemsActivity = new Intent(context, ItemsActivity.class);
+                itemsActivity.putExtra("ContainerID", container.getContainerID());
+                itemsActivity.putExtra("ContainerName", container.Name);
+                itemsActivity.putExtra("LocationID", locationId);
+                itemsActivity.putExtra("RoomID", roomId);
+                itemsActivity.putExtra("ContainerCatID", container.getContainerCategoryID());
+                context.startActivity(itemsActivity);
             }
         });
 

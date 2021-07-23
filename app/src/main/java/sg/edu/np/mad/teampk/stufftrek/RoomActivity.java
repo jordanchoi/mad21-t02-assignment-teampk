@@ -65,6 +65,7 @@ public class RoomActivity extends AppCompatActivity {
 
     Room currentRoom = null;
     int roomId;
+    int locationId;
     String roomName;
 
     @Override
@@ -76,6 +77,7 @@ public class RoomActivity extends AppCompatActivity {
         Intent receiveIntent = getIntent();
         roomId = receiveIntent.getIntExtra("RoomID", -1);
         roomName = receiveIntent.getStringExtra("RoomName");
+        locationId = receiveIntent.getIntExtra("LocationID", -1);
 
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -113,7 +115,7 @@ public class RoomActivity extends AppCompatActivity {
         containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
         RecyclerView ccRv = findViewById(R.id.containersRV);
-        ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList);
+        ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList, locationId, roomId);
         LinearLayoutManager ccLm = new LinearLayoutManager(this);
         ccRv.setLayoutManager(ccLm);
         ccRv.setAdapter(ccAdapter);
@@ -245,6 +247,7 @@ public class RoomActivity extends AppCompatActivity {
                 Bundle roomInformationToItem = new Bundle();
                 roomInformationToItem.putInt("RoomID", roomId);
                 roomInformationToItem.putString("RoomName", roomName);
+                roomInformationToItem.putInt("LocationID", locationId);
 
                 createItemActivity.putExtras(roomInformationToItem);
                 startActivity(createItemActivity);

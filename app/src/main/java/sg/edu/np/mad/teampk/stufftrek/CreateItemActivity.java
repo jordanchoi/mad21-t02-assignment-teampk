@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -72,6 +73,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
     TextView qtyErrorMsg;
     TextView itemCatText;
     Spinner inputItemCatSpinner;
+    Button createItemBtn;
 
     // Initialize DBHandler for usage outside of onCreate
     DBHandler db = null;
@@ -118,6 +120,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         qtyErrorMsg = findViewById(R.id.iQtyErrorMsg);
         itemCatText = findViewById(R.id.itemCatPromptTV);
         inputItemCatSpinner = findViewById(R.id.itemCatSpinner);
+        createItemBtn = findViewById(R.id.createItemBtn);
 
         // Set the texts of the respective UI items.
         createItemTitle.setText("Create Item");
@@ -128,6 +131,8 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         itemQtyText.setText("Quantity");
         inputItemQty.setText("1");
         itemCatText.setText("Item Category");
+        createItemBtn.setText("Create New Item");
+
 
         // Construct DBHandler for database data retrieval
         db = new DBHandler(this, null, null, 1);
@@ -163,6 +168,68 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
             }
         });
 
+        createItemBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Validate inputs
+                String itemName = inputItemName.getText().toString();
+                Integer itemQty = Integer.parseInt(String.valueOf(inputItemQty));
+                if (itemName.length() == 0)
+                {
+                    nameErrorMsg.setText("Name cannot be empty!");
+                    nameErrorMsg.setVisibility(View.VISIBLE);
+                }
+                else if (itemQty < 1)
+                {
+                    qtyErrorMsg.setText("Item quantity cannot be less than 1");
+                    qtyErrorMsg.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    String selectedCat = itemCatSpinnerItems.get(inputItemCatSpinner.getSelectedItemPosition());
+                    Integer catId = null;
+
+                    for (Category c : categoriesList)
+                    {
+                        if (selectedCat == c.Name)
+                        {
+                            catId = c.getCategoryID();
+                        }
+                    }
+
+
+                    Item newItem = new Item(itemName, itemQty, picturePath);
+                    // change foreign keys to null if it is -1
+                    // locationId cannot be -1
+
+                    if (roomId == -1)
+                    {
+                        roomId = null;
+                    }
+                    if (containerCatId == -1)
+                    {
+                        containerCatId = null;
+                    }
+                    if (containerId == -1)
+                    {
+                        containerId = null;
+                    }
+
+                    try {
+                        newItem.setLocationID(locationId);
+                        newItem.setContainerCategoryID(containerCatId);
+                        newItem.setContainerID(containerId);
+                        newItem.setRoomID(roomId);
+                        newItem.setCategoryID(catId);
+                        newItem.setItemID(db.AddItem(newItem));
+                        finish();
+                    }
+                    catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     // Handling Actionbar Menu Items

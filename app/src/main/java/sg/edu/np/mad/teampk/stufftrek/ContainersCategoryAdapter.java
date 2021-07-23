@@ -14,11 +14,15 @@ import java.util.ArrayList;
 public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCategoryViewHolder> {
     Context context;
     ArrayList<ContainerCategory> containerCategoriesList;
+    int locationId;
+    int roomId;
 
-    public ContainersCategoryAdapter(Context c, ArrayList<ContainerCategory> ccList)
+    public ContainersCategoryAdapter(Context c, ArrayList<ContainerCategory> ccList, int locId, int rmId)
     {
         context = c;
         containerCategoriesList = ccList;
+        locationId = locId;
+        roomId = rmId;
     }
 
     @NonNull
@@ -44,7 +48,7 @@ public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCa
         else
         {
             holder.noContainerTV.setVisibility(View.GONE);
-            ContainersAdapter ca = new ContainersAdapter(context, containerList);
+            ContainersAdapter ca = new ContainersAdapter(context, containerList, locationId, roomId);
             LinearLayoutManager lm = new LinearLayoutManager(context);
             lm.setOrientation(LinearLayoutManager.HORIZONTAL);
             holder.containerRV.setAdapter(ca);
