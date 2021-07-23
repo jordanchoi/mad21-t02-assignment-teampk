@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "269766690132",
+    "project_id": "stufftrek-c0119",
+    "storage_bucket": "stufftrek-c0119.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269766690132:android:3e08c3e4e0df2c40b0b4c1",
+        "android_client_info": {
+          "package_name": "sg.edu.np.mad.teampk.stufftrek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269766690132-qabojfvcbkfqsbbecke4s8q98ginbi59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3WJ-xKkCih1TgOaMiMW9FHabVinXO3rg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269766690132-qabojfvcbkfqsbbecke4s8q98ginbi59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
