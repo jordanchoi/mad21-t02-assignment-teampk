@@ -14,7 +14,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MenuActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
-    // Activity Header
+
+    // Initialize variables of items within the view
     TextView appTitle;
     TextView pageDesc;
 
@@ -32,15 +33,15 @@ public class MenuActivity extends AppCompatActivity {
     TextView categoryTV;
     TextView itemsTV;
     TextView unassignTV;
+    TextView settingsTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        // For Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
-//        // Hide the Action Bar
-//        getSupportActionBar().hide();
 
         // Get the activity header by their id
         appTitle = findViewById(R.id.pageTitleTV);
@@ -64,6 +65,7 @@ public class MenuActivity extends AppCompatActivity {
         categoryTV = findViewById(R.id.categoryTV);
         itemsTV = findViewById(R.id.itemTV);
         unassignTV = findViewById(R.id.unassignTV);
+        settingsTV = findViewById(R.id.settingsTV);
 
         // Set the texts of the respective menu items
         locationTV.setText("Location");
@@ -71,6 +73,7 @@ public class MenuActivity extends AppCompatActivity {
         categoryTV.setText("Category");
         itemsTV.setText("All Items");
         unassignTV.setText("Unassigned Items");
+        settingsTV.setText("Settings");
 
 
 

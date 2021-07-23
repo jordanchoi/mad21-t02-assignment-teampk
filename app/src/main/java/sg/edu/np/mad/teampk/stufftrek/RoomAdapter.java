@@ -41,7 +41,7 @@ public class RoomAdapter  extends RecyclerView.Adapter<RoomViewHolder> {
                 Intent i = new Intent(context, RoomActivity.class);
                 Bundle roomInformation = new Bundle();
                 roomInformation.putInt("RoomID", r.getRoomID());
-                roomInformation.putInt("LocationID",LocationID);
+                roomInformation.putInt("LocationID", LocationID);
                 roomInformation.putString("RoomName", r.Name);
                 i.putExtras(roomInformation);
                 context.startActivity(i);

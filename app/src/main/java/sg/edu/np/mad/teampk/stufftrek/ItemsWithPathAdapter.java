@@ -1,6 +1,7 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +46,11 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathView
         String locName = item.LocationName;
         String roomName = item.RoomName;
         String containerName = item.ContainerName;
+
+        if (item.Picture != null)
+        {
+            holder.itemsImage.setImageBitmap(BitmapFactory.decodeFile(item.Picture));
+        }
 
         if (item.RoomName != null ) {
             if (item.RoomName.length() > 0) {

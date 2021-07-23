@@ -365,6 +365,8 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                                 picturePath = cursor.getString(columnIndex);
                                 cameraBtn.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 cursor.close();
+                                PostImageToImaggaAsync postImageToImaggaAsync = new PostImageToImaggaAsync(picturePath);
+                                postImageToImaggaAsync.execute();
                             }
                         }
                     }

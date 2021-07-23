@@ -20,14 +20,15 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
-//import static sg.edu.np.mad.teampk.stufftrek.ActionBarActivity.rightBtn;
-
 public class ItemsActivity extends AppCompatActivity {
 
-    int ContainerID;
+    int containerID;
     int containerCatId;
     int roomId;
     int locationId;
+
+    DBHandler db = null;
+    ItemsWithPathAdapter adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class ItemsActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         String ContainerName = receiveIntent.getStringExtra("ContainerName");
-        ContainerID = receiveIntent.getIntExtra("ContainerID",-1);
+        containerID = receiveIntent.getIntExtra("ContainerID", -1);
         containerCatId = receiveIntent.getIntExtra("ContainerCatID", -1);
         roomId = receiveIntent.getIntExtra("RoomID", -1);
         locationId = receiveIntent.getIntExtra("LocationID", -1);
@@ -53,13 +54,13 @@ public class ItemsActivity extends AppCompatActivity {
         tb.setTitle(ContainerName);
 
         // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
+        db = new DBHandler(this, null, null, 1);
 
         // Call GetAllItemFromContainer to retrieve all items in container
-        ArrayList<Item> itemList = db.GetAllItemFromContainer(ContainerID);
+        ArrayList<Item> itemList = db.GetAllItemFromContainer(containerID);
         // RV for Items
         RecyclerView itemrv = findViewById(R.id.itemsRV);
-        ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this,itemList);
+        adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adapter);
@@ -73,6 +74,37 @@ public class ItemsActivity extends AppCompatActivity {
         {
             noItemTV.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     // Inflate Menu for LocationActivity into the ActionBar
@@ -93,10 +125,11 @@ public class ItemsActivity extends AppCompatActivity {
             case R.id.mAdd:
                 Intent createItemActivity = new Intent(ItemsActivity.this, CreateItemActivity.class);
                 Bundle containerInformation = new Bundle();
-                containerInformation.putInt("ContainerID", ContainerID);
+                containerInformation.putInt("ContainerID", containerID);
                 containerInformation.putInt("ContainerCatID", containerCatId);
                 containerInformation.putInt("LocationID", locationId);
                 containerInformation.putInt("RoomID", roomId);
+                createItemActivity.putExtras(containerInformation);
                 startActivity(createItemActivity);
         }
         return super.onOptionsItemSelected(item);

@@ -3,6 +3,7 @@ package sg.edu.np.mad.teampk.stufftrek;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,22 +40,23 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersViewHolder
     public void onBindViewHolder(@NonNull ContainersViewHolder holder, int position) {
         Container container = containerList.get(position);
         holder.containerName.setText(container.Name);
+        // code to change the container imagebutton image resource
         if (container.Picture != null)
         {
             holder.containerBtn.setImageBitmap(BitmapFactory.decodeFile(container.Picture));
         }
-        // code to change the container imagebutton image resource
-
         // Intent to respective containerActivity when imagebutton is clicked.
         holder.containerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent itemsActivity = new Intent(context, ItemsActivity.class);
-                itemsActivity.putExtra("ContainerID", container.getContainerID());
-                itemsActivity.putExtra("ContainerName", container.Name);
-                itemsActivity.putExtra("LocationID", locationId);
-                itemsActivity.putExtra("RoomID", roomId);
-                itemsActivity.putExtra("ContainerCatID", container.getContainerCategoryID());
+                Bundle fkInfo = new Bundle();
+                fkInfo.putInt("ContainerID", container.getContainerID());
+                fkInfo.putString("ContainerName", container.Name);
+                fkInfo.putInt("LocationID", locationId);
+                fkInfo.putInt("RoomID", roomId);
+                fkInfo.putInt("ContainerCatID", container.getContainerCategoryID());
+                itemsActivity.putExtras(fkInfo);
                 context.startActivity(itemsActivity);
             }
         });

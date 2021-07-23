@@ -61,6 +61,7 @@ public class RoomActivity extends AppCompatActivity {
 
     DBHandler db = null;
     ContainersCategoryAdapter ccAdapter = null;
+    ItemsWithPathAdapter itemsAdapter = null;
     ArrayList<ContainerCategory> containerCategoriesList;
 
     Room currentRoom = null;
@@ -76,8 +77,8 @@ public class RoomActivity extends AppCompatActivity {
         // Receive Intent
         Intent receiveIntent = getIntent();
         roomId = receiveIntent.getIntExtra("RoomID", -1);
-        roomName = receiveIntent.getStringExtra("RoomName");
         locationId = receiveIntent.getIntExtra("LocationID", -1);
+        roomName = receiveIntent.getStringExtra("RoomName");
 
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -131,12 +132,11 @@ public class RoomActivity extends AppCompatActivity {
 
 
         // Items RecyclerView
-
         // Call DBHandler method to retrieve all items within the room
         ArrayList<Item> roomItemsList = db.GetAllItemFromRoom(roomId);
 
         RecyclerView rv = findViewById(R.id.itemsRV);
-        ItemsWithPathAdapter itemsAdapter = new ItemsWithPathAdapter(this, roomItemsList);
+        itemsAdapter = new ItemsWithPathAdapter(this, roomItemsList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
         rv.setAdapter(itemsAdapter);
@@ -159,8 +159,41 @@ public class RoomActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ccAdapter.notifyDataSetChanged();
+        itemsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.options_menu, menu);
@@ -248,7 +281,6 @@ public class RoomActivity extends AppCompatActivity {
                 roomInformationToItem.putInt("RoomID", roomId);
                 roomInformationToItem.putString("RoomName", roomName);
                 roomInformationToItem.putInt("LocationID", locationId);
-
                 createItemActivity.putExtras(roomInformationToItem);
                 startActivity(createItemActivity);
                 return (true);
@@ -384,34 +416,5 @@ public class RoomActivity extends AppCompatActivity {
         return mypath.getAbsolutePath();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        ccAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
 }

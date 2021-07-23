@@ -43,8 +43,6 @@ public class LocationDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_details);
 
-
-
         // Receive Intent
         Intent receiveIntent = getIntent();
         String LocationName = receiveIntent.getStringExtra("LocationName");
@@ -186,5 +184,35 @@ public class LocationDetailsActivity extends AppCompatActivity {
                 return true;
         }
         return (super.onOptionsItemSelected(item));
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        itemsAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }
