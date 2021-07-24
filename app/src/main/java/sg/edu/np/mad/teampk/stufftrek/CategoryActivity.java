@@ -58,9 +58,6 @@ public class CategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
-        // Receive Intent
-        Intent receiveIntent = getIntent();
-
         // Toolbar for LocationActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
@@ -134,7 +131,6 @@ public class CategoryActivity extends AppCompatActivity {
                             .setMessage("The category \"" + item.Name + "\" has " + item.getCount() + " item(s) tagged to it.\nAre you sure you want to delete it?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    db.DeleteCategory(item.getCategoryID());
                                     catAdapter.removeItem(position);
                                     sortList();
                                     catAdapter.notifyDataSetChanged();
@@ -241,6 +237,7 @@ public class CategoryActivity extends AppCompatActivity {
                         }
                         else
                         {
+                            // remove the no categories text that was shown before category was created
                             if (categoryList.size() == 0)
                             {
                                 noCatText.setVisibility(View.GONE);

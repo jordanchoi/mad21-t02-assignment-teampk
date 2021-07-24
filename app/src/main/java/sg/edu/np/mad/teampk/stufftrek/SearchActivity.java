@@ -41,6 +41,7 @@ public class SearchActivity extends AppCompatActivity {
         searchQueryField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Opens the keyboard to start the search function
                 searchQueryField.onActionViewExpanded();
             }
         });
