@@ -80,6 +80,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         return locationList.size();
     }
 
+
+    // Nested Viewholder Class
     public class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         public TextView locationName;
         public TextView locIdTV;
@@ -125,7 +127,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
                         // Set the respective texts of the items in the view
                         createTitle.setText("Location Name: ");
-                        dialogAddBtn.setText("Add Location");
+                        dialogAddBtn.setText("Update Location");
                         createField.setText(locationName.getText());
                         createField.setSelectAllOnFocus(true);
 
@@ -149,10 +151,13 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                                 else
                                 {
                                     DBHandler db = new DBHandler(context, null, null, 1);
-                                    Location loc = new Location(locationName);
-                                    // update db
+                                    int getLocationIndex = getArrayPosition(locationId);
+                                    Location loc = locationList.get(getLocationIndex);
+                                    loc.Name = locationName;
+                                    db.UpdateLocation(loc);
+                                    locationList.set(getLocationIndex, loc);
                                     // update list
-                                    notifyDataSetChanged();
+                                    notifyItemChanged(getLocationIndex);
                                     dialog.cancel();
                                 }
                             }
