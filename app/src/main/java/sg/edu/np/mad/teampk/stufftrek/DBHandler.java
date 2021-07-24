@@ -786,7 +786,11 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
-            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_ROOMID+ " = NULL,"+COLUMN_CONTAINERCATEGORYID+ " = NULL,"+COLUMN_CONTAINERID+ " = NULL"
+            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "
+                    +COLUMN_LOCATIONID+ " = NULL,"
+                    +COLUMN_ROOMID+ " = NULL,"
+                    +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
+                    +COLUMN_CONTAINERID+ " = NULL,"
                     +" WHERE " +COLUMN_ROOMID +" = "+RoomID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" = "
@@ -831,7 +835,6 @@ public class DBHandler extends SQLiteOpenHelper {
                     +COLUMN_ROOMID+ " = NULL,"
                     +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
                     +COLUMN_CONTAINERID+ " = NULL,"
-                    +COLUMN_LOCATIONID+ " = NULL"
                     +" WHERE " +COLUMN_LOCATIONID +" = "+LocationID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" IN "
@@ -1030,6 +1033,23 @@ public class DBHandler extends SQLiteOpenHelper {
                     + " SET " + COLUMN_PICTURE + " = \"" + i.Picture+"\""
                     + " SET " + COLUMN_QUANTITY + " = " + i.Quantity
                     + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateCategory(Category c){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+c.getCategoryID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_ITEM
+                    + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
+                    + " WHERE " +COLUMN_CATEGORYID +" = "+c.getCategoryID();
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
