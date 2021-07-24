@@ -29,14 +29,19 @@ public class LocationDetailsActivity extends AppCompatActivity {
     TextView errorMsgText;
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
-    ArrayList<Room> roomList;
-    ArrayList<Item> locationItemList;
     TextView noItemTV;
-    DBHandler db;
-    RoomAdapter roomAdapter;
-    ItemsWithPathAdapter itemsAdapter;
     TextView noRoomTV;
     Integer locationID;
+
+    // RecyclerView
+    DBHandler db = null;
+    RoomAdapter roomAdapter = null;
+    ItemsWithPathAdapter itemsAdapter = null;
+    RecyclerView roomrv;
+    RecyclerView itemrv;
+    ArrayList<Room> roomList;
+    ArrayList<Item> locationItemList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +73,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         // Call GetAllRoomFromLocation to retrieve all rooms in location
         roomList = db.GetAllRoomFromLocation(locationID);
         // RV for rooms
-        RecyclerView roomrv = findViewById(R.id.roomRV);
+        roomrv = findViewById(R.id.roomRV);
         roomAdapter = new RoomAdapter(this,roomList,locationID);
         LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         roomrv.setLayoutManager(lm);
@@ -88,7 +93,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         locationItemList = db.GetAllItemFromLocation(locationID);
 
         // RV for items
-        RecyclerView itemrv = findViewById(R.id.itemRV);
+        itemrv = findViewById(R.id.itemRV);
         itemsAdapter = new ItemsWithPathAdapter(this, locationItemList);
         LinearLayoutManager lm2 = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm2);
@@ -208,7 +213,10 @@ public class LocationDetailsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        itemsAdapter.notifyDataSetChanged();
+        locationItemList = db.GetAllItemFromLocation(locationID);
+        itemsAdapter.allItemsList = locationItemList;
+        itemrv.setAdapter(itemsAdapter);
+//        itemsAdapter.notifyDataSetChanged();
     }
 
     @Override
