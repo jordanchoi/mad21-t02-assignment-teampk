@@ -28,6 +28,7 @@ public class ItemsActivity extends AppCompatActivity {
     int roomId;
     int locationId;
 
+    TextView noItemTV;
     // Database Variables
     DBHandler db = null;
 
@@ -72,7 +73,7 @@ public class ItemsActivity extends AppCompatActivity {
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adapter);
         // Handler for no items found
-        TextView noItemTV = findViewById(R.id.noItemsTV);
+        noItemTV = findViewById(R.id.noItemsTV);
         if (itemList.size() == 0)
         {
             noItemTV.setText("You have no items created");
@@ -107,8 +108,18 @@ public class ItemsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         itemList = db.GetAllItemFromContainer(containerID);
-        adapter.allItemsList = itemList;
-        adapter.notifyDataSetChanged();
+
+        if (itemList.size() == 0)
+        {
+            noItemTV.setText("You have no items created");
+        }
+        else
+        {
+            noItemTV.setVisibility(View.GONE);
+            adapter.allItemsList = itemList;
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override

@@ -790,7 +790,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     +COLUMN_LOCATIONID+ " = NULL,"
                     +COLUMN_ROOMID+ " = NULL,"
                     +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
-                    +COLUMN_CONTAINERID+ " = NULL,"
+                    +COLUMN_CONTAINERID+ " = NULL"
                     +" WHERE " +COLUMN_ROOMID +" = "+RoomID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" = "
@@ -834,7 +834,7 @@ public class DBHandler extends SQLiteOpenHelper {
                     +COLUMN_LOCATIONID+ " = NULL,"
                     +COLUMN_ROOMID+ " = NULL,"
                     +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
-                    +COLUMN_CONTAINERID+ " = NULL,"
+                    +COLUMN_CONTAINERID+ " = NULL"
                     +" WHERE " +COLUMN_LOCATIONID +" = "+LocationID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" IN "

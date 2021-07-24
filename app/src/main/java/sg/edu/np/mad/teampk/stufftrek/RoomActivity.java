@@ -192,10 +192,19 @@ public class RoomActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ccAdapter.notifyDataSetChanged();
-
         roomItemsList = db.GetAllItemFromRoom(roomId);
-        itemsAdapter.allItemsList = roomItemsList;
-        itemsAdapter.notifyDataSetChanged();
+
+        if (roomItemsList.size() == 0)
+        {
+            noItemsText.setText("No items are stored in this room");
+        }
+        else
+        {
+            noItemsText.setVisibility(View.GONE);
+            itemsAdapter.allItemsList = roomItemsList;
+            itemsAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
