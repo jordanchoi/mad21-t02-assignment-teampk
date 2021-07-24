@@ -214,8 +214,18 @@ public class LocationDetailsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         locationItemList = db.GetAllItemFromLocation(locationID);
-        itemsAdapter.allItemsList = locationItemList;
-        itemsAdapter.notifyDataSetChanged();
+
+        if (locationItemList.size() == 0)
+        {
+            noItemTV.setText("You have no items created");
+        }
+        else
+        {
+            noItemTV.setVisibility(View.GONE);
+            itemsAdapter.allItemsList = locationItemList;
+            itemsAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
