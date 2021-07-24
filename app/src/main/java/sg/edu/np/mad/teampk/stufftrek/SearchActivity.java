@@ -21,6 +21,7 @@ public class SearchActivity extends AppCompatActivity {
     TextView searchTitle;
     TextView resultsNumText;
     SearchView searchQueryField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

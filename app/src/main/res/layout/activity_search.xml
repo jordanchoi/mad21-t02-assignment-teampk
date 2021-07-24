@@ -10,7 +10,7 @@
         android:id="@+id/headerConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#7CCBCE"
+        android:background="@color/stufftrek_btn_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -18,17 +18,19 @@
         <ImageButton
             android:id="@+id/searchBackBtn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/back_ContentDesc"
             android:paddingLeft="10dp"
             android:paddingTop="3dp"
             android:paddingRight="10dp"
             android:paddingBottom="3dp"
+            app:tint="@color/actionbar_text"
+            app:layout_constraintBottom_toBottomOf="@+id/searchTitleTV"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="?attr/actionModeCloseDrawable" />
+            app:layout_constraintTop_toTopOf="@+id/searchTitleTV"
+            app:srcCompat="@drawable/ic_back" />
 
         <TextView
             android:id="@+id/searchTitleTV"
@@ -36,25 +38,24 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/montserrat"
+            android:text="@string/search"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textAppearance="@style/Theme.StuffTrek.TitleText"
+            android:textColor="@color/actionbar_text"
+            android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/searchBackBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/searchBackBtn" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/resultsNumTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="0 results"
             android:fontFamily="@font/montserrat"
-            android:textColor="#FFFFFF"
+            android:text="@string/search_results"
             android:textAlignment="center"
+            android:textColor="@color/actionbar_text"
             app:layout_constraintEnd_toEndOf="@+id/searchTitleTV"
             app:layout_constraintStart_toStartOf="@+id/searchTitleTV"
             app:layout_constraintTop_toBottomOf="@+id/searchTitleTV" />
@@ -72,8 +73,8 @@
             android:fontFamily="@font/montserrat"
             android:inputType="textPersonName"
             android:queryHint="Search Items"
-            android:textColor="#676767"
-            android:textSize="14sp"
+            android:textColor="@color/color_text_primary"
+            android:textSize="12sp"
             app:iconifiedByDefault="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -86,9 +87,10 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/headerConstraintLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/searchResultsRV"

@@ -21,4 +21,5 @@
     <color name="stufftrek_dark">#3b3b3b</color>
     <color name="stufftrek_btn_color">#7ccbce</color>
     <color name="stufftrek_btn_tint">#3b3b3b</color>
+    <color name="actionbar_text">#ececec</color>
 </resources>

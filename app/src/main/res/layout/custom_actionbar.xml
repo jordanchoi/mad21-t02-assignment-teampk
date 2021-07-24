@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/stufftrek_dark"
+    android:background="@color/stufftrek_btn_color"
     android:theme="@style/ToolbarTheme"
     app:titleTextAppearance="@style/Toolbar.TitleText"
-    app:titleTextColor="@color/gold" />
+    app:titleTextColor="@color/actionbar_text" />

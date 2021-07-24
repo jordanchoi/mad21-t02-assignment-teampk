@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">StuffTrek</string>
-    <string name="logo_ContentDesc">StuffTrek Logo</string>
+
     <string name="app_slogan">Track and organize your stuff efficiently.</string>
 
     <string name="get_started">Get Started</string>
@@ -11,4 +11,9 @@
     <string name="all_items">All Items</string>
     <string name="unassigned_items">Unassigned Items</string>
     <string name="settings">Settings</string>
+
+    <string name="logo_ContentDesc">StuffTrek Logo</string>
+    <string name="back_ContentDesc">Back</string>
+
+    <string name="search_results">0 results</string>
 </resources>
