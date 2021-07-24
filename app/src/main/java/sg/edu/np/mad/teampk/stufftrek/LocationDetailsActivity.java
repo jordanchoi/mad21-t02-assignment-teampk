@@ -74,7 +74,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         roomList = db.GetAllRoomFromLocation(locationID);
         // RV for rooms
         roomrv = findViewById(R.id.roomRV);
-        roomAdapter = new RoomAdapter(this,roomList,locationID);
+        roomAdapter = new RoomAdapter(this, roomList,locationID);
         LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         roomrv.setLayoutManager(lm);
         roomrv.setAdapter(roomAdapter);
