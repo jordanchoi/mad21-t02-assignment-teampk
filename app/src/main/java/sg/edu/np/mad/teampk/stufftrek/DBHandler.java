@@ -826,8 +826,12 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
-            String updateQuery = "UPDATE " +TABLE_ITEM +" SET" +
-                    " "+COLUMN_LOCATIONID+ " = NULL,"+COLUMN_CONTAINERCATEGORYID+ " = NULL,"+COLUMN_CONTAINERID+ " = NULL,"+COLUMN_LOCATIONID+ " = NULL"
+            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "
+                    +COLUMN_LOCATIONID+ " = NULL,"
+                    +COLUMN_ROOMID+ " = NULL,"
+                    +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
+                    +COLUMN_CONTAINERID+ " = NULL,"
+                    +COLUMN_LOCATIONID+ " = NULL"
                     +" WHERE " +COLUMN_LOCATIONID +" = "+LocationID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" IN "
@@ -939,6 +943,94 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = \"" + path
                     + "\" WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+    public boolean UpdateLocation(Location l){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_LOCATION + " WHERE " +COLUMN_LOCATIONID +" = "+l.getLocationID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_LOCATION
+                    + " SET " + COLUMN_NAME + " = \"" + l.Name +"\""
+                    + " WHERE " +COLUMN_LOCATIONID +" = "+l.getLocationID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateRoom(Room r){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_ROOM +COLUMN_ROOMID +" = "+r.getRoomID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_ROOM
+                    + " SET " + COLUMN_NAME + " = \"" + r.Name +"\""
+                    + " SET " + COLUMN_PICTURE + " = \"" + r.Picture+"\""
+                    + " WHERE " +COLUMN_ROOMID +" = "+r.getRoomID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateContainerCategory(ContainerCategory cc){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_CONTAINERCATEGORY + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+cc.getContainerCategoryID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_CONTAINERCATEGORY
+                    + " SET " + COLUMN_NAME + " = \"" + cc.Name +"\""
+                    + " WHERE " +COLUMN_CONTAINERCATEGORYID +" = "+cc.getContainerCategoryID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateContainer(Container c){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+c.getContainerID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_CONTAINER
+                    + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
+                    + " SET " + COLUMN_PICTURE + " = \"" + c.Picture+"\""
+                    + " WHERE " +COLUMN_CONTAINERID +" = "+c.getContainerID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
+
+    public boolean UpdateItem(Item i){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_ITEM
+                    + " SET " + COLUMN_NAME + " = \"" + i.Name +"\""
+                    + " SET " + COLUMN_PICTURE + " = \"" + i.Picture+"\""
+                    + " SET " + COLUMN_QUANTITY + " = " + i.Quantity
+                    + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
