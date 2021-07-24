@@ -53,7 +53,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         // Set the location TextView to the location's name.
         holder.locationName.setText(loc.Name);
 
-        // hidden
+        // hidden for manipulation from contextual menu
         holder.locIdTV.setText("" + loc.getLocationID());
 
         // OnClickListener for the ViewHolder
@@ -79,7 +79,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     public int getItemCount() {
         return locationList.size();
     }
-
 
     // Nested Viewholder Class
     public class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
