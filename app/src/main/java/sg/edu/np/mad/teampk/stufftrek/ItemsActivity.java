@@ -22,13 +22,20 @@ import java.util.ArrayList;
 
 public class ItemsActivity extends AppCompatActivity {
 
+    // Context Information
     int containerID;
     int containerCatId;
     int roomId;
     int locationId;
 
+    // Database Variables
     DBHandler db = null;
+
+    // Required for RecyclerView
     ItemsWithPathAdapter adapter = null;
+    RecyclerView itemrv;
+
+    ArrayList<Item> itemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +51,7 @@ public class ItemsActivity extends AppCompatActivity {
         locationId = receiveIntent.getIntExtra("LocationID", -1);
 
         // Toolbar for LocationActivity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
@@ -57,9 +64,9 @@ public class ItemsActivity extends AppCompatActivity {
         db = new DBHandler(this, null, null, 1);
 
         // Call GetAllItemFromContainer to retrieve all items in container
-        ArrayList<Item> itemList = db.GetAllItemFromContainer(containerID);
+        itemList = db.GetAllItemFromContainer(containerID);
         // RV for Items
-        RecyclerView itemrv = findViewById(R.id.itemsRV);
+        itemrv = findViewById(R.id.itemsRV);
         adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
@@ -99,6 +106,8 @@ public class ItemsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        itemList = db.GetAllItemFromContainer(containerID);
+        adapter.allItemsList = itemList;
         adapter.notifyDataSetChanged();
     }
 
