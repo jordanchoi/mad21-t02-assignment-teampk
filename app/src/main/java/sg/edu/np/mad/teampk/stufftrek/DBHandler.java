@@ -790,9 +790,9 @@ public class DBHandler extends SQLiteOpenHelper {
                     +" WHERE " +COLUMN_ROOMID +" = "+RoomID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" = "
-                    +RoomID+")";
+                    +RoomID;
             String deleteContainerCategoryQuery = "DELETE FROM " +TABLE_CONTAINERCATEGORY + " WHERE " +COLUMN_ROOMID +" = "
-                    +RoomID+")";
+                    +RoomID;
             String deleteRoomQuery = "DELETE FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+RoomID;
 
             cursor.close();
@@ -969,7 +969,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean UpdateRoom(Room r){
         boolean result = false;
-        String query = "SELECT * FROM " +TABLE_ROOM +COLUMN_ROOMID +" = "+r.getRoomID();
+        String query = "SELECT * FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+r.getRoomID();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
