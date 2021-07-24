@@ -45,10 +45,13 @@ public class CategoryActivity extends AppCompatActivity {
     ConstraintLayout mainLayout;
 
     TextView createTitle;
+    TextView editTitle;
     EditText createField;
+    EditText editField;
     TextView errorMsgText;
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
+    Button dialogEditBtn;
 
     CategoryAdapter catAdapter = null;
     DBHandler db = null;
@@ -90,6 +93,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         // initializes the swipe to delete feature
         enableSwipeToDelete();
+        enableEditToDelete();
 
         // Get the widgets in the activity by id.
         categoryTitle = findViewById(R.id.sharedPageTitleTV);
@@ -173,6 +177,77 @@ public class CategoryActivity extends AppCompatActivity {
 
         // Attaches the swipe to delete function to the recycler view
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
+        itemTouchhelper.attachToRecyclerView(rv);
+    }
+
+    // Swipe to edit function
+    private void enableEditToDelete() {
+        CategorySwipeEditCallback swipeToEditCallback = new CategorySwipeEditCallback(this) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+                // Gets the position of the edited item
+                final int position = viewHolder.getAdapterPosition();
+
+                final Category item = categoryList.get(position);
+
+                BottomSheetDialog dialog = new BottomSheetDialog(CategoryActivity.this, R.style.BottomSheetStyle);
+                dialog.setContentView(R.layout.dialog_create);
+
+                // Get the respective items in the view
+                editTitle = dialog.findViewById(R.id.dialogTitleTV);
+                editField = dialog.findViewById(R.id.dialogFieldET);
+                dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
+                dialogEditBtn = dialog.findViewById(R.id.dialogAddBtn);
+
+                // Set the respective texts of the items in the view
+                editTitle.setText("Category Name: ");
+                editField.setText(item.Name);
+                dialogEditBtn.setText("Update Category");
+
+                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.cancel();
+                    }
+                });
+
+                dialogEditBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // retrieve the category name that the user entered
+                        String categoryName = createField.getText().toString();
+
+                        // If user did not enter anything
+                        if(categoryName.length() == 0)
+                        {
+                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                            errorMsgText.setText("Category name cannot be empty!");
+                            errorMsgText.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+//                            // Creates a new category class and adds it to the database
+//                            Category cat = new Category(categoryName);
+//                            cat.setCategoryID(db.AddCategory(cat));
+//                            categoryList.add(cat);
+//                            sortList();
+//                            catAdapter.notifyDataSetChanged();
+//                            dialog.cancel();
+
+                            item.Name = categoryName;
+
+                        }
+                    }
+                });
+
+                Window window = dialog.getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                dialog.show();
+            }
+        };
+
+        // Attaches the swipe to delete function to the recycler view
+        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToEditCallback);
         itemTouchhelper.attachToRecyclerView(rv);
     }
 
