@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -69,13 +70,14 @@ public class SettingsActivity extends AppCompatActivity {
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        System.out.println("Firebase backup fail");
+                        Toast.makeText(getApplicationContext(),"Firebase backup fail",Toast.LENGTH_SHORT).show();
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        System.out.println("Firebase backup success");
+                        Toast.makeText(getApplicationContext(),"Firebase backup success",Toast.LENGTH_SHORT).show();
+
                     }
                 });
             }
@@ -89,12 +91,12 @@ public class SettingsActivity extends AppCompatActivity {
                 backupRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        System.out.println("Firebase load backup success");
+                        Toast.makeText(getApplicationContext(),"Firebase load backup success",Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        System.out.println("Firebase load backup fail");
+                        Toast.makeText(getApplicationContext(),"Firebase load backup fail",Toast.LENGTH_SHORT).show();
                     }
                 });
             }

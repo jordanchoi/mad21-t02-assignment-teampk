@@ -969,7 +969,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public boolean UpdateRoom(Room r){
         boolean result = false;
-        String query = "SELECT * FROM " +TABLE_ROOM +COLUMN_ROOMID +" = "+r.getRoomID();
+        String query = "SELECT * FROM " +TABLE_ROOM + " WHERE " +COLUMN_ROOMID +" = "+r.getRoomID();
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
