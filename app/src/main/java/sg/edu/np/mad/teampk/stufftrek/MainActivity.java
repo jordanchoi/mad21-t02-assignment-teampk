@@ -10,6 +10,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Initialization of items within the layout.
     TextView appNameTitle;
     TextView subText;
     TextView creditsText;
@@ -19,17 +21,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find the respective widgets in the view by id.
-        appNameTitle = findViewById(R.id.stuffTrekTV);
+        // Finding and assigning the respective items in the layout with their ids.
+        appNameTitle = findViewById(R.id.firebase_stuffTrekTV);
         subText = findViewById(R.id.sloganTV);
         creditsText = findViewById(R.id.creditsTV);
 
-        // Set the dynamic texts.
-        appNameTitle.setText("StuffTrek");
-        subText.setText("Track and organize your stuff efficiently.");
-        creditsText.setText("A project by TeamPK\n For our MAD Assignment");
+        // Setting the texts for the respective TextView within the layout.
+        appNameTitle.setText(R.string.app_name);
+        subText.setText(R.string.app_slogan);
+        creditsText.setText("A project by TeamPK - Ngee Ann Polytechnic\n For our MAD Assignment");
 
         runTimer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        runTimer();
+    }
+
+    // Timer method to MenuActivity Intent after 2 seconds (2000ms)
+    private void runTimer()
+    {
+        Timer endSplash = new Timer();
+        endSplash.schedule(new TimerTask(){
+            public void run(){
+                Intent menuActivity = new Intent(MainActivity.this, MenuActivity.class);
+                startActivity(menuActivity);
+            }
+        }, 2000);
+    }
+
+    // Other Unused Activity State Methods
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     @Override
@@ -50,27 +76,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        runTimer();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    private void runTimer()
-    {
-        Timer endSplash = new Timer();
-        endSplash.schedule(new TimerTask(){
-            public void run(){
-                Intent menuActivity = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(menuActivity);
-            }
-        }, 2000);
     }
 }

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class FirebaseSignInActivity extends AppCompatActivity {
     Button signInBtn;
+    TextView stuffTrek;
 
     // See: https://developer.android.com/training/basics/intents/result
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -71,7 +73,12 @@ public class FirebaseSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_sign_in);
-        signInBtn= findViewById(R.id.signInBtn);
+        signInBtn = findViewById(R.id.signInBtn);
+        stuffTrek = findViewById(R.id.firebase_stuffTrekTV);
+
+        stuffTrek.setText(R.string.app_name);
+        signInBtn.setText(R.string.get_started);
+
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +86,4 @@ public class FirebaseSignInActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
