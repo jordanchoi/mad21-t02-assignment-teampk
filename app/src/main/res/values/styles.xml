@@ -22,4 +22,12 @@
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="Theme.StuffTrek.TitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
 </resources>

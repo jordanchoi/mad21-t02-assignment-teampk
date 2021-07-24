@@ -2,5 +2,13 @@
     <string name="app_name">StuffTrek</string>
     <string name="logo_ContentDesc">StuffTrek Logo</string>
     <string name="app_slogan">Track and organize your stuff efficiently.</string>
+
     <string name="get_started">Get Started</string>
+
+    <string name="location">Location</string>
+    <string name="search">Search</string>
+    <string name="category">Category</string>
+    <string name="all_items">All Items</string>
+    <string name="unassigned_items">Unassigned Items</string>
+    <string name="settings">Settings</string>
 </resources>

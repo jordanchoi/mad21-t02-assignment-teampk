@@ -19,4 +19,6 @@
     <color name="color_icon_primary">#2b2b2b</color>
     <color name="gold">#A98F64</color>
     <color name="stufftrek_dark">#3b3b3b</color>
+    <color name="stufftrek_btn_color">#7ccbce</color>
+    <color name="stufftrek_btn_tint">#3b3b3b</color>
 </resources>

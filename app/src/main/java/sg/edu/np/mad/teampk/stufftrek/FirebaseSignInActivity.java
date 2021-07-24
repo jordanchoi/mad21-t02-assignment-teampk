@@ -79,11 +79,6 @@ public class FirebaseSignInActivity extends AppCompatActivity {
         stuffTrek.setText(R.string.app_name);
         signInBtn.setText(R.string.get_started);
 
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createSignInIntent();
-            }
-        });
+        signInBtn.setOnClickListener(v -> createSignInIntent());
     }
 }

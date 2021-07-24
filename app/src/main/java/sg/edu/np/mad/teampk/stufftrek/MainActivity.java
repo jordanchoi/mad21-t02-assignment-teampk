@@ -1,3 +1,4 @@
+// StuffTrek - MainActivity by Jordan, TeamPK - Ngee Ann Polytechnic.
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.appcompat.app.AppCompatActivity;

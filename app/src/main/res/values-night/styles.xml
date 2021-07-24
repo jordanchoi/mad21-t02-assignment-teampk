@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Widget.Theme.StuffTrek.MyView" parent="">
+    <style name="Widget.Theme.StuffTrek.MyView" parent="Theme.MaterialComponents.DayNight">
         <item name="android:background">@color/gray_600</item>
         <item name="exampleColor">@color/light_blue_600</item>
     </style>
