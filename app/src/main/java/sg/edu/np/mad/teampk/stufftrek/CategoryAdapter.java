@@ -70,7 +70,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     }
 
     public void restoreItem(Category item) {
-        categoryList.add(item);
         db.AddCategory(item);
+        categoryList.add(item);
     }
 }
