@@ -18,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 abstract public class CategorySwipeDeleteCallback extends ItemTouchHelper.Callback {
     Context mContext;
-    private Paint mClearPaint;
-    private ColorDrawable mBackground;
-    private int backgroundColor;
-    private Drawable deleteDrawable;
-    private int intrinsicWidth;
-    private int intrinsicHeight;
+    private final Paint mClearPaint;
+    private final ColorDrawable mBackground;
+    private final int backgroundColor;
+    private final Drawable deleteDrawable;
+    private final int intrinsicWidth;
+    private final int intrinsicHeight;
 
 
     CategorySwipeDeleteCallback(Context context) {

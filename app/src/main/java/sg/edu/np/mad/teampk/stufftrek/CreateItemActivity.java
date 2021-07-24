@@ -97,7 +97,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         containerId = receiveIntent.getIntExtra("ContainerID", -1);
 
         // Toolbar for LocationActivity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 

@@ -47,23 +47,30 @@ public class RoomActivity extends AppCompatActivity {
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     String picturePath = null;
 
+    // Initialize Layout/UI/View Items
     TextView itemsTitle;
     TextView containersTitle;
     TextView noContainersText;
     TextView noItemsText;
     ImageView roomImage;
-
     TextView createTitle;
     EditText createField;
     TextView errorMsgText;
     ImageButton dialogCancelBtn;
     Button dialogAddBtn;
 
+    // RecyclerView & Database
     DBHandler db = null;
     ContainersCategoryAdapter ccAdapter = null;
     ItemsWithPathAdapter itemsAdapter = null;
-    ArrayList<ContainerCategory> containerCategoriesList;
+    RecyclerView rv;
 
+    // Container List
+    ArrayList<ContainerCategory> containerCategoriesList;
+    // Item List
+    ArrayList<Item> roomItemsList;
+
+    // Context Information
     Room currentRoom = null;
     int roomId;
     int locationId;
@@ -81,7 +88,7 @@ public class RoomActivity extends AppCompatActivity {
         roomName = receiveIntent.getStringExtra("RoomName");
 
         // Toolbar for LocationActivity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
@@ -133,9 +140,9 @@ public class RoomActivity extends AppCompatActivity {
 
         // Items RecyclerView
         // Call DBHandler method to retrieve all items within the room
-        ArrayList<Item> roomItemsList = db.GetAllItemFromRoom(roomId);
+        roomItemsList = db.GetAllItemFromRoom(roomId);
 
-        RecyclerView rv = findViewById(R.id.itemsRV);
+        rv = findViewById(R.id.itemsRV);
         itemsAdapter = new ItemsWithPathAdapter(this, roomItemsList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
@@ -185,6 +192,9 @@ public class RoomActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         ccAdapter.notifyDataSetChanged();
+
+        roomItemsList = db.GetAllItemFromRoom(roomId);
+        itemsAdapter.allItemsList = roomItemsList;
         itemsAdapter.notifyDataSetChanged();
     }
 

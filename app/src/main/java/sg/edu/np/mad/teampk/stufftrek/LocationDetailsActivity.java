@@ -54,7 +54,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         locationID = receiveIntent.getIntExtra("LocationID",0);
 
         // Toolbar for LocationActivity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
@@ -215,8 +215,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         super.onResume();
         locationItemList = db.GetAllItemFromLocation(locationID);
         itemsAdapter.allItemsList = locationItemList;
-        itemrv.setAdapter(itemsAdapter);
-//        itemsAdapter.notifyDataSetChanged();
+        itemsAdapter.notifyDataSetChanged();
     }
 
     @Override

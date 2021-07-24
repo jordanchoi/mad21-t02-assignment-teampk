@@ -34,7 +34,7 @@ public class CategoryItemsActivity extends AppCompatActivity {
 
 
         // Toolbar for CategoryItemsActivity
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
