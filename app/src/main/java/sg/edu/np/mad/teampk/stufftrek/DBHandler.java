@@ -786,7 +786,11 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
-            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_ROOMID+ " = NULL,"+COLUMN_CONTAINERCATEGORYID+ " = NULL,"+COLUMN_CONTAINERID+ " = NULL"
+            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "
+                    +COLUMN_LOCATIONID+ " = NULL,"
+                    +COLUMN_ROOMID+ " = NULL,"
+                    +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
+                    +COLUMN_CONTAINERID+ " = NULL,"
                     +" WHERE " +COLUMN_ROOMID +" = "+RoomID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" = "
@@ -831,7 +835,6 @@ public class DBHandler extends SQLiteOpenHelper {
                     +COLUMN_ROOMID+ " = NULL,"
                     +COLUMN_CONTAINERCATEGORYID+ " = NULL,"
                     +COLUMN_CONTAINERID+ " = NULL,"
-                    +COLUMN_LOCATIONID+ " = NULL"
                     +" WHERE " +COLUMN_LOCATIONID +" = "+LocationID;
             String deleteContainerQuery = "DELETE FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERCATEGORYID +" IN " +
                     "(SELECT "+COLUMN_CONTAINERCATEGORYID + " FROM " +TABLE_CONTAINERCATEGORY +" WHERE " +COLUMN_ROOMID+" IN "
