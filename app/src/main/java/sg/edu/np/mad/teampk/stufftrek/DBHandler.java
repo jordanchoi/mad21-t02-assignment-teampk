@@ -1037,4 +1037,21 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return result;
     }
+
+    public boolean UpdateCategory(Category c){
+        boolean result = false;
+        String query = "SELECT * FROM " +TABLE_CATEGORY + " WHERE " +COLUMN_CATEGORYID +" = "+c.getCategoryID();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        if (cursor.moveToFirst()) {
+            String updateQuery = "UPDATE "+TABLE_ITEM
+                    + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
+                    + " WHERE " +COLUMN_CATEGORYID +" = "+c.getCategoryID();
+            db.execSQL(updateQuery);
+            cursor.close();
+            result=true;
+        }
+        db.close();
+        return result;
+    }
 }
