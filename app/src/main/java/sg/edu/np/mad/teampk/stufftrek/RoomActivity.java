@@ -389,6 +389,7 @@ public class RoomActivity extends AppCompatActivity {
                     break;
             }
         }
+        roomImage.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 
     public String saveImage(Bitmap image)

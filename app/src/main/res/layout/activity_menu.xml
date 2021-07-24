@@ -14,7 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="48dp"
         android:text="Test"
-        android:textColor="#414141"
+        android:textColor="@color/color_text_primary"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +65,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_location"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
-                    app:iconTint="#000000" />
+                    app:iconTint="#A98F64" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -83,12 +83,12 @@
                     android:layout_height="140dp"
                     android:layout_weight="0"
                     android:shadowColor="#2C2C2C"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_search"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
-                    app:iconTint="@color/black" />
+                    app:iconTint="#A98F64" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -151,12 +151,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_category"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
-                    app:iconTint="@color/black" />
+                    app:iconTint="#A98F64" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -172,11 +172,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_items"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
+                    app:iconTint="#A98F64"
                     app:iconTintMode="multiply" />
 
                 <Space
@@ -242,12 +243,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_unassigned"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
-                    app:iconTint="@color/black" />
+                    app:iconTint="#A98F64" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -263,12 +264,12 @@
                     android:shadowDx="10"
                     android:shadowDy="10"
                     android:shadowRadius="10"
-                    app:backgroundTint="#7CCBCE"
+                    app:backgroundTint="#3B3B3B"
                     app:cornerRadius="20dp"
                     app:icon="@drawable/ic_settings"
                     app:iconGravity="textTop"
                     app:iconSize="50dp"
-                    app:iconTint="@color/black" />
+                    app:iconTint="#A98F64" />
 
                 <Space
                     android:layout_width="wrap_content"
