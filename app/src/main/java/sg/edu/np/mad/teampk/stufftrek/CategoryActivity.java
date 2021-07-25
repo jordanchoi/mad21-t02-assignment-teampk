@@ -189,6 +189,7 @@ public class CategoryActivity extends AppCompatActivity {
                 editField = dialog.findViewById(R.id.dialogFieldET);
                 dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
                 dialogEditBtn = dialog.findViewById(R.id.dialogAddBtn);
+                errorMsgText = dialog.findViewById(R.id.errorMsgTV);
 
                 // Set the respective texts of the items in the view
                 editTitle.setText(R.string.category_name);
@@ -204,7 +205,6 @@ public class CategoryActivity extends AppCompatActivity {
                     // If user did not enter anything
                     if(categoryName.length() == 0)
                     {
-                        errorMsgText = dialog.findViewById(R.id.errorMsgTV);
                         errorMsgText.setText(R.string.cat_empty_error);
                         errorMsgText.setVisibility(View.VISIBLE);
                     }
@@ -259,6 +259,7 @@ public class CategoryActivity extends AppCompatActivity {
                 createField = dialog.findViewById(R.id.dialogFieldET);
                 dialogCancelBtn = dialog.findViewById(R.id.dialogCancelBtn);
                 dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
+                errorMsgText = dialog.findViewById(R.id.errorMsgTV);
 
                 // Set the respective texts of the items in the view
                 createTitle.setText(R.string.category_name);
@@ -274,7 +275,7 @@ public class CategoryActivity extends AppCompatActivity {
                     // If user did not enter anything
                     if(categoryName.length() == 0)
                     {
-                        errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+
                         errorMsgText.setText(R.string.cat_empty_error);
                         errorMsgText.setVisibility(View.VISIBLE);
                     }

@@ -46,11 +46,11 @@ public class CategoryItemsActivity extends AppCompatActivity {
         // Call GetAllItemFromCategory to retrieve all items for a certain category
         ArrayList<Item> itemList = db.GetAllItemFromCategory(categoryID);
         // RV for Items
-        RecyclerView itemrv = findViewById(R.id.itemsRv);
+        RecyclerView itemRv = findViewById(R.id.itemsRv);
         ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
-        itemrv.setLayoutManager(lm);
-        itemrv.setAdapter(adapter);
+        itemRv.setLayoutManager(lm);
+        itemRv.setAdapter(adapter);
         // Handler for no items found
         TextView noItemTV = findViewById(R.id.noItemsTv);
         if (itemList.size() == 0) {
@@ -63,10 +63,9 @@ public class CategoryItemsActivity extends AppCompatActivity {
     // ActionBar items
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

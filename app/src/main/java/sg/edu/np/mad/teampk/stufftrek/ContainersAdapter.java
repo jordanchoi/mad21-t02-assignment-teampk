@@ -2,7 +2,6 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -49,25 +48,22 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
         holder.containerName.setText(container.Name);
         // hidden for manipulation from contextual menu
         holder.containerId.setText("" + container.getContainerID());
-        // code to change the container imagebutton image resource
+        // code to change the container imageButton image resource
         if (container.Picture != null)
         {
             holder.containerBtn.setImageBitmap(BitmapFactory.decodeFile(container.Picture));
         }
-        // Intent to respective containerActivity when imagebutton is clicked.
-        holder.containerBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent itemsActivity = new Intent(context, ItemsActivity.class);
-                Bundle fkInfo = new Bundle();
-                fkInfo.putInt("ContainerID", container.getContainerID());
-                fkInfo.putString("ContainerName", container.Name);
-                fkInfo.putInt("LocationID", locationId);
-                fkInfo.putInt("RoomID", roomId);
-                fkInfo.putInt("ContainerCatID", container.getContainerCategoryID());
-                itemsActivity.putExtras(fkInfo);
-                context.startActivity(itemsActivity);
-            }
+        // Intent to respective containerActivity when imageButton is clicked.
+        holder.containerBtn.setOnClickListener(v -> {
+            Intent itemsActivity = new Intent(context, ItemsActivity.class);
+            Bundle fkInfo = new Bundle();
+            fkInfo.putInt("ContainerID", container.getContainerID());
+            fkInfo.putString("ContainerName", container.Name);
+            fkInfo.putInt("LocationID", locationId);
+            fkInfo.putInt("RoomID", roomId);
+            fkInfo.putInt("ContainerCatID", container.getContainerCategoryID());
+            itemsActivity.putExtras(fkInfo);
+            context.startActivity(itemsActivity);
         });
 
     }
@@ -100,7 +96,7 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
             Edit.setOnMenuItemClickListener(onEditMenu);
             Delete.setOnMenuItemClickListener(onEditMenu);
         }
-        //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
+        //OnMenuItemClick Listener to handle each of the selection for the context menu
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -122,21 +118,15 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                DBHandler db = new DBHandler(context, null, null, 1);
-                                db.DeleteContainer(cId);
-                                containerList.remove(getArrayPosition(cId));
-                                notifyDataSetChanged();
-                                db.close();
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // cancels the dialog
-                                dialogInterface.cancel();
-                            }
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", (dialogInterface, i) -> {
+                            DBHandler db = new DBHandler(context, null, null, 1);
+                            db.DeleteContainer(cId);
+                            containerList.remove(getArrayPosition(cId));
+                            notifyDataSetChanged();
+                            db.close();
+                        }).setNegativeButton("Cancel", (dialogInterface, i) -> {
+                            // cancels the dialog
+                            dialogInterface.cancel();
                         });
                         AlertDialog alert = builder.create();
                         alert.show();
