@@ -90,7 +90,7 @@ public class AllItemsActivity extends AppCompatActivity {
     public boolean checkEmpty() {
         if (allItemsList.size() == 0)
         {
-            noItemsText.setText("You have no items created");
+            noItemsText.setText(R.string.no_item);
             noItemsText.setVisibility(View.VISIBLE);
             return true;
         }

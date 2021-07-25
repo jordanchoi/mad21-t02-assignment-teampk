@@ -33,7 +33,7 @@
     <string name="no_location">You do not have any locations created.</string>
     <string name="no_container_cat">No containers has been created in this room</string>
     <string name="no_room_item"> No items are stored in this room </string>
-    <string name="credits">A project by TeamPK - Ngee Ann Polytechnic
+    <string name="credits">A project by TeamPK - Ngee Ann Polytechnic\n
     For our MAD Assignment</string>
 
     <string name="logo_ContentDesc">StuffTrek Logo</string>
