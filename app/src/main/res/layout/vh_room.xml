@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:numeric="integer"
-        android:text="roomId"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

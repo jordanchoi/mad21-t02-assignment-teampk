@@ -73,8 +73,7 @@ public class LocationActivity extends AppCompatActivity {
         rv.setAdapter(locAdapter);
 
         // Set the texts of the respective header widgets of the activity.
-        locationTitle.setText("Your Locations");
-        locationDesc.setText("Create and view your locations.\nE.g) Houses, Offices");
+
 
         if (locationList.size() == 0)
         {
