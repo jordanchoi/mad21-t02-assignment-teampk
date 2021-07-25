@@ -169,7 +169,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\n\nAll rooms, containers, containers location will be deleted.\n\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 DBHandler db = new DBHandler(context, null, null, 1);

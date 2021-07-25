@@ -29,10 +29,11 @@
                 android:id="@+id/itemsTitleTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="48dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/items"
-                android:textSize="18sp"
+                android:textAllCaps="true"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/containersRv"
                 app:layout_constraintStart_toStartOf="@+id/containersRv"
@@ -57,7 +58,8 @@
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/containers"
-                android:textSize="18sp"
+                android:textAllCaps="true"
+                android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,35 +78,40 @@
                 android:id="@+id/roomIv"
                 android:layout_width="0dp"
                 android:layout_height="150dp"
-                android:background="@color/gray_400"
+                android:background="@color/location_background"
                 android:scaleType="fitCenter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/noContainersCatTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/no_container_cat"
                 android:textAlignment="textStart"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/containersRv"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/containersRv"
-                app:layout_constraintTop_toTopOf="@+id/containersRv" />
+                app:layout_constraintTop_toBottomOf="@+id/containerTitleTv" />
 
             <TextView
                 android:id="@+id/noRoomItemTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/no_room_item"
                 android:textAlignment="textStart"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="@+id/itemsRv"
                 app:layout_constraintStart_toStartOf="@+id/itemsRv"
-                app:layout_constraintTop_toTopOf="@+id/itemsRv" />
+                app:layout_constraintTop_toBottomOf="@+id/itemsTitleTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

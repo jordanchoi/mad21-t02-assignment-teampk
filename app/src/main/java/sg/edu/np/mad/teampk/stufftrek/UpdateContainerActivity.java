@@ -80,9 +80,6 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
         db = new DBHandler(this, null, null, 1);
         r = db.GetRoomWithID(roomId);
         c = db.GetContainerWithId(cId);
-//        //set image
-//        cameraBtn.setScaleType(ImageView.ScaleType.FIT_XY);
-//        cameraBtn.setImageBitmap(BitmapFactory.decodeFile(c.Picture));
 
         // Toolbar for LocationActivity
         Toolbar toolbar = findViewById(R.id.toolbar_main);
@@ -114,6 +111,11 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
         inputContainerName.setHint("Enter the new container name");
         inputContainerName.setText(c.Name);
         createContainerBtn.setText("Update Container");
+        if (c.Picture != null)
+        {
+            cameraBtn.setImageBitmap(BitmapFactory.decodeFile(c.Picture));
+        }
+
 
         // Initialize DBHandler to retrieve the container categories within the room
 

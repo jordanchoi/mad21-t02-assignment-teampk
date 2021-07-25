@@ -138,9 +138,10 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
         inputItemName.setText(i1.Name);
         inputItemQty.setText(""+i1.Quantity);
         createItemBtn.setText("Update Item");
-
-
-
+        if (i1.Picture != null)
+        {
+            cameraBtn.setImageBitmap(BitmapFactory.decodeFile(i1.Picture));
+        }
 
         // Codes for the item category spinners
         // Get all the items categories from DBHandler

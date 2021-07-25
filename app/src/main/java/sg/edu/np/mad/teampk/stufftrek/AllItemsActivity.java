@@ -60,8 +60,8 @@ public class AllItemsActivity extends AppCompatActivity {
 
         // Set the texts of the respective (TextView)
         itemsTitle.setText(R.string.all_items);
-        itemsDesc.setText("List and details of all created items.");
-        allItemsText.setText("Your Items");
+        itemsDesc.setText(R.string.all_items_desc);
+        allItemsText.setText(R.string.your_items);
 
         // Construct DBHandler to retrieve DB information and call GetAllItems() to get the list of all items, assigns to allItemsList..
         db = new DBHandler(this, null, null, 1);

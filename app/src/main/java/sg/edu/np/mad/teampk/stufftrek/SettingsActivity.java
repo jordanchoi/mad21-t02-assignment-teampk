@@ -1,15 +1,19 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -41,10 +45,32 @@ public class SettingsActivity extends AppCompatActivity {
     Button loadBackupBtn;
     AlertDialog.Builder builder;
 
+    // Toolbar
+    Toolbar toolbar;
+    ActionBar tb;
+
+    // Credits TextView
+    TextView creditsTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        // Toolbar/Actionbar Codes - Finding and assigning the toolbar by ID. Set it to the ActionBar of this activity.
+        toolbar = findViewById(R.id.toolbar_main);
+        setSupportActionBar(toolbar);
+        tb = getSupportActionBar();
+        if (tb != null) {
+            tb.setHomeAsUpIndicator(R.drawable.ic_back);
+            tb.setDisplayHomeAsUpEnabled(true);
+            tb.setTitle(R.string.settings);
+        }
+
+        // TextView
+        creditsTv = findViewById(R.id.settings_creditsTv);
+        creditsTv.setText(R.string.credits);
+
         //Auth
         mAuth=FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -162,4 +188,13 @@ public class SettingsActivity extends AppCompatActivity {
         // [END auth_fui_signout]
     }
 
+    // Method to handle ActionBar Items Selection
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

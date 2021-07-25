@@ -263,6 +263,7 @@ public class CategoryActivity extends AppCompatActivity {
                 // Set the respective texts of the items in the view
                 createTitle.setText(R.string.category_name);
                 dialogAddBtn.setText(R.string.category_add);
+                createField.setHint("Enter Category Name");
 
                 dialogCancelBtn.setOnClickListener(view -> dialog.cancel());
 
