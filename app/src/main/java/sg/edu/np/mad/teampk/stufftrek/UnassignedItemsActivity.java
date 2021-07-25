@@ -25,7 +25,7 @@ public class UnassignedItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sharedPage);
+        setContentView(R.layout.activity_shared_page);
 
         // Receive Intent
         Intent receiveIntent = getIntent();

@@ -35,7 +35,7 @@ public class AllItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sharedPage);
+        setContentView(R.layout.activity_shared_page);
 
         // Toolbar/Actionbar Codes - Finding and assigning the toolbar by ID. Set it to the ActionBar of this activity.
         toolbar = findViewById(R.id.toolbar_main);
