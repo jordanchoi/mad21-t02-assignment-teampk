@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FirebaseSignInActivity extends AppCompatActivity {
+    //widgets
     Button signInBtn;
     Button skipBtn;
     TextView stuffTrek;
@@ -73,14 +74,14 @@ public class FirebaseSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_sign_in);
+        //bind widgets
         signInBtn = findViewById(R.id.signInBtn);
         stuffTrek = findViewById(R.id.firebase_stuffTrekTv);
         skipBtn=findViewById(R.id.skipBtn);
 
-        stuffTrek.setText(R.string.app_name);
-        signInBtn.setText(R.string.get_started);
-
+        //sign in
         signInBtn.setOnClickListener(v -> createSignInIntent());
+        //skip sign in (offline mode)
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

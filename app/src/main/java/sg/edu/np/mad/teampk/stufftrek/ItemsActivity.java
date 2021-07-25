@@ -108,6 +108,7 @@ public class ItemsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        //update data
         itemList = db.GetAllItemFromContainer(containerID);
         adapter.allItemsList = itemList;
         adapter.notifyDataSetChanged();
