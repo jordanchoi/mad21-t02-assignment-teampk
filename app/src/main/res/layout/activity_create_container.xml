@@ -28,7 +28,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/createContainerTitleTv"
@@ -85,6 +85,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
+                android:hint="@string/container_create_hint"
+                android:importantForAutofill="no"
                 android:inputType="text"
                 android:maxLength="80"
                 android:textSize="16sp"
@@ -115,7 +117,8 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="@+id/createContainerDescTv"
                 app:layout_constraintTop_toBottomOf="@+id/createContainerDescTv"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/containerCatPromptTv"
@@ -146,7 +149,7 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="@font/montserrat"
-                android:textColor="@color/gold"
+                android:textColor="@color/actionbar_text"
                 app:backgroundTint="@color/stufftrek_btn_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/containerCatSpinner"

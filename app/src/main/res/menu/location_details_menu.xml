@@ -7,11 +7,11 @@
 
     <item
         android:id="@+id/mAddRoom"
-        app:showAsAction="never|withText"
-        android:title="New Room"/>
+        android:title="@string/new_room"
+        app:showAsAction="never|withText" />
 
     <item
         android:id="@+id/mAddItem"
-        app:showAsAction="never"
-        android:title="New Item"/>
+        android:title="@string/new_item"
+        app:showAsAction="never" />
 </menu>

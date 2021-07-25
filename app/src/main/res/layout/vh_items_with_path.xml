@@ -16,7 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
+        app:srcCompat="@android:drawable/ic_menu_mapmode"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/itemNameTv"

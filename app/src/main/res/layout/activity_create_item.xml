@@ -100,7 +100,8 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="@+id/createItemDescTv"
                 app:layout_constraintTop_toBottomOf="@+id/createItemDescTv"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:srcCompat="@android:drawable/ic_menu_camera"
+                tools:ignore="ContentDescription" />
 
             <EditText
                 android:id="@+id/itemNameEt"
@@ -109,6 +110,8 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:fontFamily="@font/montserrat"
+                android:hint="@string/item_create_hint"
+                android:importantForAutofill="no"
                 android:inputType="textCapWords"
                 android:maxLength="80"
                 android:textSize="16sp"
@@ -142,7 +145,9 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/itemQtyPromptTv"
                 app:layout_constraintStart_toStartOf="@+id/itemQtyPromptTv"
-                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTv" />
+                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTv"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
 
             <TextView
                 android:id="@+id/itemCatPromptTv"
@@ -173,7 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:textColor="@color/stufftrek_btn_tint"
+                android:textColor="@color/actionbar_text"
                 app:backgroundTint="@color/stufftrek_btn_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/itemCatSpinner"

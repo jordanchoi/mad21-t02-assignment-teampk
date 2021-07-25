@@ -8,14 +8,14 @@
 
     <item
         android:id="@+id/addContainerCat"
-        android:title="New Container Category"
+        android:title="@string/new_container_cat"
         app:showAsAction="never|withText" />
     <item
         android:id="@+id/addContainer"
-        android:title="New Container"
+        android:title="@string/new_container"
         app:showAsAction="never" />
     <item
         android:id="@+id/addItem"
-        android:title="New Item"
+        android:title="@string/new_item"
         app:showAsAction="never" />
 </menu>
