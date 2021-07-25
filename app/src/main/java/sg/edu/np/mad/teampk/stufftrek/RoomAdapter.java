@@ -161,7 +161,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                     case 2:
                         // Delete
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a room which may contain containers and items!\nAll containers & containers category within will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a room which may contain containers and items!\n\nAll containers & containers category within will be deleted.\n\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 DBHandler db = new DBHandler(context, null, null, 1);
