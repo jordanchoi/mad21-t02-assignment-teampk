@@ -1099,8 +1099,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String updateQuery = "UPDATE "+TABLE_ITEM
                     + " SET " + COLUMN_NAME + " = \"" + i.Name +"\""
-                    + " SET " + COLUMN_PICTURE + " = \"" + i.Picture+"\""
-                    + " SET " + COLUMN_QUANTITY + " = " + i.Quantity
+                    + " , " + COLUMN_QUANTITY + " = " + i.Quantity
                     + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
             db.execSQL(updateQuery);
             cursor.close();
