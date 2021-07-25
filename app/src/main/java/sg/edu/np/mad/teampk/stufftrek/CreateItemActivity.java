@@ -74,6 +74,9 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
     TextView itemCatText;
     Spinner inputItemCatSpinner;
     Button createItemBtn;
+    // #Toolbar
+    Toolbar toolbar;
+    ActionBar tb;
 
     // Initialize DBHandler for usage outside of onCreate
     DBHandler db = null;
@@ -96,16 +99,17 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         containerCatId = receiveIntent.getIntExtra("ContainerCatID", -1);
         containerId = receiveIntent.getIntExtra("ContainerID", -1);
 
-        // Toolbar for LocationActivity
-        Toolbar toolbar = findViewById(R.id.toolbar_main);
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Toolbar/Actionbar Codes - Finding and assigning the toolbar by ID. Set it to the ActionBar of this activity.
+        toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        tb = getSupportActionBar();
 
-        // Toolbar Settings
-        ActionBar tb = getSupportActionBar();
-        tb.setHomeAsUpIndicator(R.drawable.ic_back);
-        tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle("Create Item");
+        if (tb != null)
+        {
+            tb.setHomeAsUpIndicator(R.drawable.ic_back);
+            tb.setDisplayHomeAsUpEnabled(true);
+            tb.setTitle("Create Item");
+        }
 
         // Retrieving the respective UI items by their ids.
         createItemTitle = findViewById(R.id.createItemTitleTv);
@@ -208,7 +212,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                         Integer catId = null;
 
                         for (Category c : categoriesList) {
-                            if (selectedCat == c.Name) {
+                            if (selectedCat.equals(c.Name)) {
                                 catId = c.getCategoryID();
                             }
                         }
@@ -394,7 +398,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
 
         File myPath = new File(directory, filename);
 
-        FileOutputStream fos = null;
+        FileOutputStream fos;
         try {
             fos = new FileOutputStream(myPath);
             image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
@@ -454,7 +458,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
 
         BufferedReader responseStreamReader = new BufferedReader(new InputStreamReader(responseStream));
 
-        String line = "";
+        String line;
         StringBuilder stringBuilder = new StringBuilder();
 
         while ((line = responseStreamReader.readLine()) != null) {
@@ -495,7 +499,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                 Log.i("Imagga", response);
             }
             catch (Exception e) {
-
+                e.printStackTrace();
             }
             return null;
         }
