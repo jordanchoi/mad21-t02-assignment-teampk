@@ -452,7 +452,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public ArrayList<Item> GetAllUnassignedItem(){
         ArrayList<Item> itemArrayList = new ArrayList<>();
-        String query = "SELECT * FROM " +TABLE_ITEM
+        String query = "SELECT * FROM " +TABLE_ITEM + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
                 +" WHERE "
                 +COLUMN_LOCATIONID +" IS NULL AND "
                 +COLUMN_CONTAINERID +" IS NULL AND "
@@ -467,7 +467,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 String Name=cursor.getString(1);
                 String Picture=cursor.getString(2);
                 Integer Quantity = Integer.parseInt(cursor.getString(3));
+                String Category=cursor.getString(10);
                 Item i = new Item(ItemID,Name,Quantity,Picture);
+                i.CategoryName=Category;
                 itemArrayList.add(i);
                 cursor.moveToNext();
             }
