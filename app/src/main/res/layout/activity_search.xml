@@ -26,11 +26,12 @@
             android:paddingTop="3dp"
             android:paddingRight="10dp"
             android:paddingBottom="3dp"
+            android:src="@drawable/ic_back"
             app:layout_constraintBottom_toBottomOf="@+id/searchTitleTv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/searchTitleTv"
-            app:srcCompat="@color/black"
-            app:tint="@color/actionbar_text" />
+            app:tint="@color/actionbar_text"
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/searchTitleTv"

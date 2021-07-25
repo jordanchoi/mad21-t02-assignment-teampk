@@ -21,6 +21,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat"
+            android:textColor="@color/color_text_primary"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/dialogCancelBtn"
@@ -37,12 +38,13 @@
             android:ems="10"
             android:fontFamily="@font/montserrat"
             android:hint="@string/location_prompt"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
+            android:textColor="@color/color_text_primary"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dialogTitleTV"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitleTV" />
 
 
         <ImageButton
@@ -77,6 +79,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/montserrat"
+            android:textColor="@color/location_background"
             app:backgroundTint="@color/stufftrek_submit_btn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/dialogFieldET"
