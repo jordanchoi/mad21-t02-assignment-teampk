@@ -103,6 +103,7 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
         containerId = receiveIntent.getIntExtra("ContainerID", -1);
         iId= receiveIntent.getIntExtra("ItemId",-1);
         i1= db.GetItemWithID(iId);
+        i1.setItemID(iId);
         // Toolbar for LocationActivity
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
@@ -244,7 +245,7 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
                         i1.setContainerID(containerId);
                         i1.setRoomID(roomId);
                         i1.setCategoryID(catId);
-                        db.AddItem(i1);
+                        db.UpdateItem(i1);
                         finish();
                     }
                 }

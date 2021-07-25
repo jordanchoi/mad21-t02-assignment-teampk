@@ -4,15 +4,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-import static java.security.AccessController.getContext;
+//import android.util.Log;
+//import androidx.annotation.Nullable;
+//import java.lang.reflect.Array;
+//import java.util.List;
+//import static java.security.AccessController.getContext;
 
 public class DBHandler extends SQLiteOpenHelper {
     public static int DATABASE_VERSION = 1;
@@ -224,7 +222,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //GetHandler
     public ArrayList<Location> GetAllLocation(){
-        ArrayList<Location> locationArrayList = new ArrayList<Location>();
+        ArrayList<Location> locationArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_LOCATION;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -243,7 +241,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Room> GetAllRoomFromLocation(Integer LocationID){
-        ArrayList<Room> roomArrayList = new ArrayList<Room>();
+        ArrayList<Room> roomArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_ROOM + " WHERE "+COLUMN_LOCATIONID+" = "+LocationID;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -263,7 +261,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<ContainerCategory> GetAllContainerCategoryFromRoom(Integer RoomID){
-        ArrayList<ContainerCategory> containerCategoryArrayList = new ArrayList<ContainerCategory>();
+        ArrayList<ContainerCategory> containerCategoryArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_CONTAINERCATEGORY + " WHERE "+COLUMN_ROOMID+" = "+RoomID;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -282,7 +280,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Container> GetAllContainerFromContainerCategory(Integer ContainerCategoryID){
-        ArrayList<Container> containerArrayList = new ArrayList<Container>();
+        ArrayList<Container> containerArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_CONTAINER+ " WHERE "+COLUMN_CONTAINERCATEGORYID+" = "+ContainerCategoryID;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -302,7 +300,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Category> GetAllCategories(){
-        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        ArrayList<Category> categoryArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_CATEGORY;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -322,7 +320,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public Integer GetCategoryCount(Integer catID){
         Integer count = 0;
-        ArrayList<Category> categoryArrayList = new ArrayList<Category>();
+        //ArrayList<Category> categoryArrayList = new ArrayList<Category>();
         String query = "SELECT COUNT(*) FROM " +TABLE_ITEM + " WHERE " + COLUMN_CATEGORYID + " = " + catID;
         SQLiteDatabase db = this.getWritableDatabase(); //readable
         Cursor cursor = db.rawQuery(query,null);
@@ -335,7 +333,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllItemFromLocation(Integer LocationID){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
                 " WHERE "+COLUMN_LOCATIONID+" = "+LocationID
@@ -364,7 +362,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllItemFromRoom(Integer RoomID){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
                 " WHERE "+COLUMN_ROOMID+" = "+RoomID
@@ -392,7 +390,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllItemFromContainer(Integer ContainerID){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT "+TABLE_ITEM+".*,"+TABLE_CATEGORY+"."+COLUMN_NAME+" FROM " +TABLE_ITEM
                 +" INNER JOIN " + TABLE_CATEGORY +" ON " + TABLE_CATEGORY +"."+COLUMN_CATEGORYID+"="+TABLE_ITEM+"."+COLUMN_CATEGORYID+
                 " WHERE "+COLUMN_CONTAINERID+" = "+ContainerID;
@@ -418,7 +416,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllItemFromCategory(Integer CategoryID){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
                 + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
                 + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
@@ -436,11 +434,11 @@ public class DBHandler extends SQLiteOpenHelper {
                 Integer Quantity = Integer.parseInt(cursor.getString(3));
                 Item i = new Item(ItemID,Name,Quantity,Picture);
                 i = parseItemFK(cursor,i);
-                String LocationName =cursor.getString(9);
-                String RoomName =cursor.getString(10);
-                String ContainerCategoryName =cursor.getString(11);
-                String ContainerName =cursor.getString(12);
-                String CategoryName =cursor.getString(13);
+//                String LocationName =cursor.getString(9);
+//                String RoomName =cursor.getString(10);
+//                String ContainerCategoryName =cursor.getString(11);
+//                String ContainerName =cursor.getString(12);
+//                String CategoryName =cursor.getString(13);
                 i = parseItemFK(cursor,i);
                 i=parseItemFKName(cursor,i);
                 itemArrayList.add(i);
@@ -453,7 +451,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllUnassignedItem(){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT * FROM " +TABLE_ITEM
                 +" WHERE "
                 +COLUMN_LOCATIONID +" IS NULL AND "
@@ -480,7 +478,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public ArrayList<Item> GetAllItem(){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         String query = "SELECT ITEM.*, Location.Name, Room.Name, ContainerCategory.Name, Container.Name, Category.Name FROM " +TABLE_ITEM
                 + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
                 + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
@@ -553,44 +551,44 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return itemArrayList;
     }
-    public ArrayList<Item> SearchItem(String itemName){
-        ArrayList<Item> itemArrayList = new ArrayList<Item>();
-        String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
-                + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
-                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
-                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
-                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
-                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
-                + " WHERE "+TABLE_ITEM+"."+COLUMN_NAME+" LIKE '%"+itemName+"%'";
-        System.out.println(query);
-
-        SQLiteDatabase db = this.getWritableDatabase(); //readable
-        Cursor cursor = db.rawQuery(query,null);
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                Integer ItemID =Integer.parseInt(cursor.getString(0));
-                String Name =cursor.getString(1);
-                String Picture=cursor.getString(2);
-                Integer Quantity = Integer.parseInt(cursor.getString(3));
-                Item i = new Item(ItemID,Name,Quantity,Picture);
-                i = parseItemFK(cursor,i);
-                String LocationName = cursor.getString(9);
-                String RoomName = cursor.getString(10);
-                String ContainerCategoryName =cursor.getString(11);
-                String ContainerName =cursor.getString(12);
-                String CategoryName =cursor.getString(13);
-                i = parseItemFK(cursor,i);
-                i=parseItemFKName(cursor,i);
-                itemArrayList.add(i);
-                cursor.moveToNext();
-            }
-        }else{
-            System.out.println("No result");
-        }
-        cursor.close();
-        db.close();
-        return itemArrayList;
-    }
+//    public ArrayList<Item> SearchItem(String itemName){
+//        ArrayList<Item> itemArrayList = new ArrayList<>();
+//        String query = "SELECT ITEM.*,Location.Name,Room.Name,ContainerCategory.Name,Container.Name,Category.Name FROM  " +TABLE_ITEM
+//                + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
+//                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
+//                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
+//                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
+//                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
+//                + " WHERE "+TABLE_ITEM+"."+COLUMN_NAME+" LIKE '%"+itemName+"%'";
+//        System.out.println(query);
+//
+//        SQLiteDatabase db = this.getWritableDatabase(); //readable
+//        Cursor cursor = db.rawQuery(query,null);
+//        if (cursor.moveToFirst()) {
+//            while (!cursor.isAfterLast()) {
+//                Integer ItemID =Integer.parseInt(cursor.getString(0));
+//                String Name =cursor.getString(1);
+//                String Picture=cursor.getString(2);
+//                Integer Quantity = Integer.parseInt(cursor.getString(3));
+//                Item i = new Item(ItemID,Name,Quantity,Picture);
+//                i = parseItemFK(cursor,i);
+//                String LocationName = cursor.getString(9);
+//                String RoomName = cursor.getString(10);
+//                String ContainerCategoryName =cursor.getString(11);
+//                String ContainerName =cursor.getString(12);
+//                String CategoryName =cursor.getString(13);
+//                i = parseItemFK(cursor,i);
+//                i=parseItemFKName(cursor,i);
+//                itemArrayList.add(i);
+//                cursor.moveToNext();
+//            }
+//        }else{
+//            System.out.println("No result");
+//        }
+//        cursor.close();
+//        db.close();
+//        return itemArrayList;
+//    }
 
     public Item parseItemFK(Cursor cursor,Item i){
         try{
@@ -1099,8 +1097,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String updateQuery = "UPDATE "+TABLE_ITEM
                     + " SET " + COLUMN_NAME + " = \"" + i.Name +"\""
-                    + " SET " + COLUMN_PICTURE + " = \"" + i.Picture+"\""
-                    + " SET " + COLUMN_QUANTITY + " = " + i.Quantity
+                    + " , " + COLUMN_QUANTITY + " = " + i.Quantity
                     + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
             db.execSQL(updateQuery);
             cursor.close();
