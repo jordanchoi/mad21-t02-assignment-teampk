@@ -102,14 +102,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
         // Handler for no items found
         noItemTV = findViewById(R.id.noItemTV);
-        if (locationItemList.size() == 0)
-        {
-            noItemTV.setText("You have no items created");
-        }
-        else
-        {
-            noItemTV.setVisibility(View.GONE);
-        }
+        checkEmptyI();
     }
 
     public boolean onCreateOptionsMenu(Menu menu)
@@ -214,22 +207,27 @@ public class LocationDetailsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         locationItemList = db.GetAllItemFromLocation(locationID);
-
-        if (locationItemList.size() == 0)
-        {
-            noItemTV.setText("You have no items created");
-        }
-        else
-        {
-            noItemTV.setVisibility(View.GONE);
-            itemsAdapter.allItemsList = locationItemList;
-            itemsAdapter.notifyDataSetChanged();
-        }
+        itemsAdapter.allItemsList = locationItemList;
+        itemsAdapter.notifyDataSetChanged();
+        checkEmptyI();
 
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public void checkEmptyI() {
+        if (locationItemList.size() == 0)
+        {
+            noItemTV.setText("You have no items created");
+            noItemTV.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            noItemTV.setVisibility(View.GONE);
+
+        }
     }
 }

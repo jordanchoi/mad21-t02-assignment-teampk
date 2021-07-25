@@ -74,16 +74,21 @@ public class ItemsActivity extends AppCompatActivity {
         itemrv.setAdapter(adapter);
         // Handler for no items found
         noItemTV = findViewById(R.id.noItemsTV);
+        checkEmptyI();
+    }
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public void checkEmptyI() {
         if (itemList.size() == 0)
         {
             noItemTV.setText("You have no items created");
+            noItemTV.setVisibility(View.VISIBLE);
         }
         else
         {
             noItemTV.setVisibility(View.GONE);
+
         }
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -108,17 +113,9 @@ public class ItemsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         itemList = db.GetAllItemFromContainer(containerID);
-
-        if (itemList.size() == 0)
-        {
-            noItemTV.setText("You have no items created");
-        }
-        else
-        {
-            noItemTV.setVisibility(View.GONE);
-            adapter.allItemsList = itemList;
-            adapter.notifyDataSetChanged();
-        }
+        adapter.allItemsList = itemList;
+        adapter.notifyDataSetChanged();
+        checkEmptyI();
 
     }
 
