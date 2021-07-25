@@ -2,7 +2,6 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,8 +14,6 @@ import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -77,7 +74,7 @@ public class FirebaseSignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_sign_in);
         signInBtn = findViewById(R.id.signInBtn);
-        stuffTrek = findViewById(R.id.firebase_stuffTrekTV);
+        stuffTrek = findViewById(R.id.firebase_stuffTrekTv);
         skipBtn=findViewById(R.id.skipBtn);
 
         stuffTrek.setText(R.string.app_name);

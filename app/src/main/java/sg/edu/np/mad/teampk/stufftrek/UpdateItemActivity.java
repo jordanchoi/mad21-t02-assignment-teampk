@@ -115,17 +115,17 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
         tb.setTitle("Update Item");
 
         // Retrieving the respective UI items by their ids.
-        createItemTitle = findViewById(R.id.createItemTitleTV);
-        createItemDesc = findViewById(R.id.createItemDescTV);
+        createItemTitle = findViewById(R.id.createItemTitleTv);
+        createItemDesc = findViewById(R.id.createItemDescTv);
         cameraBtn = findViewById(R.id.captureItemBtn);
-        cameraDesc = findViewById(R.id.captureItemDescTV);
-        itemNameText = findViewById(R.id.itemNamePromptTV);
-        inputItemName = findViewById(R.id.itemNameET);
-        nameErrorMsg = findViewById(R.id.iNameErrorMsgTV);
-        itemQtyText = findViewById(R.id.itemQtyPromptTV);
-        inputItemQty = findViewById(R.id.itemQtyET);
+        cameraDesc = findViewById(R.id.captureItemDescTv);
+        itemNameText = findViewById(R.id.itemNamePromptTv);
+        inputItemName = findViewById(R.id.itemNameEt);
+        nameErrorMsg = findViewById(R.id.iNameErrorMsgTv);
+        itemQtyText = findViewById(R.id.itemQtyPromptTv);
+        inputItemQty = findViewById(R.id.itemQtyEt);
         qtyErrorMsg = findViewById(R.id.iQtyErrorMsg);
-        itemCatText = findViewById(R.id.itemCatPromptTV);
+        itemCatText = findViewById(R.id.itemCatPromptTv);
         inputItemCatSpinner = findViewById(R.id.itemCatSpinner);
         createItemBtn = findViewById(R.id.createItemBtn);
 

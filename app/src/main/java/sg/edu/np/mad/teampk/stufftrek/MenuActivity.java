@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class MenuActivity extends AppCompatActivity implements View.OnClickListener {
     // For Firebase
@@ -45,16 +44,16 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         // Finding and assigning the respective items in the layout with their ids.
             // (TextView) - Titles
-        appTitle = findViewById(R.id.pageTitleTV);
-        pageDesc = findViewById(R.id.pageDescTV);
+        appTitle = findViewById(R.id.pageTitleTv);
+        pageDesc = findViewById(R.id.pageDescTv);
 
             // (TextView) - Menu Text
-        locationTV = findViewById(R.id.locationTV);
-        searchTV = findViewById(R.id.searchTV);
-        categoryTV = findViewById(R.id.categoryTV);
-        itemsTV = findViewById(R.id.itemTV);
-        unassignedTV = findViewById(R.id.unassignedTV);
-        settingsTV = findViewById(R.id.settingsTV);
+        locationTV = findViewById(R.id.locationTv);
+        searchTV = findViewById(R.id.searchTv);
+        categoryTV = findViewById(R.id.categoryTv);
+        itemsTV = findViewById(R.id.itemTv);
+        unassignedTV = findViewById(R.id.unassignedTv);
+        settingsTV = findViewById(R.id.settingsTv);
 
             // (Button) - Menu Items
         locationBtn = findViewById(R.id.locationBtn);

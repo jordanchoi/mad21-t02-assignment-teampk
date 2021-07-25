@@ -12,17 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -93,8 +87,8 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
         public ContainersViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            containerName = itemView.findViewById(R.id.containerNameTV);
-            containerBtn = itemView.findViewById(R.id.containerIB);
+            containerName = itemView.findViewById(R.id.containerNameTv);
+            containerBtn = itemView.findViewById(R.id.containerIb);
             containerId=itemView.findViewById(R.id.containerId);
             containerBtn.setOnCreateContextMenuListener(this);
         }

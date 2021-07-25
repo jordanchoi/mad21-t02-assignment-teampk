@@ -98,11 +98,11 @@ public class RoomActivity extends AppCompatActivity {
         tb.setTitle(roomName);
 
         // Respective items within the view
-        itemsTitle = findViewById(R.id.itemsTitleTV);
-        containersTitle = findViewById(R.id.containerTitleTV);
-        noContainersText = findViewById(R.id.noContainersText);
-        noItemsText = findViewById(R.id.noItemsText);
-        roomImage = findViewById(R.id.roomIV);
+        itemsTitle = findViewById(R.id.itemsTitleTv);
+        containersTitle = findViewById(R.id.containerTitleTv);
+        noContainersText = findViewById(R.id.noContainersCatTv);
+        noItemsText = findViewById(R.id.noRoomItemTv);
+        roomImage = findViewById(R.id.roomIv);
         itemsTitle.setText("Items");
         containersTitle.setText("Containers");
 
@@ -122,7 +122,7 @@ public class RoomActivity extends AppCompatActivity {
         // Call DBHandler method to retrieve all container categories within the room
         containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
-        RecyclerView ccRv = findViewById(R.id.containersRV);
+        RecyclerView ccRv = findViewById(R.id.containersRv);
         ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList, locationId, roomId);
         LinearLayoutManager ccLm = new LinearLayoutManager(this);
         ccRv.setLayoutManager(ccLm);
@@ -135,7 +135,7 @@ public class RoomActivity extends AppCompatActivity {
         // Call DBHandler method to retrieve all items within the room
         roomItemsList = db.GetAllItemFromRoom(roomId);
 
-        rv = findViewById(R.id.itemsRV);
+        rv = findViewById(R.id.itemsRv);
         itemsAdapter = new ItemsWithPathAdapter(this, roomItemsList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);

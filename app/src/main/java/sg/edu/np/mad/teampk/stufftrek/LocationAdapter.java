@@ -90,7 +90,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            locationName = itemView.findViewById(R.id.locationNameTV);
+            locationName = itemView.findViewById(R.id.locationNameTv);
             locationContainer = itemView.findViewById(R.id.locationVH);
             locIdTV = itemView.findViewById(R.id.locationId);
 

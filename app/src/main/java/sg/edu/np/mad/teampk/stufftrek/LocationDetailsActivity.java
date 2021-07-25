@@ -64,7 +64,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         tb.setTitle(LocationName);
 
         // Set Title for location
-        TextView locationDetailsTitle = findViewById(R.id.locationDetailsPageTitleTV);
+        TextView locationDetailsTitle = findViewById(R.id.locationDetailsPageTitleTv);
         locationDetailsTitle.setText(LocationName);
 
         // Construct DBHandler to retrieve DB information.
@@ -73,13 +73,13 @@ public class LocationDetailsActivity extends AppCompatActivity {
         // Call GetAllRoomFromLocation to retrieve all rooms in location
         roomList = db.GetAllRoomFromLocation(locationID);
         // RV for rooms
-        roomrv = findViewById(R.id.roomRV);
+        roomrv = findViewById(R.id.roomRv);
         roomAdapter = new RoomAdapter(this, roomList,locationID);
         LinearLayoutManager lm = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         roomrv.setLayoutManager(lm);
         roomrv.setAdapter(roomAdapter);
         // Handler for no items found
-        noRoomTV = findViewById(R.id.noRoomTV);
+        noRoomTV = findViewById(R.id.noRoomTv);
         if (roomList.size() == 0)
         {
             noRoomTV.setText("You have no rooms created");
@@ -93,7 +93,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
         locationItemList = db.GetAllItemFromLocation(locationID);
 
         // RV for items
-        itemrv = findViewById(R.id.itemRV);
+        itemrv = findViewById(R.id.itemRv);
         itemsAdapter = new ItemsWithPathAdapter(this, locationItemList);
         LinearLayoutManager lm2 = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm2);
@@ -101,7 +101,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
 
 
         // Handler for no items found
-        noItemTV = findViewById(R.id.noItemTV);
+        noItemTV = findViewById(R.id.noItemTv);
         checkEmptyI();
     }
 

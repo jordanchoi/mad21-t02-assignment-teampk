@@ -48,10 +48,10 @@ public class AllItemsActivity extends AppCompatActivity {
 
         // Finding and assigning the respective items in the layout with their ids.
             // (TextView)
-        itemsTitle = findViewById(R.id.sharedPageTitleTV);
-        itemsDesc = findViewById(R.id.sharedPageDescTV);
-        allItemsText = findViewById(R.id.sharedComponentTV);
-        noItemsText = findViewById(R.id.sharedNoItemsTV);
+        itemsTitle = findViewById(R.id.sharedPageTitleTv);
+        itemsDesc = findViewById(R.id.sharedPageDescTv);
+        allItemsText = findViewById(R.id.sharedComponentTv);
+        noItemsText = findViewById(R.id.sharedNoItemsTv);
             // (RecyclerView)
         rv = findViewById(R.id.sharedRv);
 

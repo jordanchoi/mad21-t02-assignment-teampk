@@ -21,7 +21,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/pageTitleTV"
+                android:id="@+id/pageTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -36,14 +36,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/pageDescTV"
+                android:id="@+id/pageDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/app_slogan"
-                app:layout_constraintStart_toStartOf="@+id/pageTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/pageTitleTV" />
+                app:layout_constraintStart_toStartOf="@+id/pageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/pageTitleTv" />
 
             <TableLayout
                 android:id="@+id/menu_table"
@@ -53,7 +53,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pageDescTV">
+                app:layout_constraintTop_toBottomOf="@+id/pageDescTv">
 
                 <TableRow
                     android:layout_width="match_parent"
@@ -115,7 +115,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/locationTV"
+                        android:id="@+id/locationTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -129,7 +129,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/searchTV"
+                        android:id="@+id/searchTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -209,7 +209,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/categoryTV"
+                        android:id="@+id/categoryTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -223,7 +223,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/itemTV"
+                        android:id="@+id/itemTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -301,7 +301,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/unassignedTV"
+                        android:id="@+id/unassignedTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -315,7 +315,7 @@
                         android:layout_weight="1" />
 
                     <TextView
-                        android:id="@+id/settingsTV"
+                        android:id="@+id/settingsTv"
                         android:layout_width="130dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"

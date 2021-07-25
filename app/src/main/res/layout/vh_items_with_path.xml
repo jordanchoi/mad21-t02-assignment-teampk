@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/itemImgIV"
+        android:id="@+id/itemImgIv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"
@@ -19,7 +19,7 @@
         app:srcCompat="@android:drawable/ic_menu_mapmode" />
 
     <TextView
-        android:id="@+id/itemNameTV"
+        android:id="@+id/itemNameTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -27,32 +27,32 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/itemImgIV"
-        app:layout_constraintTop_toTopOf="@+id/itemImgIV" />
+        app:layout_constraintStart_toEndOf="@+id/itemImgIv"
+        app:layout_constraintTop_toTopOf="@+id/itemImgIv" />
 
     <TextView
-        android:id="@+id/itemCatTV"
+        android:id="@+id/itemCatTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
         android:textSize="12sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemNameTV"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameTV" />
+        app:layout_constraintStart_toStartOf="@+id/itemNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameTv" />
 
     <TextView
-        android:id="@+id/itemQtyTV"
+        android:id="@+id/itemQtyTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/montserrat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemCatTV"
-        app:layout_constraintTop_toBottomOf="@+id/itemCatTV" />
+        app:layout_constraintStart_toStartOf="@+id/itemCatTv"
+        app:layout_constraintTop_toBottomOf="@+id/itemCatTv" />
 
     <TextView
-        android:id="@+id/itemPathTV"
+        android:id="@+id/itemPathTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -60,8 +60,8 @@
         android:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemQtyTV"
-        app:layout_constraintTop_toBottomOf="@+id/itemQtyTV" />
+        app:layout_constraintStart_toStartOf="@+id/itemQtyTv"
+        app:layout_constraintTop_toBottomOf="@+id/itemQtyTv" />
 
     <View
         android:id="@+id/divider2"

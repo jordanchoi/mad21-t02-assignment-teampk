@@ -20,7 +20,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdapter.ItemsWithPathViewHolder>{
@@ -121,11 +120,11 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdap
         public ItemsWithPathViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            itemsNameText = itemView.findViewById(R.id.itemNameTV);
-            itemsCatText = itemView.findViewById(R.id.itemCatTV);
-            itemsQtyText = itemView.findViewById(R.id.itemQtyTV);
-            itemsPathText = itemView.findViewById(R.id.itemPathTV);
-            itemsImage = itemView.findViewById(R.id.itemImgIV);
+            itemsNameText = itemView.findViewById(R.id.itemNameTv);
+            itemsCatText = itemView.findViewById(R.id.itemCatTv);
+            itemsQtyText = itemView.findViewById(R.id.itemQtyTv);
+            itemsPathText = itemView.findViewById(R.id.itemPathTv);
+            itemsImage = itemView.findViewById(R.id.itemImgIv);
             itemsContainer = itemView.findViewById(R.id.itemsContainer);
             itemId=itemView.findViewById(R.id.itemId);
             itemView.setOnCreateContextMenuListener(this);

@@ -9,7 +9,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -21,7 +20,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,17 +29,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,16 +96,16 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
         tb.setTitle("Update Container");
 
         // Retrieve the respective UI items by their id.
-        createContainerTitle = findViewById(R.id.createContainerTitleTV);
-        createContainerDesc = findViewById(R.id.createContainerDescTV);
+        createContainerTitle = findViewById(R.id.createContainerTitleTv);
+        createContainerDesc = findViewById(R.id.createContainerDescTv);
         cameraBtn = findViewById(R.id.captureBtn);
-        cameraDesc = findViewById(R.id.captureDescTV);
-        containerNameText = findViewById(R.id.containerNamePromptTV);
-        inputContainerName = findViewById(R.id.containerNameET);
-        containerCatText = findViewById(R.id.containerCatPromptTV);
+        cameraDesc = findViewById(R.id.captureDescTv);
+        containerNameText = findViewById(R.id.containerNamePromptTv);
+        inputContainerName = findViewById(R.id.containerNameEt);
+        containerCatText = findViewById(R.id.containerCatPromptTv);
         categorySpinner = findViewById(R.id.containerCatSpinner);
         createContainerBtn = findViewById(R.id.createContainerBtn);
-        errorMsg = findViewById(R.id.cNameErrorMsgTV);
+        errorMsg = findViewById(R.id.cNameErrorMsgTv);
 
         // Set the respective texts within the view
         createContainerTitle.setText("Update Container");

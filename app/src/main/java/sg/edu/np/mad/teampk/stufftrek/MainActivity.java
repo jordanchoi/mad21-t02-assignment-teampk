@@ -23,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Finding and assigning the respective items in the layout with their ids.
-        appNameTitle = findViewById(R.id.firebase_stuffTrekTV);
-        subText = findViewById(R.id.sloganTV);
-        creditsText = findViewById(R.id.creditsTV);
+        appNameTitle = findViewById(R.id.firebase_stuffTrekTv);
+        subText = findViewById(R.id.sloganTv);
+        creditsText = findViewById(R.id.creditsTv);
 
         // Setting the texts for the respective TextView within the layout.
         appNameTitle.setText(R.string.app_name);

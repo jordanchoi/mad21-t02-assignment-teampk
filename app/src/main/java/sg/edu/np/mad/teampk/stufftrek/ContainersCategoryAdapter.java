@@ -88,9 +88,9 @@ public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCa
         public ContainersCategoryViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            containerCatTV = itemView.findViewById(R.id.containerCategoryTV);
-            containerRV = itemView.findViewById(R.id.containersRV);
-            noContainerTV = itemView.findViewById(R.id.noContainerTV);
+            containerCatTV = itemView.findViewById(R.id.containerCategoryTv);
+            containerRV = itemView.findViewById(R.id.containersRv);
+            noContainerTV = itemView.findViewById(R.id.noContainerTv);
             containerCategoryId= itemView.findViewById(R.id.containerCategoryId);
 
             containerCatTV.setOnCreateContextMenuListener(this);

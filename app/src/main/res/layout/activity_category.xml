@@ -32,7 +32,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/sharedPageTitleTV"
+                android:id="@+id/sharedPageTitleTv"
                 style="@style/Theme.StuffTrek.TitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -46,29 +46,31 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/sharedPageDescTV"
+                android:id="@+id/sharedPageDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/montserrat"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/sharedPageTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/sharedPageTitleTV" />
+                app:layout_constraintStart_toStartOf="@+id/sharedPageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/sharedPageTitleTv" />
 
             <TextView
-                android:id="@+id/sharedComponentTV"
+                android:id="@+id/sharedComponentTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
                 android:fontFamily="@font/montserrat"
                 android:textAllCaps="true"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/sharedRv"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/sharedPageDescTV"
-                app:layout_constraintTop_toBottomOf="@+id/sharedPageDescTV" />
+                app:layout_constraintStart_toStartOf="@+id/sharedPageDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/sharedPageDescTv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/sharedRv"
@@ -79,13 +81,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sharedComponentTV"
+                app:layout_constraintTop_toBottomOf="@+id/sharedComponentTv"
                 app:layout_constraintVertical_bias="1.0">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/sharedNoItemsTV"
+                android:id="@+id/sharedNoItemsTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -95,7 +97,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/sharedComponentTV" />
+                app:layout_constraintTop_toBottomOf="@+id/sharedComponentTv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

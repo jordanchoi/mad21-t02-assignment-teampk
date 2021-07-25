@@ -9,14 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -49,13 +44,13 @@ public class CategoryItemsActivity extends AppCompatActivity {
         // Call GetAllItemFromCategory to retrieve all items for a certain category
         ArrayList<Item> itemList = db.GetAllItemFromCategory(categoryID);
         // RV for Items
-        RecyclerView itemrv = findViewById(R.id.itemsRV);
+        RecyclerView itemrv = findViewById(R.id.itemsRv);
         ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adapter);
         // Handler for no items found
-        TextView noItemTV = findViewById(R.id.noItemsTV);
+        TextView noItemTV = findViewById(R.id.noItemsTv);
         if (itemList.size() == 0) {
             noItemTV.setText("You have no items created");
         } else {

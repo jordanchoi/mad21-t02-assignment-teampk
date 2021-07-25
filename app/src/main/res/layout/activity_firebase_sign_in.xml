@@ -30,7 +30,7 @@
         app:backgroundTint="@color/stufftrek_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firebase_stuffTrekTV" />
+        app:layout_constraintTop_toBottomOf="@+id/firebase_stuffTrekTv" />
 
     <Button
         android:id="@+id/skipBtn"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
 
     <TextView
-        android:id="@+id/firebase_stuffTrekTV"
+        android:id="@+id/firebase_stuffTrekTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"

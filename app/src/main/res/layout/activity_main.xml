@@ -21,7 +21,7 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/firebase_stuffTrekTV"
+        android:id="@+id/firebase_stuffTrekTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -35,7 +35,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appIcon" />
 
     <TextView
-        android:id="@+id/sloganTV"
+        android:id="@+id/sloganTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -47,10 +47,10 @@
         android:textColor="@color/darker_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firebase_stuffTrekTV" />
+        app:layout_constraintTop_toBottomOf="@+id/firebase_stuffTrekTv" />
 
     <TextView
-        android:id="@+id/creditsTV"
+        android:id="@+id/creditsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
