@@ -1,3 +1,4 @@
+// StuffTrek - AllItemsActivity by Jordan, TeamPK - Ngee Ann Polytechnic.
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.annotation.NonNull;
@@ -103,7 +104,7 @@ public class AllItemsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        // Call GetAllItem() from DB and reassign to the Adapter's List and Notify Dataset Changed to handle users return from Editing items.
         allItemsList = db.GetAllItem();
         db.close();
         itemsAdapter.allItemsList = allItemsList;

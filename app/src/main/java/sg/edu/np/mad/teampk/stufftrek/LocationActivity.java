@@ -1,3 +1,4 @@
+// StuffTrek - LocationActivity by Jordan, TeamPK - Ngee Ann Polytechnic.
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.annotation.NonNull;

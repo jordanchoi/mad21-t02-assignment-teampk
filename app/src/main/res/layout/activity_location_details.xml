@@ -29,15 +29,13 @@
 
             <TextView
                 android:id="@+id/locationDetailsPageTitleTv"
-                style="@style/TextAppearance.AppCompat.Large"
+                style="@style/Theme.StuffTrek.TitleText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
                 android:text="@string/location"
-                android:textSize="36sp"
-                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
