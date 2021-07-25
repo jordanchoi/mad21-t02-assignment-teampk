@@ -215,7 +215,7 @@ public class CategoryActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         // retrieve the category name that the user entered
-                        String categoryName = createField.getText().toString();
+                        String categoryName = editField.getText().toString();
 
                         // If user did not enter anything
                         if(categoryName.length() == 0)
@@ -235,6 +235,10 @@ public class CategoryActivity extends AppCompatActivity {
 //                            dialog.cancel();
 
                             item.Name = categoryName;
+                            // Update in database
+                            sortList();
+                            catAdapter.notifyDataSetChanged();
+                            dialog.cancel();
 
                         }
                     }
@@ -246,7 +250,7 @@ public class CategoryActivity extends AppCompatActivity {
             }
         };
 
-        // Attaches the swipe to delete function to the recycler view
+        // Attaches the swipe to edit function to the recycler view
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToEditCallback);
         itemTouchhelper.attachToRecyclerView(rv);
     }
