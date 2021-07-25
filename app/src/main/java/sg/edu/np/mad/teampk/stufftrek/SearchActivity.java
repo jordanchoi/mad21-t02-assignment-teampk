@@ -36,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
         searchQueryField = findViewById(R.id.searchSV);
 
         // Set the texts of the respective widgets
-        searchTitle.setText("Search");
+        searchTitle.setText(R.string.search);
 
         // Set the on click listener for the search view
         searchQueryField.setOnClickListener(new View.OnClickListener() {
