@@ -192,7 +192,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
                 android:textColor="@color/design_default_color_error"
                 android:textSize="12sp"
                 android:visibility="gone"
