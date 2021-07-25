@@ -27,4 +27,6 @@
     <color name="colorPrimaryLight">#EDE7F6</color>
     <color name="colorAccent">#7C4DFF</color>
     <color name="colorSecondary">#FFC107</color>
+    <color name="location_background">#E6E6E6</color>
+    <color name="stufftrek_submit_btn">#005F28</color>
 </resources>

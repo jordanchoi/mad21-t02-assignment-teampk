@@ -4,4 +4,6 @@
     <color name="stufftrek_btn_color">#3B3B3B</color>
     <color name="stufftrek_btn_tint">#A98F64</color>
     <color name="actionbar_text">#a98f64</color>
+    <color name="location_background">#3b3b3b</color>
+    <color name="stufftrek_submit_btn">#a98f64</color>
 </resources>

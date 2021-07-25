@@ -9,9 +9,6 @@
     <string name="backup">Backup</string>
     <string name="load">Load Backup</string>
 
-
-
-
     <string name="location">Location</string>
     <string name="containers">Containers</string>
     <string name="search">Search</string>
@@ -35,8 +32,10 @@
     <string name="no_room_item"> No items are stored in this room </string>
     <string name="credits">A project by TeamPK - Ngee Ann Polytechnic\n
     For our MAD Assignment</string>
+    <string name="location_prompt">Enter Location Name</string>
 
     <string name="logo_ContentDesc">StuffTrek Logo</string>
+    <string name="cancel_ContentDesc">Cancel</string>
     <string name="back_ContentDesc">Back</string>
 
     <string name="search_results">0 results</string>
