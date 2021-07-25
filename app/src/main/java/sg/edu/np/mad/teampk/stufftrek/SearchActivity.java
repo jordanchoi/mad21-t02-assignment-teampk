@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -85,9 +84,9 @@ public class SearchActivity extends AppCompatActivity {
 
         // Construct new adapter for search results and attaches it to the recycler view
         ItemsWithPathAdapter adp = new ItemsWithPathAdapter(this, searchList);
-        RecyclerView itemrv = findViewById(R.id.searchResultsRv);
+        RecyclerView itemRv = findViewById(R.id.searchResultsRv);
         LinearLayoutManager lm = new LinearLayoutManager(this);
-        itemrv.setLayoutManager(lm);
-        itemrv.setAdapter(adp);
+        itemRv.setLayoutManager(lm);
+        itemRv.setAdapter(adp);
     }
 }
