@@ -1113,8 +1113,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE "+TABLE_ITEM
-                    + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
+            String updateQuery = "UPDATE "+TABLE_CATEGORY
+                    + " SET " + COLUMN_NAME + " = '" + c.Name +"'"
                     + " WHERE " +COLUMN_CATEGORYID +" = "+c.getCategoryID();
             db.execSQL(updateQuery);
             cursor.close();

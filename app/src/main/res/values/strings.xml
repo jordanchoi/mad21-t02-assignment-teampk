@@ -16,6 +16,15 @@
     <string name="containers">Containers</string>
     <string name="search">Search</string>
     <string name="category">Category</string>
+    <string name="categories">Categories</string>
+    <string name="manageCat">Manage your categories and assign a category to an item for better organization.</string>
+    <string name="existingCat">Existing Categories</string>
+    <string name="category_name">Category Name: </string>
+    <string name="category_add">Add Category</string>
+    <string name="category_update">Update Category</string>
+    <string name="cat_empty_error">Category name cannot be empty!</string>
+    <string name="num_of_items">%1$d items</string>
+    <string name="num_of_results">%1$d results</string>
     <string name="all_items">All Items</string>
     <string name="unassigned_items">Unassigned Items</string>
     <string name="settings">Settings</string>
@@ -30,6 +39,7 @@
     <string name="location_title">Your Locations</string>
     <string name="location_desc">Create and view your locations. E.g) Houses, Offices</string>
     <string name="no_item">You have no items created </string>
+    <string name="no_category">You do not have any categories.</string>
     <string name="no_location">You do not have any locations created.</string>
     <string name="no_container_cat">No containers has been created in this room</string>
     <string name="no_room_item"> No items are stored in this room </string>

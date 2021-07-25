@@ -34,9 +34,11 @@ public class CategoryItemsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar tb = getSupportActionBar();
-        tb.setHomeAsUpIndicator(R.drawable.ic_back);
-        tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle(categoryName);
+        if(tb != null) {
+            tb.setHomeAsUpIndicator(R.drawable.ic_back);
+            tb.setDisplayHomeAsUpEnabled(true);
+            tb.setTitle(categoryName);
+        }
 
         // Construct DBHandler to retrieve DB information.
         DBHandler db = new DBHandler(this, null, null, 1);

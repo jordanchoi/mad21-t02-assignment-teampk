@@ -27,4 +27,5 @@
     <color name="colorPrimaryLight">#EDE7F6</color>
     <color name="colorAccent">#7C4DFF</color>
     <color name="colorSecondary">#FFC107</color>
+    <color name="search_text">#FFFFFF</color>
 </resources>

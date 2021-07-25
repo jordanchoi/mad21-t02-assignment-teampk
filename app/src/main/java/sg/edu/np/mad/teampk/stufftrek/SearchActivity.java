@@ -35,12 +35,9 @@ public class SearchActivity extends AppCompatActivity {
         searchTitle.setText(R.string.search);
 
         // Set the on click listener for the search view
-        searchQueryField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Opens the keyboard to start the search function
-                searchQueryField.onActionViewExpanded();
-            }
+        searchQueryField.setOnClickListener(view -> {
+            // Opens the keyboard to start the search function
+            searchQueryField.onActionViewExpanded();
         });
 
         // if search bar is not empty
@@ -60,12 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         // OnClickListener for back button in the Internal actionbar
-        backBtn.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View V)
-            {
-                finish();
-            }
-        });
+        backBtn.setOnClickListener(V -> finish());
     }
 
     //Searches for items and sets into list for selection
@@ -89,7 +81,7 @@ public class SearchActivity extends AppCompatActivity {
         }
 
         // Set the text for the number of results
-        resultsNumText.setText(searchList.size() + " results");
+        resultsNumText.setText(String.format(getString(R.string.num_of_results), searchList.size()));
 
         // Construct new adapter for search results and attaches it to the recycler view
         ItemsWithPathAdapter adp = new ItemsWithPathAdapter(this, searchList);

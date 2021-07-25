@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -28,7 +27,6 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 
 public class CategoryActivity extends AppCompatActivity {
@@ -63,9 +61,11 @@ public class CategoryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar tb = getSupportActionBar();
-        tb.setHomeAsUpIndicator(R.drawable.ic_back);
-        tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle("Manage Categories");
+        if(tb != null) {
+            tb.setHomeAsUpIndicator(R.drawable.ic_back);
+            tb.setDisplayHomeAsUpEnabled(true);
+            tb.setTitle("Manage Categories");
+        }
 
         // Construct DBHandler to retrieve DB information.
         db = new DBHandler(this, null, null, 1);
@@ -89,7 +89,7 @@ public class CategoryActivity extends AppCompatActivity {
 
         // initializes the swipe to delete feature
         enableSwipeToDelete();
-        enableEditToDelete();
+        enableSwipeToEdit();
 
         // Get the widgets in the activity by id.
         categoryTitle = findViewById(R.id.sharedPageTitleTv);
@@ -99,13 +99,13 @@ public class CategoryActivity extends AppCompatActivity {
         mainLayout = findViewById(R.id.categoryMainLayout);
 
         // Set the texts of the widgets
-        categoryTitle.setText("Categories");
-        categoryDesc.setText("Manage your categories and assign a category to an item for better organization.");
-        existCatText.setText("Existing Categories");
+        categoryTitle.setText(R.string.categories);
+        categoryDesc.setText(R.string.manageCat);
+        existCatText.setText(R.string.existingCat);
 
         if (categoryList.size() == 0)
         {
-            noCatText.setText("You do not have any categories.");
+            noCatText.setText(R.string.no_category);
             noCatText.setVisibility(View.VISIBLE);
         }
         else
@@ -129,15 +129,13 @@ public class CategoryActivity extends AppCompatActivity {
                     new AlertDialog.Builder(CategoryActivity.this)
                             .setTitle("Delete Category")
                             .setMessage("The category \"" + item.Name + "\" has " + item.getCount() + " item(s) tagged to it.\nAre you sure you want to delete it?")
-                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    catAdapter.removeItem(position);
-                                    sortList();
-                                    catAdapter.notifyDataSetChanged();
+                            .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                                catAdapter.removeItem(position);
+                                sortList();
+                                catAdapter.notifyDataSetChanged();
 
-                                    Snackbar snackbar = Snackbar.make(mainLayout, item.Name + " was removed from the list.", Snackbar.LENGTH_LONG);
-                                    snackbar.show();
-                                }
+                                Snackbar snackbar = Snackbar.make(mainLayout, item.Name + " was removed from the list.", Snackbar.LENGTH_LONG);
+                                snackbar.show();
                             })
                             .setNegativeButton(android.R.string.no, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
@@ -153,16 +151,13 @@ public class CategoryActivity extends AppCompatActivity {
 
                     Snackbar snackbar = Snackbar.make(mainLayout, item.Name + " was removed from the list.", Snackbar.LENGTH_LONG);
                     // Adds a undo button in case user accidentally deletes
-                    snackbar.setAction("UNDO", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            // Re-add the deleted item to the database
-                            catAdapter.restoreItem(item);
-                            // Sort the categoryList by alphabetical order
-                            sortList();
-                            catAdapter.notifyDataSetChanged();
-                            rv.scrollToPosition(position);
-                        }
+                    snackbar.setAction("UNDO", view -> {
+                        // Re-add the deleted item to the database
+                        catAdapter.restoreItem(item);
+                        // Sort the categoryList by alphabetical order
+                        sortList();
+                        catAdapter.notifyDataSetChanged();
+                        rv.scrollToPosition(position);
                     });
 
                     snackbar.setActionTextColor(Color.YELLOW);
@@ -177,7 +172,7 @@ public class CategoryActivity extends AppCompatActivity {
     }
 
     // Swipe to edit function
-    private void enableEditToDelete() {
+    private void enableSwipeToEdit() {
         CategorySwipeEditCallback swipeToEditCallback = new CategorySwipeEditCallback(this) {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
@@ -196,53 +191,37 @@ public class CategoryActivity extends AppCompatActivity {
                 dialogEditBtn = dialog.findViewById(R.id.dialogAddBtn);
 
                 // Set the respective texts of the items in the view
-                editTitle.setText("Category Name: ");
+                editTitle.setText(R.string.category_name);
                 editField.setText(item.Name);
-                dialogEditBtn.setText("Update Category");
+                dialogEditBtn.setText(R.string.category_update);
 
-                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
+                dialogCancelBtn.setOnClickListener(view -> dialog.cancel());
+
+                dialogEditBtn.setOnClickListener(view -> {
+                    // retrieve the category name that the user entered
+                    String categoryName = editField.getText().toString();
+
+                    // If user did not enter anything
+                    if(categoryName.length() == 0)
+                    {
+                        errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                        errorMsgText.setText(R.string.cat_empty_error);
+                        errorMsgText.setVisibility(View.VISIBLE);
                     }
-                });
-
-                dialogEditBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // retrieve the category name that the user entered
-                        String categoryName = editField.getText().toString();
-
-                        // If user did not enter anything
-                        if(categoryName.length() == 0)
-                        {
-                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
-                            errorMsgText.setText("Category name cannot be empty!");
-                            errorMsgText.setVisibility(View.VISIBLE);
-                        }
-                        else
-                        {
-//                            // Creates a new category class and adds it to the database
-//                            Category cat = new Category(categoryName);
-//                            cat.setCategoryID(db.AddCategory(cat));
-//                            categoryList.add(cat);
-//                            sortList();
-//                            catAdapter.notifyDataSetChanged();
-//                            dialog.cancel();
-
-                            item.Name = categoryName;
-                            // Update in database
-                            sortList();
-                            catAdapter.notifyDataSetChanged();
-                            dialog.cancel();
-
-                        }
+                    else
+                    {
+                        item.Name = categoryName;
+                        db.UpdateCategory(item);
+                        sortList();
+                        catAdapter.notifyDataSetChanged();
+                        dialog.cancel();
                     }
                 });
 
                 Window window = dialog.getWindow();
                 window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
                 dialog.show();
+                catAdapter.notifyDataSetChanged();
             }
         };
 
@@ -253,12 +232,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     // Sort the categoryList by alphabetical order
     private void sortList() {
-        Collections.sort(categoryList, new Comparator<Category>() {
-            @Override
-            public int compare(Category lhs, Category rhs) {
-                return lhs.Name.toLowerCase().compareTo(rhs.Name.toLowerCase());
-            }
-        });
+        Collections.sort(categoryList, (lhs, rhs) -> lhs.Name.toLowerCase().compareTo(rhs.Name.toLowerCase()));
     }
 
     // Inflate Menu for LocationActivity into the ActionBar
@@ -287,45 +261,37 @@ public class CategoryActivity extends AppCompatActivity {
                 dialogAddBtn = dialog.findViewById(R.id.dialogAddBtn);
 
                 // Set the respective texts of the items in the view
-                createTitle.setText("Category Name: ");
-                dialogAddBtn.setText("Add Category");
+                createTitle.setText(R.string.category_name);
+                dialogAddBtn.setText(R.string.category_add);
 
-                dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.cancel();
+                dialogCancelBtn.setOnClickListener(view -> dialog.cancel());
+
+                dialogAddBtn.setOnClickListener(view -> {
+                    // retrieve the category name that the user entered
+                    String categoryName = createField.getText().toString();
+
+                    // If user did not enter anything
+                    if(categoryName.length() == 0)
+                    {
+                        errorMsgText = dialog.findViewById(R.id.errorMsgTV);
+                        errorMsgText.setText(R.string.cat_empty_error);
+                        errorMsgText.setVisibility(View.VISIBLE);
                     }
-                });
-
-                dialogAddBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        // retrieve the category name that the user entered
-                        String categoryName = createField.getText().toString();
-
-                        // If user did not enter anything
-                        if(categoryName.length() == 0)
+                    else
+                    {
+                        // remove the no categories text that was shown before category was created
+                        if (categoryList.size() == 0)
                         {
-                            errorMsgText = dialog.findViewById(R.id.errorMsgTV);
-                            errorMsgText.setText("Category name cannot be empty!");
-                            errorMsgText.setVisibility(View.VISIBLE);
+                            noCatText.setVisibility(View.GONE);
                         }
-                        else
-                        {
-                            // remove the no categories text that was shown before category was created
-                            if (categoryList.size() == 0)
-                            {
-                                noCatText.setVisibility(View.GONE);
-                            }
 
-                            // Creates a new category class and adds it to the database
-                            Category cat = new Category(categoryName);
-                            cat.setCategoryID(db.AddCategory(cat));
-                            categoryList.add(cat);
-                            sortList();
-                            catAdapter.notifyDataSetChanged();
-                            dialog.cancel();
-                        }
+                        // Creates a new category class and adds it to the database
+                        Category cat = new Category(categoryName);
+                        cat.setCategoryID(db.AddCategory(cat));
+                        categoryList.add(cat);
+                        sortList();
+                        catAdapter.notifyDataSetChanged();
+                        dialog.cancel();
                     }
                 });
 

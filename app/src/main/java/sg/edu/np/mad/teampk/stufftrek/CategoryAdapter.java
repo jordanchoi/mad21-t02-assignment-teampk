@@ -2,8 +2,6 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     // for the constructor parameter
     ArrayList<Category> categoryList;
 
-    DBHandler db = null;
+    DBHandler db;
 
     // Constructor for CategoryAdapter
     public CategoryAdapter(Context ctx, ArrayList<Category> catList)
@@ -45,17 +43,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
         DBHandler db = new DBHandler(context, null, null, 1);
         int count = db.GetCategoryCount(cat.getCategoryID());
         cat.setCount(count);
-        holder.categoryCount.setText(count + " items");
+        holder.categoryCount.setText(String.format(context.getString(R.string.num_of_items), count));
 
         // OnClickListener for the ViewHolder
-        holder.categoryContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(context,CategoryItemsActivity.class);
-                i.putExtra("catName", cat.Name);
-                i.putExtra("catID", cat.getCategoryID());
-                context.startActivity(i);
-            }
+        holder.categoryContainer.setOnClickListener(view -> {
+            Intent i = new Intent(context,CategoryItemsActivity.class);
+            i.putExtra("catName", cat.Name);
+            i.putExtra("catID", cat.getCategoryID());
+            context.startActivity(i);
         });
     }
 
