@@ -39,7 +39,6 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="@string/all_items"
                 android:textAppearance="@style/Theme.StuffTrek.TitleText"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"

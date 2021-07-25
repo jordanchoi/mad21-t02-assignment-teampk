@@ -126,11 +126,8 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         createItemTitle.setText("Create Item");
         createItemDesc.setText("Create physical items and record its storage location. Never lose your items again.");
         cameraDesc.setText("Add an image of your item. Let us figure out what it is and automatically fill its name.");
-        itemNameText.setText("Item Name");
         inputItemName.setHint("Enter new item name");
-        itemQtyText.setText("Quantity");
         inputItemQty.setText("1");
-        itemCatText.setText("Item Category");
         createItemBtn.setText("Create New Item");
 
 

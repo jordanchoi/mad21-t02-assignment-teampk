@@ -77,7 +77,6 @@ public class LocationActivity extends AppCompatActivity {
 
         if (locationList.size() == 0)
         {
-            noLocationText.setText("You do not have any locations created.");
             noLocationText.setVisibility(View.VISIBLE);
         }
         else

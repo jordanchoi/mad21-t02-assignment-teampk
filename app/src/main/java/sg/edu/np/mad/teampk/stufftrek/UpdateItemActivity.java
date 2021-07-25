@@ -131,15 +131,12 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
 
         // Set the texts of the respective UI items.
         createItemTitle.setText("Update Item");
-        createItemDesc.setText("Create physical items and record its storage location. Never lose your items again.");
+        createItemDesc.setText("This is an item you created");
         cameraDesc.setText("Add an image of your item. Let us figure out what it is and automatically fill its name.");
-        itemNameText.setText("Item Name");
         inputItemName.setHint("Enter new item name");
         inputItemName.setText(i1.Name);
-        itemQtyText.setText("Quantity");
         inputItemQty.setText(""+i1.Quantity);
-        itemCatText.setText("Item Category");
-        createItemBtn.setText("Create New Item");
+        createItemBtn.setText("Update Item");
 
 
 

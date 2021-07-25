@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
         creditsText = findViewById(R.id.creditsTv);
 
         // Setting the texts for the respective TextView within the layout.
-        appNameTitle.setText(R.string.app_name);
-        subText.setText(R.string.app_slogan);
-        creditsText.setText("A project by TeamPK - Ngee Ann Polytechnic\n For our MAD Assignment");
 
         runTimer();
     }

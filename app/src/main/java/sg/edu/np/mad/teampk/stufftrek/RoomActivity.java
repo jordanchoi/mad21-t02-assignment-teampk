@@ -154,32 +154,30 @@ public class RoomActivity extends AppCompatActivity {
         });
     }
     // Check empty to check if any Location exists and perform the necessary output depending on the conditions
-    public boolean checkEmptyCC() {
+    public void checkEmptyCC() {
         if (containerCategoriesList.size() == 0)
         {
-            noContainersText.setText("No containers has been created in this room");
             noContainersText.setVisibility(View.VISIBLE);
-            return false;
+
         }
         else
         {
             noContainersText.setVisibility(View.GONE);
-            return true;
+
         }
     }
 
     // Check empty to check if any Location exists and perform the necessary output depending on the conditions
-    public boolean checkEmptyI() {
+    public void checkEmptyI() {
         if (roomItemsList.size() == 0)
         {
-            noItemsText.setText("No items are stored in this room");
             noItemsText.setVisibility(View.VISIBLE);
-            return false;
+
         }
         else
         {
             noItemsText.setVisibility(View.GONE);
-            return true;
+
         }
     }
     @Override

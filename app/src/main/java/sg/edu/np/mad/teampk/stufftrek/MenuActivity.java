@@ -65,16 +65,10 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         // Set the texts of the respective (TextView)
             // (TextView) - Titles
-        appTitle.setText(R.string.app_name);
-        pageDesc.setText(R.string.app_slogan);
+
 
             // (TextView) - Menu Items
-        locationTV.setText(R.string.location);
-        searchTV.setText(R.string.search);
-        categoryTV.setText(R.string.category);
-        itemsTV.setText(R.string.all_items);
-        unassignedTV.setText(R.string.unassigned_items);
-        settingsTV.setText(R.string.settings);
+
 
         // Set onClickListener all of the buttons, Handled in the Switch Case within onClick method.
         locationBtn.setOnClickListener(this);

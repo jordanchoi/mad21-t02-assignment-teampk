@@ -100,9 +100,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         createContainerTitle.setText("Create Container");
         createContainerDesc.setText("Create containers within a room to contain items for better organization.");
         cameraDesc.setText("Add an image of the container for easy reference");
-        containerNameText.setText("Container Name");
         inputContainerName.setHint("Enter the new container name");
-        containerCatText.setText("Container Category");
         createContainerBtn.setText("Create New Container");
 
         // Initialize DBHandler to retrieve the container categories within the room

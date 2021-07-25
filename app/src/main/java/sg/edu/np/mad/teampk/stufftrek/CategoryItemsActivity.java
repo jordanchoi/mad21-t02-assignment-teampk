@@ -52,7 +52,7 @@ public class CategoryItemsActivity extends AppCompatActivity {
         // Handler for no items found
         TextView noItemTV = findViewById(R.id.noItemsTv);
         if (itemList.size() == 0) {
-            noItemTV.setText("You have no items created");
+            noItemTV.setVisibility(View.VISIBLE);
         } else {
             noItemTV.setVisibility(View.GONE);
         }

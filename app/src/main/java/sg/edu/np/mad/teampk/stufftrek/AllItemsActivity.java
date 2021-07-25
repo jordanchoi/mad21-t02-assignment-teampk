@@ -20,6 +20,7 @@ public class AllItemsActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBar tb;
 
+    //Widgets
     TextView itemsTitle;
     TextView itemsDesc;
     TextView allItemsText;
@@ -34,7 +35,7 @@ public class AllItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_sharedPage);
 
         // Toolbar/Actionbar Codes - Finding and assigning the toolbar by ID. Set it to the ActionBar of this activity.
         toolbar = findViewById(R.id.toolbar_main);

@@ -109,12 +109,10 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
 
         // Set the respective texts within the view
         createContainerTitle.setText("Update Container");
-        createContainerDesc.setText("Create containers within a room to contain items for better organization.");
+        createContainerDesc.setText("This is a container inside your room");
         cameraDesc.setText("Add an image of the container for easy reference");
-        containerNameText.setText("Container Name");
         inputContainerName.setHint("Enter the new container name");
         inputContainerName.setText(c.Name);
-        containerCatText.setText("Container Category");
         createContainerBtn.setText("Update Container");
 
         // Initialize DBHandler to retrieve the container categories within the room
