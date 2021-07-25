@@ -84,7 +84,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
             super(itemView);
             roomBtn = itemView.findViewById(R.id.roomBtn);
             roomList = itemView.findViewById(R.id.roomList);
-            roomId = itemView.findViewById(R.id.roomId);
+            roomId = itemView.findViewById(R.id.itemId);
             view = itemView;
 
             roomBtn.setOnCreateContextMenuListener(this);

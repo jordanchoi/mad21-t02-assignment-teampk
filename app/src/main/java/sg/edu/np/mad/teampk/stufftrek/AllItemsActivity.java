@@ -109,8 +109,8 @@ public class AllItemsActivity extends AppCompatActivity {
 
         if (!checkEmpty()) {
             itemsAdapter.allItemsList = allItemsList;
-            itemsAdapter.notifyDataSetChanged();
         }
+        itemsAdapter.notifyDataSetChanged();
     }
 
     // Other unused activity state methods.

@@ -128,14 +128,7 @@ public class RoomActivity extends AppCompatActivity {
         ccRv.setLayoutManager(ccLm);
         ccRv.setAdapter(ccAdapter);
 
-        if (containerCategoriesList.size() == 0)
-        {
-            noContainersText.setText("No containers has been created in this room");
-        }
-        else
-        {
-            noContainersText.setVisibility(View.GONE);
-        }
+
 
 
         // Items RecyclerView
@@ -148,14 +141,7 @@ public class RoomActivity extends AppCompatActivity {
         rv.setLayoutManager(lm);
         rv.setAdapter(itemsAdapter);
 
-        if (roomItemsList.size() == 0)
-        {
-            noItemsText.setText("No items are stored in this room");
-        }
-        else
-        {
-            noItemsText.setVisibility(View.GONE);
-        }
+
 
         // ImageView triggers camera setonclicklistener
         roomImage.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +153,35 @@ public class RoomActivity extends AppCompatActivity {
             }
         });
     }
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public boolean checkEmptyCC() {
+        if (containerCategoriesList.size() == 0)
+        {
+            noContainersText.setText("No containers has been created in this room");
+            noContainersText.setVisibility(View.VISIBLE);
+            return false;
+        }
+        else
+        {
+            noContainersText.setVisibility(View.GONE);
+            return true;
+        }
+    }
 
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public boolean checkEmptyI() {
+        if (roomItemsList.size() == 0)
+        {
+            noItemsText.setText("No items are stored in this room");
+            noItemsText.setVisibility(View.VISIBLE);
+            return false;
+        }
+        else
+        {
+            noItemsText.setVisibility(View.GONE);
+            return true;
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -191,19 +205,18 @@ public class RoomActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ccAdapter.notifyDataSetChanged();
-        roomItemsList = db.GetAllItemFromRoom(roomId);
 
-        if (roomItemsList.size() == 0)
-        {
-            noItemsText.setText("No items are stored in this room");
-        }
-        else
-        {
-            noItemsText.setVisibility(View.GONE);
-            itemsAdapter.allItemsList = roomItemsList;
-            itemsAdapter.notifyDataSetChanged();
-        }
+        roomItemsList = db.GetAllItemFromRoom(roomId);
+        containerCategoriesList=db.GetAllContainerCategoryFromRoom(roomId);
+
+        checkEmptyCC();
+        checkEmptyI();
+
+        ccAdapter.containerCategoriesList=containerCategoriesList;
+        itemsAdapter.allItemsList=roomItemsList;
+        ccAdapter.notifyDataSetChanged();
+        itemsAdapter.notifyDataSetChanged();
+
 
     }
 

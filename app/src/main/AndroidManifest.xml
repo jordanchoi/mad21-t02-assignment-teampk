@@ -23,6 +23,8 @@
         <activity android:name=".UnassignedItemsActivity" />
         <activity android:name=".AllItemsActivity" />
         <activity android:name=".CategoryActivity" />
+        <activity android:name=".UpdateContainerActivity" />
+        <activity android:name=".UpdateItemActivity" />
         <activity android:name=".CategoryItemsActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".LocationActivity" />

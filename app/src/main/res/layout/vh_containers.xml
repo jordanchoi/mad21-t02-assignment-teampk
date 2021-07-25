@@ -32,4 +32,14 @@
         app:layout_constraintEnd_toEndOf="@+id/containerIB"
         app:layout_constraintStart_toStartOf="@+id/containerIB"
         app:layout_constraintTop_toTopOf="@+id/containerIB" />
+
+    <TextView
+        android:id="@+id/containerId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:numeric="integer"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -131,7 +131,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
+
         l.setLocationID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return l.getLocationID();
     }
@@ -145,7 +147,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
+
         r.setRoomID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return r.getRoomID();
     }
@@ -159,7 +163,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
+
         cc.setContainerCategoryID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return cc.getContainerCategoryID();
     }
@@ -175,6 +181,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
         c.setContainerID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return c.getContainerID();
     }
@@ -188,6 +195,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
         c.setCategoryID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return c.getCategoryID();
     }
@@ -207,7 +215,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT last_insert_rowid();";
         Cursor cursor = db.rawQuery(query,null);
         cursor.moveToFirst();
+
         i.setItemID(Integer.parseInt(cursor.getString(0)));
+        cursor.close();
         db.close();
         return i.getItemID();
     }
@@ -684,6 +694,66 @@ public class DBHandler extends SQLiteOpenHelper {
         return r;
     }
 
+    public Container GetContainerWithId(Integer containerId){
+        String query = "SELECT * FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+containerId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        Container c = null;
+        if (cursor.moveToFirst()){
+            String Name=cursor.getString(1);
+            String Picture;
+            Integer ContainerCategoryID=Integer.parseInt(cursor.getString(3));
+            try{
+                Picture = cursor.getString(2);
+                c = new Container(Name,Picture,ContainerCategoryID);
+            }
+            catch(IllegalStateException e){
+                c = new Container(Name,ContainerCategoryID);
+            }
+            c.setContainerID(containerId);
+        }
+        cursor.close();
+        db.close();
+        return c;
+    }
+
+    public Item GetItemWithID(Integer itemId){
+        String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID  +" = "+itemId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        Item i = null;
+        if (cursor.moveToFirst()){
+            String Name=cursor.getString(1);
+            String Picture;
+            Integer Quantity=Integer.parseInt(cursor.getString(3));
+            try{
+                Picture = cursor.getString(2);
+                i = new Item(Name,Quantity,Picture);
+            }
+            catch(IllegalStateException e){
+                i = new Item(Name,Quantity);
+            }
+            i= parseItemFK(cursor,i);
+        }
+        cursor.close();
+        db.close();
+        return i;
+    }
+
+    public ContainerCategory GetContainerCategoryWithID(Integer ccId){
+        String query = "SELECT * FROM " +TABLE_CONTAINERCATEGORY+ " WHERE " +COLUMN_CONTAINERCATEGORYID  +" = "+ccId;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query,null);
+        ContainerCategory cc= null;
+        if (cursor.moveToFirst()){
+            String Name=cursor.getString(1);
+            Integer RoomId=Integer.parseInt(cursor.getString(2));
+            cc = new ContainerCategory(ccId,Name,RoomId);
+        }
+        cursor.close();
+        db.close();
+        return cc;
+    }
     //DeleteHandler
 
     public boolean DeleteItem(Integer ItemID){
@@ -1012,7 +1082,6 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String updateQuery = "UPDATE "+TABLE_CONTAINER
                     + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
-                    + " SET " + COLUMN_PICTURE + " = \"" + c.Picture+"\""
                     + " WHERE " +COLUMN_CONTAINERID +" = "+c.getContainerID();
             db.execSQL(updateQuery);
             cursor.close();

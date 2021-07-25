@@ -54,5 +54,8 @@ public class Item {
         Quantity = quantity;
         Picture = picture;
     }
-
+    public Item(String name, Integer quantity) {
+        Name = name;
+        Quantity = quantity;
+    }
 }
