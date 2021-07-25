@@ -54,7 +54,7 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-public class CreateItemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UpdateItemActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // Initialize variables for Camera & File Storage
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
@@ -83,11 +83,17 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
     Integer roomId = null;
     Integer containerCatId = null;
     Integer containerId = null;
+    Integer iId;
+    Item i1;
+    Integer indexCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_item);
+
+        // Construct DBHandler for database data retrieval
+        db = new DBHandler(this, null, null, 1);
 
         // Receive Intent
         Intent receiveIntent = getIntent();
@@ -95,7 +101,9 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         roomId = receiveIntent.getIntExtra("RoomID", -1);
         containerCatId = receiveIntent.getIntExtra("ContainerCatID", -1);
         containerId = receiveIntent.getIntExtra("ContainerID", -1);
-
+        iId= receiveIntent.getIntExtra("ItemId",-1);
+        i1= db.GetItemWithID(iId);
+        i1.setItemID(iId);
         // Toolbar for LocationActivity
         Toolbar toolbar = findViewById(R.id.toolbar_main);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
@@ -105,7 +113,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         ActionBar tb = getSupportActionBar();
         tb.setHomeAsUpIndicator(R.drawable.ic_back);
         tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle("Create Item");
+        tb.setTitle("Update Item");
 
         // Retrieving the respective UI items by their ids.
         createItemTitle = findViewById(R.id.createItemTitleTv);
@@ -123,16 +131,16 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         createItemBtn = findViewById(R.id.createItemBtn);
 
         // Set the texts of the respective UI items.
-        createItemTitle.setText("Create Item");
-        createItemDesc.setText("Create physical items and record its storage location. Never lose your items again.");
+        createItemTitle.setText("Update Item");
+        createItemDesc.setText("This is an item you created");
         cameraDesc.setText("Add an image of your item. Let us figure out what it is and automatically fill its name.");
         inputItemName.setHint("Enter new item name");
-        inputItemQty.setText("1");
-        createItemBtn.setText("Create New Item");
+        inputItemName.setText(i1.Name);
+        inputItemQty.setText(""+i1.Quantity);
+        createItemBtn.setText("Update Item");
 
 
-        // Construct DBHandler for database data retrieval
-        db = new DBHandler(this, null, null, 1);
+
 
         // Codes for the item category spinners
         // Get all the items categories from DBHandler
@@ -148,19 +156,23 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         for (Category cat : categoriesList)
         {
             itemCatSpinnerItems.add(cat.Name);
+            if(cat.getCategoryID().equals(i1.getCategoryID())){
+                indexCategory=categoriesList.indexOf(cat);
+            }
         }
 
         // Set the adapter for the spinner.
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, itemCatSpinnerItems);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputItemCatSpinner.setAdapter(dataAdapter);
+        inputItemCatSpinner.setSelection(indexCategory);
 
         // Set onClickListener for cameraBtn to capture image or select existing image, request permission if not provided yet
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkAndRequestPermissions(CreateItemActivity.this)){
-                    selectImage(CreateItemActivity.this);
+                if(checkAndRequestPermissions(UpdateItemActivity.this)){
+                    selectImage(UpdateItemActivity.this);
                 }
             }
         });
@@ -213,7 +225,6 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                             }
                         }
 
-                        Item newItem = new Item(itemName, itemQty, picturePath);
 
                         // change foreign keys to null if it is -1
                         // locationId cannot be -1
@@ -227,13 +238,14 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                         if (containerId == -1) {
                             containerId = null;
                         }
-
-                        newItem.setLocationID(locationId);
-                        newItem.setContainerCategoryID(containerCatId);
-                        newItem.setContainerID(containerId);
-                        newItem.setRoomID(roomId);
-                        newItem.setCategoryID(catId);
-                        newItem.setItemID(db.AddItem(newItem));
+                        i1.Name=itemName;
+                        i1.Quantity=itemQty;
+                        i1.setLocationID(locationId);
+                        i1.setContainerCategoryID(containerCatId);
+                        i1.setContainerID(containerId);
+                        i1.setRoomID(roomId);
+                        i1.setCategoryID(catId);
+                        db.UpdateItem(i1);
                         finish();
                     }
                 }
@@ -292,17 +304,17 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_ID_MULTIPLE_PERMISSIONS:
-                if (ContextCompat.checkSelfPermission(CreateItemActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)  // camera permission not granted
+                if (ContextCompat.checkSelfPermission(UpdateItemActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)  // camera permission not granted
                 {
                     Toast.makeText(getApplicationContext(), "Camera permissions is required to capture container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
                 }
-                else if (ContextCompat.checkSelfPermission(CreateItemActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) // external storage permission not granted
+                else if (ContextCompat.checkSelfPermission(UpdateItemActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) // external storage permission not granted
                 {
                     Toast.makeText(getApplicationContext(), "Storage permissions is required to save container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     // both permissions granted, call method to display alertdialog for user selection to capture image or select existing image
-                    selectImage(CreateItemActivity.this);
+                    selectImage(UpdateItemActivity.this);
                 }
                 break;
         }

@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class UnassignedItemsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_shared_page);
 
         // Receive Intent
         Intent receiveIntent = getIntent();
@@ -42,9 +41,9 @@ public class UnassignedItemsActivity extends AppCompatActivity {
         tb.setTitle("Unassigned Items");
 
         // Get the widgets in the activity by id.
-        unassignedTitle = findViewById(R.id.sharedPageTitleTV);
-        unassignedDesc = findViewById(R.id.sharedPageDescTV);
-        unassignedItemsText = findViewById(R.id.sharedComponentTV);
+        unassignedTitle = findViewById(R.id.sharedPageTitleTv);
+        unassignedDesc = findViewById(R.id.sharedPageDescTv);
+        unassignedItemsText = findViewById(R.id.sharedComponentTv);
 
         // Set the texts of the widgets
         unassignedTitle.setText("Unassigned Items");
@@ -63,7 +62,7 @@ public class UnassignedItemsActivity extends AppCompatActivity {
         sharedRv.setLayoutManager(lm);
         sharedRv.setAdapter(adapter);
         // Handler for no items found
-        noItemTV = findViewById(R.id.sharedNoItemsTV);
+        noItemTV = findViewById(R.id.sharedNoItemsTv);
         if (itemList.size() == 0)
         {
             noItemTV.setText("You have no items unassigned");

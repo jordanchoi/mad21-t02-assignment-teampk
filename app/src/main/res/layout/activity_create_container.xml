@@ -31,14 +31,13 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/createContainerTitleTV"
+                android:id="@+id/createContainerTitleTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Create Container"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -47,42 +46,40 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/createContainerDescTV"
+                android:id="@+id/createContainerDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/createContainerTitleTV"
-                app:layout_constraintStart_toStartOf="@+id/createContainerTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/createContainerTitleTV" />
+                app:layout_constraintEnd_toEndOf="@+id/createContainerTitleTv"
+                app:layout_constraintStart_toStartOf="@+id/createContainerTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/createContainerTitleTv" />
 
             <TextView
-                android:id="@+id/captureDescTV"
+                android:id="@+id/captureDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/createContainerDescTV"
+                app:layout_constraintEnd_toEndOf="@+id/createContainerDescTv"
                 app:layout_constraintStart_toStartOf="@+id/captureBtn"
                 app:layout_constraintTop_toBottomOf="@+id/captureBtn" />
 
             <TextView
-                android:id="@+id/containerNamePromptTV"
+                android:id="@+id/containerNamePromptTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Container Name"
+                android:text="@string/container_name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/captureDescTV"
-                app:layout_constraintStart_toStartOf="@+id/captureDescTV"
-                app:layout_constraintTop_toBottomOf="@+id/captureDescTV" />
+                app:layout_constraintEnd_toEndOf="@+id/captureDescTv"
+                app:layout_constraintStart_toStartOf="@+id/captureDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/captureDescTv" />
 
             <EditText
-                android:id="@+id/containerNameET"
+                android:id="@+id/containerNameEt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -91,23 +88,22 @@
                 android:inputType="text"
                 android:maxLength="80"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/containerNamePromptTV"
-                app:layout_constraintStart_toStartOf="@+id/containerNamePromptTV"
-                app:layout_constraintTop_toBottomOf="@+id/containerNamePromptTV" />
+                app:layout_constraintEnd_toEndOf="@+id/containerNamePromptTv"
+                app:layout_constraintStart_toStartOf="@+id/containerNamePromptTv"
+                app:layout_constraintTop_toBottomOf="@+id/containerNamePromptTv" />
 
             <TextView
-                android:id="@+id/cNameErrorMsgTV"
+                android:id="@+id/cNameErrorMsgTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
                 android:textColor="@color/design_default_color_error"
                 android:textSize="12sp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/containerNameET"
-                app:layout_constraintStart_toStartOf="@+id/containerNameET"
-                app:layout_constraintTop_toBottomOf="@+id/containerNameET" />
+                app:layout_constraintEnd_toEndOf="@+id/containerNameEt"
+                app:layout_constraintStart_toStartOf="@+id/containerNameEt"
+                app:layout_constraintTop_toBottomOf="@+id/containerNameEt" />
 
             <ImageButton
                 android:id="@+id/captureBtn"
@@ -117,31 +113,31 @@
                 android:adjustViewBounds="false"
                 android:background="@color/darker_white"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="@+id/createContainerDescTV"
-                app:layout_constraintTop_toBottomOf="@+id/createContainerDescTV"
+                app:layout_constraintStart_toStartOf="@+id/createContainerDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/createContainerDescTv"
                 app:srcCompat="@android:drawable/ic_menu_camera" />
 
             <TextView
-                android:id="@+id/containerCatPromptTV"
+                android:id="@+id/containerCatPromptTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Container Category"
+                android:text="@string/container_cat"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/containerNameET"
-                app:layout_constraintStart_toStartOf="@+id/containerNameET"
-                app:layout_constraintTop_toBottomOf="@+id/containerNameET" />
+                app:layout_constraintEnd_toEndOf="@+id/containerNameEt"
+                app:layout_constraintStart_toStartOf="@+id/containerNameEt"
+                app:layout_constraintTop_toBottomOf="@+id/containerNameEt" />
 
             <Spinner
                 android:id="@+id/containerCatSpinner"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/containerCatPromptTV"
-                app:layout_constraintStart_toStartOf="@+id/containerCatPromptTV"
-                app:layout_constraintTop_toBottomOf="@+id/containerCatPromptTV" />
+                app:layout_constraintEnd_toEndOf="@+id/containerCatPromptTv"
+                app:layout_constraintStart_toStartOf="@+id/containerCatPromptTv"
+                app:layout_constraintTop_toBottomOf="@+id/containerCatPromptTv" />
 
             <Button
                 android:id="@+id/createContainerBtn"
@@ -149,7 +145,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:text="Create New Container"
                 app:backgroundTint="@color/stufftrek_primary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/containerCatSpinner"

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_text_primary">#414141</color>
+    <color name="color_text_primary">@color/darker_white</color>
+    <color name="stufftrek_btn_color">#3B3B3B</color>
+    <color name="stufftrek_btn_tint">#A98F64</color>
+    <color name="actionbar_text">#a98f64</color>
 </resources>

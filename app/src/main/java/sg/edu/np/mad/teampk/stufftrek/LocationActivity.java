@@ -7,11 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -65,9 +62,9 @@ public class LocationActivity extends AppCompatActivity {
         locationList = db.GetAllLocation();
 
         // Get the header widgets of the activity - Title and Description TextView
-        locationTitle = findViewById(R.id.locationPageTitleTV);
-        locationDesc = findViewById(R.id.locationPageDescTV);
-        noLocationText = findViewById(R.id.noLocationTV);
+        locationTitle = findViewById(R.id.locationPageTitleTv);
+        locationDesc = findViewById(R.id.locationPageDescTv);
+        noLocationText = findViewById(R.id.noLocationTv);
 
         RecyclerView rv = findViewById(R.id.locationRv);
         locAdapter = new LocationAdapter(this, locationList);
@@ -76,12 +73,10 @@ public class LocationActivity extends AppCompatActivity {
         rv.setAdapter(locAdapter);
 
         // Set the texts of the respective header widgets of the activity.
-        locationTitle.setText("Your Locations");
-        locationDesc.setText("Create and view your locations.\nE.g) Houses, Offices");
+
 
         if (locationList.size() == 0)
         {
-            noLocationText.setText("You do not have any locations created.");
             noLocationText.setVisibility(View.VISIBLE);
         }
         else

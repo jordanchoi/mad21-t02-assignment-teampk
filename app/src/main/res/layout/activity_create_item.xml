@@ -31,14 +31,13 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/createItemTitleTV"
+                android:id="@+id/createItemTitleTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -47,53 +46,50 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/createItemDescTV"
+                android:id="@+id/createItemDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/createItemTitleTV"
-                app:layout_constraintStart_toStartOf="@+id/createItemTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/createItemTitleTV" />
+                app:layout_constraintEnd_toEndOf="@+id/createItemTitleTv"
+                app:layout_constraintStart_toStartOf="@+id/createItemTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/createItemTitleTv" />
 
             <TextView
-                android:id="@+id/itemNamePromptTV"
+                android:id="@+id/itemNamePromptTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
+                android:text="@string/item_name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/captureItemDescTV"
-                app:layout_constraintStart_toStartOf="@+id/captureItemDescTV"
-                app:layout_constraintTop_toBottomOf="@+id/captureItemDescTV" />
+                app:layout_constraintEnd_toEndOf="@+id/captureItemDescTv"
+                app:layout_constraintStart_toStartOf="@+id/captureItemDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/captureItemDescTv" />
 
             <TextView
-                android:id="@+id/captureItemDescTV"
+                android:id="@+id/captureItemDescTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
-                app:layout_constraintEnd_toEndOf="@+id/createItemDescTV"
+                app:layout_constraintEnd_toEndOf="@+id/createItemDescTv"
                 app:layout_constraintStart_toStartOf="@+id/captureItemBtn"
                 app:layout_constraintTop_toBottomOf="@+id/captureItemBtn" />
 
             <TextView
-                android:id="@+id/iNameErrorMsgTV"
+                android:id="@+id/iNameErrorMsgTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
                 android:textColor="@color/design_default_color_error"
                 android:textSize="12sp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/itemNameET"
-                app:layout_constraintStart_toStartOf="@+id/itemNameET"
-                app:layout_constraintTop_toBottomOf="@+id/itemNameET" />
+                app:layout_constraintEnd_toEndOf="@+id/itemNameEt"
+                app:layout_constraintStart_toStartOf="@+id/itemNameEt"
+                app:layout_constraintTop_toBottomOf="@+id/itemNameEt" />
 
             <ImageButton
                 android:id="@+id/captureItemBtn"
@@ -102,12 +98,12 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/darker_white"
                 android:scaleType="fitXY"
-                app:layout_constraintStart_toStartOf="@+id/createItemDescTV"
-                app:layout_constraintTop_toBottomOf="@+id/createItemDescTV"
+                app:layout_constraintStart_toStartOf="@+id/createItemDescTv"
+                app:layout_constraintTop_toBottomOf="@+id/createItemDescTv"
                 app:srcCompat="@android:drawable/ic_menu_camera" />
 
             <EditText
-                android:id="@+id/itemNameET"
+                android:id="@+id/itemNameEt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -116,26 +112,26 @@
                 android:inputType="textCapWords"
                 android:maxLength="80"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/itemNamePromptTV"
-                app:layout_constraintStart_toStartOf="@+id/itemNamePromptTV"
-                app:layout_constraintTop_toBottomOf="@+id/itemNamePromptTV" />
+                app:layout_constraintEnd_toEndOf="@+id/itemNamePromptTv"
+                app:layout_constraintStart_toStartOf="@+id/itemNamePromptTv"
+                app:layout_constraintTop_toBottomOf="@+id/itemNamePromptTv" />
 
             <TextView
-                android:id="@+id/itemQtyPromptTV"
+                android:id="@+id/itemQtyPromptTv"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
+                android:text="@string/quantity"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/itemCatPromptTV"
-                app:layout_constraintStart_toStartOf="@+id/itemNameET"
-                app:layout_constraintTop_toTopOf="@+id/iNameErrorMsgTV" />
+                app:layout_constraintEnd_toStartOf="@+id/itemCatPromptTv"
+                app:layout_constraintStart_toStartOf="@+id/itemNameEt"
+                app:layout_constraintTop_toTopOf="@+id/iNameErrorMsgTv" />
 
             <EditText
-                android:id="@+id/itemQtyET"
+                android:id="@+id/itemQtyEt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -144,32 +140,32 @@
                 android:inputType="number"
                 android:maxLength="4"
                 android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="@+id/itemQtyPromptTV"
-                app:layout_constraintStart_toStartOf="@+id/itemQtyPromptTV"
-                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTV" />
+                app:layout_constraintEnd_toEndOf="@+id/itemQtyPromptTv"
+                app:layout_constraintStart_toStartOf="@+id/itemQtyPromptTv"
+                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTv" />
 
             <TextView
-                android:id="@+id/itemCatPromptTV"
+                android:id="@+id/itemCatPromptTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/montserrat"
-                android:text="TextView"
+                android:text="@string/category"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@+id/itemNameET"
-                app:layout_constraintStart_toEndOf="@+id/itemQtyPromptTV"
-                app:layout_constraintTop_toTopOf="@+id/itemQtyPromptTV" />
+                app:layout_constraintEnd_toEndOf="@+id/itemNameEt"
+                app:layout_constraintStart_toEndOf="@+id/itemQtyPromptTv"
+                app:layout_constraintTop_toTopOf="@+id/itemQtyPromptTv" />
 
             <Spinner
                 android:id="@+id/itemCatSpinner"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/itemQtyET"
-                app:layout_constraintEnd_toEndOf="@+id/itemCatPromptTV"
-                app:layout_constraintStart_toStartOf="@+id/itemCatPromptTV"
-                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTV" />
+                app:layout_constraintBottom_toBottomOf="@+id/itemQtyEt"
+                app:layout_constraintEnd_toEndOf="@+id/itemCatPromptTv"
+                app:layout_constraintStart_toStartOf="@+id/itemCatPromptTv"
+                app:layout_constraintTop_toBottomOf="@+id/itemQtyPromptTv" />
 
             <Button
                 android:id="@+id/createItemBtn"
@@ -177,12 +173,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"
-                android:text="Create New Item"
                 app:backgroundTint="@color/stufftrek_primary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/itemCatSpinner"
-                app:layout_constraintStart_toStartOf="@+id/itemQtyET"
-                app:layout_constraintTop_toBottomOf="@+id/itemQtyET" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/itemQtyEt"
+                app:layout_constraintTop_toBottomOf="@+id/itemQtyEt"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/iQtyErrorMsg"
@@ -193,9 +190,9 @@
                 android:textColor="@color/design_default_color_error"
                 android:textSize="12sp"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/itemQtyET"
-                app:layout_constraintStart_toStartOf="@+id/itemQtyET"
-                app:layout_constraintTop_toBottomOf="@+id/itemQtyET" />
+                app:layout_constraintEnd_toEndOf="@+id/itemQtyEt"
+                app:layout_constraintStart_toStartOf="@+id/itemQtyEt"
+                app:layout_constraintTop_toBottomOf="@+id/itemQtyEt" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

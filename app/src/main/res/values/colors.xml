@@ -19,4 +19,12 @@
     <color name="color_icon_primary">#2b2b2b</color>
     <color name="gold">#A98F64</color>
     <color name="stufftrek_dark">#3b3b3b</color>
+    <color name="stufftrek_btn_color">#7ccbce</color>
+    <color name="stufftrek_btn_tint">#3b3b3b</color>
+    <color name="actionbar_text">#ececec</color>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorPrimaryLight">#EDE7F6</color>
+    <color name="colorAccent">#7C4DFF</color>
+    <color name="colorSecondary">#FFC107</color>
 </resources>

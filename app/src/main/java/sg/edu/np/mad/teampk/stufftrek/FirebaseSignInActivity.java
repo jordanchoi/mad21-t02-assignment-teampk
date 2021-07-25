@@ -2,20 +2,18 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -24,6 +22,8 @@ import java.util.List;
 
 public class FirebaseSignInActivity extends AppCompatActivity {
     Button signInBtn;
+    Button skipBtn;
+    TextView stuffTrek;
 
     // See: https://developer.android.com/training/basics/intents/result
     private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
@@ -46,6 +46,8 @@ public class FirebaseSignInActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setTheme(R.style.LoginTheme)
+                .setLogo(R.mipmap.ic_launcher_round)
                 .build();
         signInLauncher.launch(signInIntent);
         // [END auth_fui_create_intent]
@@ -71,15 +73,20 @@ public class FirebaseSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_sign_in);
-        signInBtn= findViewById(R.id.signInBtn);
-        signInBtn.setOnClickListener(new View.OnClickListener() {
+        signInBtn = findViewById(R.id.signInBtn);
+        stuffTrek = findViewById(R.id.firebase_stuffTrekTv);
+        skipBtn=findViewById(R.id.skipBtn);
+
+        stuffTrek.setText(R.string.app_name);
+        signInBtn.setText(R.string.get_started);
+
+        signInBtn.setOnClickListener(v -> createSignInIntent());
+        skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createSignInIntent();
+                Intent i = new Intent(FirebaseSignInActivity.this,MenuActivity.class);
+                startActivity(i);
             }
         });
     }
-
-
-
 }

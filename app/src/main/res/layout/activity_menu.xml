@@ -7,314 +7,331 @@
     android:layout_height="match_parent"
     tools:context=".MenuActivity">
 
-    <TextView
-        android:id="@+id/pageTitleTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:text="Test"
-        android:textColor="@color/color_text_primary"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/pageDescTV"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/montserrat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/pageTitleTV"
-        app:layout_constraintTop_toBottomOf="@+id/pageTitleTV" />
-
     <ScrollView
-        android:id="@+id/scrollView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/menu_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pageDescTV">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TableLayout
-            android:id="@+id/tableLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TableRow
+            <TextView
+                android:id="@+id/pageTitleTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/app_name"
+                android:textAppearance="@style/Theme.StuffTrek.TitleText"
+                android:textColor="@color/color_text_primary"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pageDescTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/app_slogan"
+                app:layout_constraintStart_toStartOf="@+id/pageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/pageTitleTv" />
+
+            <TableLayout
+                android:id="@+id/menu_table"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pageDescTv">
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp">
 
-                <Button
-                    android:id="@+id/locationBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_location"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/locationBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_location"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint" />
 
-                <Button
-                    android:id="@+id/searchBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#2C2C2C"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_search"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
+                    <Button
+                        android:id="@+id/searchBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#2C2C2C"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_search"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/locationTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/locationTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/location"
+                        android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/searchTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/searchTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/search"
+                        android:textAlignment="center" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
-                <Button
-                    android:id="@+id/categoryBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_category"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/categoryBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_category"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint" />
 
-                <Button
-                    android:id="@+id/itemsBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_items"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64"
-                    app:iconTintMode="multiply" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/itemsBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_items"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint"
+                        app:iconTintMode="multiply" />
 
-            </TableRow>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0">
+                </TableRow>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0">
 
-                <TextView
-                    android:id="@+id/categoryTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/categoryTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/category"
+                        android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/itemTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/itemTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/all_items"
+                        android:textAlignment="center" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp">
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp">
 
-                <Button
-                    android:id="@+id/unassignBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_unassigned"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <Button
+                        android:id="@+id/unassignedBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_unassigned"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint" />
 
-                <Button
-                    android:id="@+id/settingsBtn"
-                    android:layout_width="130dp"
-                    android:layout_height="140dp"
-                    android:layout_weight="0"
-                    android:shadowColor="#000000"
-                    android:shadowDx="10"
-                    android:shadowDy="10"
-                    android:shadowRadius="10"
-                    app:backgroundTint="#3B3B3B"
-                    app:cornerRadius="20dp"
-                    app:icon="@drawable/ic_settings"
-                    app:iconGravity="textTop"
-                    app:iconSize="50dp"
-                    app:iconTint="#A98F64" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
+                    <Button
+                        android:id="@+id/settingsBtn"
+                        android:layout_width="130dp"
+                        android:layout_height="140dp"
+                        android:layout_weight="0"
+                        android:shadowColor="#000000"
+                        android:shadowDx="10"
+                        android:shadowDy="10"
+                        android:shadowRadius="10"
+                        app:backgroundTint="@color/stufftrek_btn_color"
+                        app:cornerRadius="20dp"
+                        app:icon="@drawable/ic_settings"
+                        app:iconGravity="textTop"
+                        app:iconSize="50dp"
+                        app:iconTint="@color/stufftrek_btn_tint" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp">
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="20dp">
 
-                <TextView
-                    android:id="@+id/unassignTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/unassignedTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/unassigned_items"
+                        android:textAlignment="center" />
 
-                <TextView
-                    android:id="@+id/settingsTV"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:fontFamily="@font/montserrat"
-                    android:textAlignment="center" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/settingsTv"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/montserrat"
+                        android:text="@string/settings"
+                        android:textAlignment="center" />
 
-        </TableLayout>
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
+
+            </TableLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

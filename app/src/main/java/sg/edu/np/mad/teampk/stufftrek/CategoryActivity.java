@@ -11,11 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.Locale;
 
 public class CategoryActivity extends AppCompatActivity {
     TextView categoryTitle;
@@ -59,7 +55,7 @@ public class CategoryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_shared_page);
 
         // Toolbar for LocationActivity
         Toolbar toolbar = findViewById(R.id.toolbar_main);
@@ -96,10 +92,10 @@ public class CategoryActivity extends AppCompatActivity {
         enableEditToDelete();
 
         // Get the widgets in the activity by id.
-        categoryTitle = findViewById(R.id.sharedPageTitleTV);
-        categoryDesc = findViewById(R.id.sharedPageDescTV);
-        existCatText = findViewById(R.id.sharedComponentTV);
-        noCatText = findViewById(R.id.sharedNoItemsTV);
+        categoryTitle = findViewById(R.id.sharedPageTitleTv);
+        categoryDesc = findViewById(R.id.sharedPageDescTv);
+        existCatText = findViewById(R.id.sharedComponentTv);
+        noCatText = findViewById(R.id.sharedNoItemsTv);
         mainLayout = findViewById(R.id.categoryMainLayout);
 
         // Set the texts of the widgets

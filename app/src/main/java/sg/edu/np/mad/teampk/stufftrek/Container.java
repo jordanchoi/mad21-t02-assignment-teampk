@@ -27,5 +27,9 @@ public class Container {
         Picture = picture;
         ContainerCategoryID = containerCategoryID;
     }
+    public Container(String name, Integer containerCategoryID) {
+        Name = name;
 
+        ContainerCategoryID = containerCategoryID;
+    }
 }

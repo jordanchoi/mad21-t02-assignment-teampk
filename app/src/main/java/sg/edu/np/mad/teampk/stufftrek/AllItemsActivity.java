@@ -7,80 +7,131 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AllItemsActivity extends AppCompatActivity {
+
+    // Initialization of items within the layout.
+    Toolbar toolbar;
+    ActionBar tb;
+
+    //Widgets
     TextView itemsTitle;
     TextView itemsDesc;
     TextView allItemsText;
-
     TextView noItemsText;
 
+    // Initialization of objects required for RecyclerView, Adapter and Database
     ArrayList<Item> allItemsList;
+    DBHandler db = null;
+    RecyclerView rv;
+    ItemsWithPathAdapter itemsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category);
+        setContentView(R.layout.activity_shared_page);
 
-        // Receive Intent
-        Intent receiveIntent = getIntent();
-
-        // Toolbar for LocationActivity
-        Toolbar toolbar = findViewById(R.id.toolbar_main);
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Toolbar/Actionbar Codes - Finding and assigning the toolbar by ID. Set it to the ActionBar of this activity.
+        toolbar = findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        tb = getSupportActionBar();
+        if (tb != null) {
+            tb.setHomeAsUpIndicator(R.drawable.ic_back);
+            tb.setDisplayHomeAsUpEnabled(true);
+            tb.setTitle(R.string.all_items);
+        }
 
-        ActionBar tb = getSupportActionBar();
-        tb.setHomeAsUpIndicator(R.drawable.ic_back);
-        tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle("All Items");
+        // Finding and assigning the respective items in the layout with their ids.
+            // (TextView)
+        itemsTitle = findViewById(R.id.sharedPageTitleTv);
+        itemsDesc = findViewById(R.id.sharedPageDescTv);
+        allItemsText = findViewById(R.id.sharedComponentTv);
+        noItemsText = findViewById(R.id.sharedNoItemsTv);
+            // (RecyclerView)
+        rv = findViewById(R.id.sharedRv);
 
-        // Get the widgets in the activity by id.
-        itemsTitle = findViewById(R.id.sharedPageTitleTV);
-        itemsDesc = findViewById(R.id.sharedPageDescTV);
-        allItemsText = findViewById(R.id.sharedComponentTV);
-        noItemsText = findViewById(R.id.sharedNoItemsTV);
-        // Set the texts of the widgets
-        itemsTitle.setText("All Items");
-        itemsDesc.setText("List and detail of all added items");
+        // Set the texts of the respective (TextView)
+        itemsTitle.setText(R.string.all_items);
+        itemsDesc.setText("List and details of all created items.");
         allItemsText.setText("Your Items");
 
-        // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
-        // Call GetAllLocation() from DBHandler to retrieve ALL locations.
+        // Construct DBHandler to retrieve DB information and call GetAllItems() to get the list of all items, assigns to allItemsList..
+        db = new DBHandler(this, null, null, 1);
         allItemsList = db.GetAllItem();
+        db.close();
 
-        RecyclerView rv = findViewById(R.id.sharedRv);
-        ItemsWithPathAdapter itemsAdapter = new ItemsWithPathAdapter(this, allItemsList);
+        // Initializing Adapter, LinearLayoutManager required for RecyclerView and set it to the RV.
+        itemsAdapter = new ItemsWithPathAdapter(this, allItemsList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
         rv.setAdapter(itemsAdapter);
 
+        // Calls checkEmpty() to check if any Location exists and perform the necessary output depending on the conditions
+        checkEmpty();
+    }
+
+    // Method to handle ActionBar Items Selection
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            this.finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public boolean checkEmpty() {
         if (allItemsList.size() == 0)
         {
             noItemsText.setText("You have no items created");
+            noItemsText.setVisibility(View.VISIBLE);
+            return true;
         }
         else
         {
             noItemsText.setVisibility(View.GONE);
+            return false;
         }
     }
 
-    // ActionBar items
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
+    protected void onResume() {
+        super.onResume();
+
+        allItemsList = db.GetAllItem();
+        db.close();
+
+        if (!checkEmpty()) {
+            itemsAdapter.allItemsList = allItemsList;
         }
-        return super.onOptionsItemSelected(item);
+        itemsAdapter.notifyDataSetChanged();
+    }
+
+    // Other unused activity state methods.
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }

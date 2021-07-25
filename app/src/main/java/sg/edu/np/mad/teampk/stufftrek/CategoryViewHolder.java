@@ -15,8 +15,8 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     public CategoryViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        categoryName = itemView.findViewById(R.id.categoryNameTV);
-        categoryCount = itemView.findViewById(R.id.categoryCountTV);
+        categoryName = itemView.findViewById(R.id.categoryNameTv);
+        categoryCount = itemView.findViewById(R.id.categoryCountTv);
         categoryContainer = itemView.findViewById(R.id.categoryVH);
 
     }

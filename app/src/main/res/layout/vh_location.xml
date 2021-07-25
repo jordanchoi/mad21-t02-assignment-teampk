@@ -8,13 +8,12 @@
     android:background="#CCCCCC">
 
     <TextView
-        android:id="@+id/locationNameTV"
+        android:id="@+id/locationNameTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:layout_marginBottom="48dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -37,7 +36,6 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:numeric="integer"
-        android:text="locationId"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

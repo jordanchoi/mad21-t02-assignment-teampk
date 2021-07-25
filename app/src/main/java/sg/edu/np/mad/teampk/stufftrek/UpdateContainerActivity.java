@@ -38,7 +38,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateContainerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class UpdateContainerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     // for camera and file storage
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
@@ -58,7 +58,11 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
 
     // Receive Intent Information
     int roomId;
+    int cId;
+    int indexCC;
     String roomName;
+    Container c;
+    Room r;
 
     // Database variables
     DBHandler db = null;
@@ -70,8 +74,15 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
 
         // Receive Intent
         Intent receiveIntent = getIntent();
-        roomId = receiveIntent.getIntExtra("RoomID", -1);
-        roomName = receiveIntent.getStringExtra("RoomName");
+
+        cId = receiveIntent.getIntExtra("ContainerId", -1);
+        roomId = receiveIntent.getIntExtra("RoomId",-1);
+        db = new DBHandler(this, null, null, 1);
+        r = db.GetRoomWithID(roomId);
+        c = db.GetContainerWithId(cId);
+//        //set image
+//        cameraBtn.setScaleType(ImageView.ScaleType.FIT_XY);
+//        cameraBtn.setImageBitmap(BitmapFactory.decodeFile(c.Picture));
 
         // Toolbar for LocationActivity
         Toolbar toolbar = findViewById(R.id.toolbar_main);
@@ -82,7 +93,7 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         ActionBar tb = getSupportActionBar();
         tb.setHomeAsUpIndicator(R.drawable.ic_back);
         tb.setDisplayHomeAsUpEnabled(true);
-        tb.setTitle("Create Container");
+        tb.setTitle("Update Container");
 
         // Retrieve the respective UI items by their id.
         createContainerTitle = findViewById(R.id.createContainerTitleTv);
@@ -97,14 +108,15 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         errorMsg = findViewById(R.id.cNameErrorMsgTv);
 
         // Set the respective texts within the view
-        createContainerTitle.setText("Create Container");
-        createContainerDesc.setText("Create containers within a room to contain items for better organization.");
+        createContainerTitle.setText("Update Container");
+        createContainerDesc.setText("This is a container inside your room");
         cameraDesc.setText("Add an image of the container for easy reference");
         inputContainerName.setHint("Enter the new container name");
-        createContainerBtn.setText("Create New Container");
+        inputContainerName.setText(c.Name);
+        createContainerBtn.setText("Update Container");
 
         // Initialize DBHandler to retrieve the container categories within the room
-        db = new DBHandler(this, null, null, 1);
+
         ArrayList<ContainerCategory> containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
         // ArrayList for the Spinner
@@ -112,17 +124,25 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         containerCatSpinnerItems.add("Please select a container category");
 
         categorySpinner.setOnItemSelectedListener(this);
+        ContainerCategory c1 = db.GetContainerCategoryWithID(c.getContainerCategoryID());
 
         // For loop to add all the container categories name within the room to the arraylist
         for (ContainerCategory cc : containerCategoriesList)
         {
             containerCatSpinnerItems.add(cc.Name);
+            if(cc.getContainerCategoryID()==c1.getContainerCategoryID()){
+                indexCC=containerCategoriesList.indexOf(cc);
+            }
+
         }
 
         // Set the adapter for the spinner.
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, containerCatSpinnerItems);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(dataAdapter);
+
+        //dk y nid plus 1
+        categorySpinner.setSelection(indexCC+1);
 
         // OnClickListener for create button
         createContainerBtn.setOnClickListener(new View.OnClickListener()
@@ -150,8 +170,11 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
                 }
                 else
                 {
-                    Container newContainer = new Container(newContainerName, picturePath, containerCatId);
-                    newContainer.setContainerID(db.AddContainer(newContainer));
+                    c.Name=newContainerName;
+                    c.Picture=picturePath;
+
+                    db.UpdateContainer(c);
+
                     finish();
                 }
             }
@@ -161,8 +184,8 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkAndRequestPermissions(CreateContainerActivity.this)){
-                    selectImage(CreateContainerActivity.this);
+                if(checkAndRequestPermissions(UpdateContainerActivity.this)){
+                    selectImage(UpdateContainerActivity.this);
                 }
             }
         });
@@ -223,12 +246,12 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case REQUEST_ID_MULTIPLE_PERMISSIONS:
-                if (ContextCompat.checkSelfPermission(CreateContainerActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(UpdateContainerActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getApplicationContext(), "Camera permissions is required to capture container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
-                } else if (ContextCompat.checkSelfPermission(CreateContainerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                } else if (ContextCompat.checkSelfPermission(UpdateContainerActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(getApplicationContext(), "Storage permissions is required to save container's image. Please enable them if you wish to use this feature.", Toast.LENGTH_SHORT).show();
                 } else {
-                    selectImage(CreateContainerActivity.this);
+                    selectImage(UpdateContainerActivity.this);
                 }
                 break;
         }

@@ -12,11 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
-
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
@@ -28,6 +24,7 @@ public class ItemsActivity extends AppCompatActivity {
     int roomId;
     int locationId;
 
+    TextView noItemTV;
     // Database Variables
     DBHandler db = null;
 
@@ -66,23 +63,28 @@ public class ItemsActivity extends AppCompatActivity {
         // Call GetAllItemFromContainer to retrieve all items in container
         itemList = db.GetAllItemFromContainer(containerID);
         // RV for Items
-        itemrv = findViewById(R.id.itemsRV);
+        itemrv = findViewById(R.id.itemsRv);
         adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adapter);
         // Handler for no items found
-        TextView noItemTV = findViewById(R.id.noItemsTV);
+        noItemTV = findViewById(R.id.noItemsTv);
+        checkEmptyI();
+    }
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public void checkEmptyI() {
         if (itemList.size() == 0)
         {
             noItemTV.setText("You have no items created");
+            noItemTV.setVisibility(View.VISIBLE);
         }
         else
         {
             noItemTV.setVisibility(View.GONE);
+
         }
     }
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -109,6 +111,8 @@ public class ItemsActivity extends AppCompatActivity {
         itemList = db.GetAllItemFromContainer(containerID);
         adapter.allItemsList = itemList;
         adapter.notifyDataSetChanged();
+        checkEmptyI();
+
     }
 
     @Override

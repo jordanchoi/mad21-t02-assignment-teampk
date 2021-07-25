@@ -28,14 +28,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/locationDetailsPageTitleTV"
+                android:id="@+id/locationDetailsPageTitleTv"
                 style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Location"
+                android:text="@string/location"
                 android:textSize="36sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,64 +43,64 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/roomTitleTV"
+                android:id="@+id/roomTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Rooms"
+                android:text="@string/rooms"
                 android:textAllCaps="true"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/locationDetailsPageTitleTV" />
+                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/locationDetailsPageTitleTv" />
 
             <TextView
-                android:id="@+id/noRoomTV"
+                android:id="@+id/noRoomTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/roomTitleTV" />
+                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/roomTitleTv" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/roomRV"
+                android:id="@+id/roomRv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/roomTitleTV" />
+                app:layout_constraintTop_toBottomOf="@+id/roomTitleTv" />
 
             <TextView
-                android:id="@+id/itemTitleTV"
+                android:id="@+id/itemTitleTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/montserrat"
-                android:text="Items"
+                android:text="@string/items"
                 android:textAllCaps="true"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/roomTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/roomRV" />
+                app:layout_constraintStart_toStartOf="@+id/roomTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/roomRv" />
 
             <TextView
-                android:id="@+id/noItemTV"
+                android:id="@+id/noItemTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/itemTitleTV" />
+                app:layout_constraintStart_toStartOf="@+id/locationDetailsPageTitleTv"
+                app:layout_constraintTop_toBottomOf="@+id/itemTitleTv" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/itemRV"
+                android:id="@+id/itemRv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/itemTitleTV">
+                app:layout_constraintTop_toBottomOf="@+id/itemTitleTv">
 
             </androidx.recyclerview.widget.RecyclerView>
 

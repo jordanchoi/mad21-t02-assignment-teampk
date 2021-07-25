@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splash_bg"
-    tools:context=".MainActivity" >
+    android:background="@drawable/ic_splash_bg"
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/appIcon"
         android:layout_width="149dp"
         android:layout_height="154dp"
+        android:contentDescription="@string/logo_ContentDesc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="h,1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,38 +21,47 @@
         app:srcCompat="@mipmap/ic_launcher_round" />
 
     <TextView
-        android:id="@+id/stuffTrekTV"
+        android:id="@+id/firebase_stuffTrekTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/martel_extrabold"
+        android:text="@string/app_name"
         android:textAlignment="center"
+        android:textColor="@color/stufftrek_primary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="@+id/appIcon"
         app:layout_constraintStart_toStartOf="@+id/appIcon"
         app:layout_constraintTop_toBottomOf="@+id/appIcon" />
 
     <TextView
-        android:id="@+id/sloganTV"
+        android:id="@+id/sloganTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/montserrat"
+        android:text="@string/app_slogan"
+        android:textAlignment="center"
+        android:textColor="@color/darker_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stuffTrekTV" />
+        app:layout_constraintTop_toBottomOf="@+id/firebase_stuffTrekTv" />
 
     <TextView
-        android:id="@+id/creditsTV"
+        android:id="@+id/creditsTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/credits"
         android:textAlignment="center"
+        android:textColor="@color/darker_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

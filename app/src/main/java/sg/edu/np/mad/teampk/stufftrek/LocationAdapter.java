@@ -53,7 +53,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         // Set the location TextView to the location's name.
         holder.locationName.setText(loc.Name);
 
-        // hidden
+        // hidden for manipulation from contextual menu
         holder.locIdTV.setText("" + loc.getLocationID());
 
         // OnClickListener for the ViewHolder
@@ -80,7 +80,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         return locationList.size();
     }
 
-
     // Nested Viewholder Class
     public class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         public TextView locationName;
@@ -91,7 +90,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         public LocationViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            locationName = itemView.findViewById(R.id.locationNameTV);
+            locationName = itemView.findViewById(R.id.locationNameTv);
             locationContainer = itemView.findViewById(R.id.locationVH);
             locIdTV = itemView.findViewById(R.id.locationId);
 

@@ -10,7 +10,7 @@
         android:id="@+id/signOutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Out"
+        android:text="@string/sign_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/backupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Backup"
+        android:text="@string/backup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signOutBtn" />
@@ -30,7 +30,7 @@
         android:id="@+id/loadBackupBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load"
+        android:text="@string/load"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backupBtn" />

@@ -1,15 +1,11 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -21,6 +17,7 @@ public class SearchActivity extends AppCompatActivity {
     TextView searchTitle;
     TextView resultsNumText;
     SearchView searchQueryField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +27,12 @@ public class SearchActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.searchBackBtn);
 
         // Find the widgets in the Internal ActionBar by ID
-        searchTitle = findViewById(R.id.searchTitleTV);
-        resultsNumText = findViewById(R.id.resultsNumTV);
-        searchQueryField = findViewById(R.id.searchSV);
+        searchTitle = findViewById(R.id.searchTitleTv);
+        resultsNumText = findViewById(R.id.resultsNumTv);
+        searchQueryField = findViewById(R.id.searchSv);
 
         // Set the texts of the respective widgets
-        searchTitle.setText("Search");
+        searchTitle.setText(R.string.search);
 
         // Set the on click listener for the search view
         searchQueryField.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +93,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Construct new adapter for search results and attaches it to the recycler view
         ItemsWithPathAdapter adp = new ItemsWithPathAdapter(this, searchList);
-        RecyclerView itemrv = findViewById(R.id.searchResultsRV);
+        RecyclerView itemrv = findViewById(R.id.searchResultsRv);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         itemrv.setLayoutManager(lm);
         itemrv.setAdapter(adp);

@@ -6,13 +6,12 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/containerCategoryTV"
+        android:id="@+id/containerCategoryTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,24 +19,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/containersRV"
+        android:id="@+id/containersRv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerCategoryTV" />
+        app:layout_constraintTop_toBottomOf="@+id/containerCategoryTv" />
 
     <TextView
-        android:id="@+id/noContainerTV"
+        android:id="@+id/noContainerTv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/containersRV"
-        app:layout_constraintEnd_toEndOf="@+id/containersRV"
-        app:layout_constraintStart_toStartOf="@+id/containersRV"
-        app:layout_constraintTop_toBottomOf="@+id/containerCategoryTV" />
+        app:layout_constraintBottom_toBottomOf="@+id/containersRv"
+        app:layout_constraintEnd_toEndOf="@+id/containersRv"
+        app:layout_constraintStart_toStartOf="@+id/containersRv"
+        app:layout_constraintTop_toBottomOf="@+id/containerCategoryTv" />
+
+    <TextView
+        android:id="@+id/containerCategoryId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:numeric="integer"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,4 +22,39 @@
         <item name="android:fontFamily">@font/montserrat</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="Theme.StuffTrek.TitleText" parent="TextAppearance.AppCompat.Title">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:fontFamily">@font/montserrat</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+    </style>
+
+    <style name="LoginTheme" parent="FirebaseUI">
+        <item name="colorPrimary">@color/stufftrek_primary</item>
+        <item name="colorPrimaryDark">@color/stufftrek_dark</item>
+        <item name="colorAccent">@color/stufftrek_btn_tint</item>
+        <item name="colorButtonNormal">@color/stufftrek_btn_color</item>
+        <item name="colorControlNormal">@color/color_text_primary</item>
+        <item name="colorControlActivated">@color/color_text_primary</item>
+        <item name="colorControlHighlight">@color/color_text_primary</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textColorPrimary">@color/color_text_primary</item>
+        <item name="android:textColorSecondary">@color/color_text_primary</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColorHint">@color/color_text_primary</item>
+    </style>
+
+    <style name="FirebaseUI.Text">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/color_text_primary</item>
+    </style>
+
+    <style name="FirebaseUI.Text.Link">
+        <item name="android:textColor">@color/color_text_primary</item>
+    </style>
 </resources>

@@ -1,3 +1,4 @@
+// StuffTrek - MainActivity by Jordan, TeamPK - Ngee Ann Polytechnic.
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Initialization of items within the layout.
     TextView appNameTitle;
     TextView subText;
     TextView creditsText;
@@ -19,17 +22,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Find the respective widgets in the view by id.
-        appNameTitle = findViewById(R.id.stuffTrekTV);
-        subText = findViewById(R.id.sloganTV);
-        creditsText = findViewById(R.id.creditsTV);
+        // Finding and assigning the respective items in the layout with their ids.
+        appNameTitle = findViewById(R.id.firebase_stuffTrekTv);
+        subText = findViewById(R.id.sloganTv);
+        creditsText = findViewById(R.id.creditsTv);
 
-        // Set the dynamic texts.
-        appNameTitle.setText("StuffTrek");
-        subText.setText("Track and organize your stuff efficiently.");
-        creditsText.setText("A project by TeamPK\n For our MAD Assignment");
+        // Setting the texts for the respective TextView within the layout.
 
         runTimer();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        runTimer();
+    }
+
+    // Timer method to MenuActivity Intent after 2 seconds (2000ms)
+    private void runTimer()
+    {
+        Timer endSplash = new Timer();
+        endSplash.schedule(new TimerTask(){
+            public void run(){
+                Intent menuActivity = new Intent(MainActivity.this, MenuActivity.class);
+                startActivity(menuActivity);
+            }
+        }, 2000);
+    }
+
+    // Other Unused Activity State Methods
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     @Override
@@ -50,27 +74,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        runTimer();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
-    private void runTimer()
-    {
-        Timer endSplash = new Timer();
-        endSplash.schedule(new TimerTask(){
-            public void run(){
-                Intent menuActivity = new Intent(MainActivity.this, MenuActivity.class);
-                startActivity(menuActivity);
-            }
-        }, 2000);
     }
 }

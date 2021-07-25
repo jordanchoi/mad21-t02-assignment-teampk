@@ -98,11 +98,11 @@ public class RoomActivity extends AppCompatActivity {
         tb.setTitle(roomName);
 
         // Respective items within the view
-        itemsTitle = findViewById(R.id.itemsTitleTV);
-        containersTitle = findViewById(R.id.containerTitleTV);
-        noContainersText = findViewById(R.id.noContainersText);
-        noItemsText = findViewById(R.id.noItemsText);
-        roomImage = findViewById(R.id.roomIV);
+        itemsTitle = findViewById(R.id.itemsTitleTv);
+        containersTitle = findViewById(R.id.containerTitleTv);
+        noContainersText = findViewById(R.id.noContainersCatTv);
+        noItemsText = findViewById(R.id.noRoomItemTv);
+        roomImage = findViewById(R.id.roomIv);
         itemsTitle.setText("Items");
         containersTitle.setText("Containers");
 
@@ -122,40 +122,26 @@ public class RoomActivity extends AppCompatActivity {
         // Call DBHandler method to retrieve all container categories within the room
         containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
-        RecyclerView ccRv = findViewById(R.id.containersRV);
+        RecyclerView ccRv = findViewById(R.id.containersRv);
         ccAdapter = new ContainersCategoryAdapter(this, containerCategoriesList, locationId, roomId);
         LinearLayoutManager ccLm = new LinearLayoutManager(this);
         ccRv.setLayoutManager(ccLm);
         ccRv.setAdapter(ccAdapter);
 
-        if (containerCategoriesList.size() == 0)
-        {
-            noContainersText.setText("No containers has been created in this room");
-        }
-        else
-        {
-            noContainersText.setVisibility(View.GONE);
-        }
+
 
 
         // Items RecyclerView
         // Call DBHandler method to retrieve all items within the room
         roomItemsList = db.GetAllItemFromRoom(roomId);
 
-        rv = findViewById(R.id.itemsRV);
+        rv = findViewById(R.id.itemsRv);
         itemsAdapter = new ItemsWithPathAdapter(this, roomItemsList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         rv.setLayoutManager(lm);
         rv.setAdapter(itemsAdapter);
 
-        if (roomItemsList.size() == 0)
-        {
-            noItemsText.setText("No items are stored in this room");
-        }
-        else
-        {
-            noItemsText.setVisibility(View.GONE);
-        }
+
 
         // ImageView triggers camera setonclicklistener
         roomImage.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +153,33 @@ public class RoomActivity extends AppCompatActivity {
             }
         });
     }
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public void checkEmptyCC() {
+        if (containerCategoriesList.size() == 0)
+        {
+            noContainersText.setVisibility(View.VISIBLE);
 
+        }
+        else
+        {
+            noContainersText.setVisibility(View.GONE);
+
+        }
+    }
+
+    // Check empty to check if any Location exists and perform the necessary output depending on the conditions
+    public void checkEmptyI() {
+        if (roomItemsList.size() == 0)
+        {
+            noItemsText.setVisibility(View.VISIBLE);
+
+        }
+        else
+        {
+            noItemsText.setVisibility(View.GONE);
+
+        }
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -191,11 +203,19 @@ public class RoomActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ccAdapter.notifyDataSetChanged();
 
         roomItemsList = db.GetAllItemFromRoom(roomId);
-        itemsAdapter.allItemsList = roomItemsList;
+        containerCategoriesList=db.GetAllContainerCategoryFromRoom(roomId);
+
+        checkEmptyCC();
+        checkEmptyI();
+
+        ccAdapter.containerCategoriesList=containerCategoriesList;
+        itemsAdapter.allItemsList=roomItemsList;
+        ccAdapter.notifyDataSetChanged();
         itemsAdapter.notifyDataSetChanged();
+
+
     }
 
     @Override
