@@ -716,7 +716,12 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public Item GetItemWithID(Integer itemId){
-        String query = "SELECT * FROM " +TABLE_ITEM + " WHERE " +COLUMN_ITEMID  +" = "+itemId;
+        String query = "SELECT * FROM " +TABLE_ITEM + " LEFT JOIN "+TABLE_LOCATION+" ON " +TABLE_LOCATION+"."+COLUMN_LOCATIONID+" = "+TABLE_ITEM+"."+COLUMN_LOCATIONID
+                + " LEFT JOIN "+TABLE_ROOM+" ON " +TABLE_ROOM+"."+COLUMN_ROOMID+" = "+TABLE_ITEM+"."+COLUMN_ROOMID
+                + " LEFT JOIN "+TABLE_CONTAINERCATEGORY+" ON " +TABLE_CONTAINERCATEGORY+"."+COLUMN_CONTAINERCATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERCATEGORYID
+                + " LEFT JOIN "+TABLE_CONTAINER+" ON " +TABLE_CONTAINER+"."+COLUMN_CONTAINERID+" = "+TABLE_ITEM+"."+COLUMN_CONTAINERID
+                + " LEFT JOIN "+TABLE_CATEGORY+" ON " +TABLE_CATEGORY+"."+COLUMN_CATEGORYID+" = "+TABLE_ITEM+"."+COLUMN_CATEGORYID
+                + " WHERE Item."+COLUMN_ITEMID+" = "+itemId;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         Item i = null;

@@ -150,9 +150,15 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdap
                         Bundle itemInformationBundle = new Bundle();
                         Item i = db.GetItemWithID(iId);
                         itemInformationBundle.putInt("ItemId",iId);
-                        itemInformationBundle.putInt("RoomID", i.getRoomID());
-                        itemInformationBundle.putString("RoomName", db.GetRoomWithID(i.getRoomID()).Name);
-                        itemInformationBundle.putInt("LocationID", i.getLocationID());
+                        if(i.getRoomID()!=null){
+                            itemInformationBundle.putInt("RoomID", i.getRoomID());
+                            itemInformationBundle.putString("RoomName", db.GetRoomWithID(i.getRoomID()).Name);
+                        }
+                        if(i.getLocationID()!=null){
+                            itemInformationBundle.putInt("LocationID", i.getLocationID());
+                        }
+
+
                         updateItemActivity.putExtras(itemInformationBundle);
                         context.startActivity(updateItemActivity);
                         break;
