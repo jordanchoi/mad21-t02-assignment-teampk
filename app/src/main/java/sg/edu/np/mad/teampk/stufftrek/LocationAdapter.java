@@ -27,9 +27,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.ArrayList;
 
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
-    // for layout
+
+    // For constructing LocationAdapter
     Context context;
-    // for the constructor parameter
     ArrayList<Location> locationList;
 
     // Constructor for LocationAdapter
@@ -105,7 +105,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             Delete.setOnMenuItemClickListener(onEditMenu);
         }
 
-        //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
+        // Listener for Context Menu Items. Handle the respective selections.
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

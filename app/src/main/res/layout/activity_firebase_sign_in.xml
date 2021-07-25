@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_splash_bg"
+    android:background="@drawable/ic_background"
     tools:context=".FirebaseSignInActivity">
 
     <ImageView
@@ -34,11 +34,11 @@
 
     <Button
         android:id="@+id/skipBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/skip"
-        app:backgroundTint="@color/stufftrek_btn_color"
+        app:backgroundTint="@color/stufftrek_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInBtn" />

@@ -87,17 +87,15 @@ public class AllItemsActivity extends AppCompatActivity {
     }
 
     // Check empty to check if any Location exists and perform the necessary output depending on the conditions
-    public boolean checkEmpty() {
+    public void checkEmpty() {
         if (allItemsList.size() == 0)
         {
-            noItemsText.setText("You have no items created");
+            noItemsText.setText(R.string.no_item);
             noItemsText.setVisibility(View.VISIBLE);
-            return true;
         }
         else
         {
             noItemsText.setVisibility(View.GONE);
-            return false;
         }
     }
 
@@ -107,11 +105,9 @@ public class AllItemsActivity extends AppCompatActivity {
 
         allItemsList = db.GetAllItem();
         db.close();
-
-        if (!checkEmpty()) {
-            itemsAdapter.allItemsList = allItemsList;
-        }
+        itemsAdapter.allItemsList = allItemsList;
         itemsAdapter.notifyDataSetChanged();
+        checkEmpty();
     }
 
     // Other unused activity state methods.
