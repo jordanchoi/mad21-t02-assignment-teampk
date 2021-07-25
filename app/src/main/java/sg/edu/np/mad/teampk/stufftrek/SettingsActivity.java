@@ -1,8 +1,10 @@
 package sg.edu.np.mad.teampk.stufftrek;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,10 +34,12 @@ public class SettingsActivity extends AppCompatActivity {
     //Auth
     private FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    Boolean loggedIn;
     //Button
     Button signOutBtn;
     Button backupBtn;
     Button loadBackupBtn;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,61 +48,105 @@ public class SettingsActivity extends AppCompatActivity {
         //Auth
         mAuth=FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
-        //Firebase cloud storage
-        storage = FirebaseStorage.getInstance();
-        storageRef = storage.getReference();
-        backupRef = storageRef.child("user/"+currentUser.getUid()+"/backup.db");
+        if(currentUser==null){
+            loggedIn=false;
+        }else{
+            loggedIn=true;
+            //Firebase cloud storage
+                    storage = FirebaseStorage.getInstance();
+            storageRef = storage.getReference();
+            backupRef = storageRef.child("user/"+currentUser.getUid()+"/backup.db");
+        }
         //buttons
         signOutBtn = findViewById(R.id.signOutBtn);
         backupBtn=findViewById(R.id.backupBtn);
         loadBackupBtn=findViewById(R.id.loadBackupBtn);
+        //alert dialog for not logged in
+        builder = new AlertDialog.Builder(this);
+        //Setting message manually and performing action on button click
+        builder.setMessage("Not logged in, would you like to log in?")
+                .setTitle("Error")
+                .setCancelable(true)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                        Intent i = new Intent(SettingsActivity.this,FirebaseSignInActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //  Action for 'NO' Button
+                        dialog.cancel();
+
+                    }
+                });
+        //Creating dialog box
+        AlertDialog alert = builder.create();
+
+        //Button handlers
         signOutBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V)
             {
-                signOut();
-                Intent loginActivity = new Intent(SettingsActivity.this, FirebaseSignInActivity.class);
-                startActivity(loginActivity);
+                if(loggedIn){
+                    signOut();
+                    Intent loginActivity = new Intent(SettingsActivity.this, FirebaseSignInActivity.class);
+                    startActivity(loginActivity);
+                }else{
+                    alert.show();
+                }
+
             }
         });
         backupBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V)
             {
-                Uri file = Uri.fromFile(new File("/data/data/sg.edu.np.mad.teampk.stufftrek/databases/stufftrekDB.db"));
-                UploadTask uploadTask = backupRef.putFile(file);
+                if(loggedIn){
+                    Uri file = Uri.fromFile(new File("/data/data/sg.edu.np.mad.teampk.stufftrek/databases/stufftrekDB.db"));
+                    UploadTask uploadTask = backupRef.putFile(file);
 
-                // Register observers to listen for when the download is done or if it fails
-                uploadTask.addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getApplicationContext(),"Firebase backup fail",Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                        Toast.makeText(getApplicationContext(),"Firebase backup success",Toast.LENGTH_SHORT).show();
+                    // Register observers to listen for when the download is done or if it fails
+                    uploadTask.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(getApplicationContext(),"Firebase backup fail",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                            Toast.makeText(getApplicationContext(),"Firebase backup success",Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                        }
+                    });
+                }else{
+                    alert.show();
+                }
+
             }
         });
         loadBackupBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View V)
             {
-                File localFile = new File("/data/data/sg.edu.np.mad.teampk.stufftrek/databases/stufftrekDB.db");
+                if(loggedIn){
+                    File localFile = new File("/data/data/sg.edu.np.mad.teampk.stufftrek/databases/stufftrekDB.db");
 
 
-                backupRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(getApplicationContext(),"Firebase load backup success",Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getApplicationContext(),"Firebase load backup fail",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    backupRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(getApplicationContext(),"Firebase load backup success",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception exception) {
+                            Toast.makeText(getApplicationContext(),"Firebase load backup fail",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else{
+                    alert.show();
+                }
+
             }
         });
     }
@@ -113,4 +161,5 @@ public class SettingsActivity extends AppCompatActivity {
                 });
         // [END auth_fui_signout]
     }
+
 }

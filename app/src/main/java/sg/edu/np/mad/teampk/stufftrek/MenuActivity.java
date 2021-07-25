@@ -90,16 +90,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser == null) {
-            Intent login = new Intent(MenuActivity.this,FirebaseSignInActivity.class);
-            startActivity(login);
-        }
-        else {
 
-
-        }
     }
 
     // Switch Case within the method handles each respective onClick for the buttons to navigate to the respective intent.

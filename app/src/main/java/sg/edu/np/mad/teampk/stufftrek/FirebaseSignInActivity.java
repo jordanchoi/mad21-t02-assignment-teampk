@@ -25,6 +25,7 @@ import java.util.List;
 
 public class FirebaseSignInActivity extends AppCompatActivity {
     Button signInBtn;
+    Button skipBtn;
     TextView stuffTrek;
 
     // See: https://developer.android.com/training/basics/intents/result
@@ -48,6 +49,8 @@ public class FirebaseSignInActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setTheme(R.style.LoginTheme)
+                .setLogo(R.mipmap.ic_launcher_round)
                 .build();
         signInLauncher.launch(signInIntent);
         // [END auth_fui_create_intent]
@@ -75,10 +78,18 @@ public class FirebaseSignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase_sign_in);
         signInBtn = findViewById(R.id.signInBtn);
         stuffTrek = findViewById(R.id.firebase_stuffTrekTV);
+        skipBtn=findViewById(R.id.skipBtn);
 
         stuffTrek.setText(R.string.app_name);
         signInBtn.setText(R.string.get_started);
 
         signInBtn.setOnClickListener(v -> createSignInIntent());
+        skipBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(FirebaseSignInActivity.this,MenuActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }
