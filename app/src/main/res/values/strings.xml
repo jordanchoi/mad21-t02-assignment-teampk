@@ -1,15 +1,24 @@
 <resources>
+    <!-- StuffTrek -->
     <string name="app_name">StuffTrek</string>
-
     <string name="app_slogan">Track and organize your stuff efficiently.</string>
-
+    <string name="credits">A project by TeamPK - Ngee Ann Polytechnic\nFor our MAD Assignment</string>
+    <!-- Authentication & User -->
     <string name="get_started">Get Started</string>
     <string name="skip">Skip Log In</string>
     <string name="sign_out">Sign Out</string>
     <string name="backup">Backup</string>
     <string name="load">Load Backup</string>
-
+    <!-- Location -->
     <string name="location">Location</string>
+    <string name="location_title">Your Locations</string>
+    <string name="location_desc">Create and view your locations. E.g) Houses, Offices</string>
+    <string name="location_input">Location Name:</string>
+    <string name="location_prompt">Enter Location Name</string>
+    <string name="location_create">Create New Location</string>
+    <string name="location_create_error">Location name cannot be empty!</string>
+    <string name="no_location">You do not have any locations created.</string>
+    <!-- Container -->
     <string name="containers">Containers</string>
     <string name="search">Search</string>
     <string name="category">Category</string>
@@ -33,16 +42,11 @@
     <string name="container_cat">Container Category</string>
     <string name="item_name">Item Name</string>
     <string name="quantity">Quantity</string>
-    <string name="location_title">Your Locations</string>
-    <string name="location_desc">Create and view your locations. E.g) Houses, Offices</string>
     <string name="no_item">You have no items created </string>
     <string name="no_category">You do not have any categories.</string>
-    <string name="no_location">You do not have any locations created.</string>
     <string name="no_container_cat">No containers has been created in this room</string>
     <string name="no_room_item"> No items are stored in this room </string>
-    <string name="credits">A project by TeamPK - Ngee Ann Polytechnic\n
-    For our MAD Assignment</string>
-    <string name="location_prompt">Enter Location Name</string>
+
 
     <string name="logo_ContentDesc">StuffTrek Logo</string>
     <string name="cancel_ContentDesc">Cancel</string>

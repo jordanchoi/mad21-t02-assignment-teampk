@@ -17,10 +17,11 @@ import java.util.ArrayList;
 public class AllItemsActivity extends AppCompatActivity {
 
     // Initialization of items within the layout.
+    // (Toolbar)
     Toolbar toolbar;
     ActionBar tb;
 
-    //Widgets
+    // (TextView)
     TextView itemsTitle;
     TextView itemsDesc;
     TextView allItemsText;

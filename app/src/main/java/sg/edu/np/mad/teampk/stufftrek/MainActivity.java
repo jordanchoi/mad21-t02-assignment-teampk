@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
         subText = findViewById(R.id.sloganTv);
         creditsText = findViewById(R.id.creditsTv);
 
-        // Setting the texts for the respective TextView within the layout.
-
         runTimer();
     }
 
