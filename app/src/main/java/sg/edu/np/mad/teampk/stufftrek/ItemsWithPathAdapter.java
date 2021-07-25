@@ -2,7 +2,6 @@ package sg.edu.np.mad.teampk.stufftrek;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdapter.ItemsWithPathViewHolder>{
 
     DBHandler db;
-    // For layout
     Context context;
 
     // For the constructor parameter
@@ -72,7 +70,7 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdap
             roomName = "";
         }
         if (item.ContainerName != null ) {
-            if (item.ContainerName.length() > 0 | item.ContainerName == null) {
+            if (item.ContainerName.length() > 0) {
                 roomName = roomName + " > ";
             }
         }
@@ -137,7 +135,7 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdap
             Edit.setOnMenuItemClickListener(onEditMenu);
             Delete.setOnMenuItemClickListener(onEditMenu);
         }
-        //ADD AN ONMENUITEM LISTENER TO EXECUTE COMMANDS ONCLICK OF CONTEXT MENU TASK
+        //onMenuItemClickListener to handle the selected item from the context menu
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
@@ -166,21 +164,15 @@ public class ItemsWithPathAdapter extends RecyclerView.Adapter<ItemsWithPathAdap
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                db = new DBHandler(context, null, null, 1);
-                                db.DeleteItem(iId);
-                                allItemsList.remove(getArrayPosition(iId));
-                                notifyDataSetChanged();
-                                db.close();
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // cancels the dialog
-                                dialogInterface.cancel();
-                            }
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete an item! \n\nYour item will be deleted and this action is irreversible.\n\nConfirm to proceed.").setCancelable(false).setPositiveButton("Delete", (dialogInterface, i12) -> {
+                            db = new DBHandler(context, null, null, 1);
+                            db.DeleteItem(iId);
+                            allItemsList.remove(getArrayPosition(iId));
+                            notifyDataSetChanged();
+                            db.close();
+                        }).setNegativeButton("Cancel", (dialogInterface, i1) -> {
+                            // cancels the dialog
+                            dialogInterface.cancel();
                         });
                         AlertDialog alert = builder.create();
                         alert.show();

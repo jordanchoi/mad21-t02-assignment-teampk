@@ -266,14 +266,14 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
     // Methods for Camera and File Storage
     // Check & Obtain the necessary permissions from user
     public static boolean checkAndRequestPermissions(final Activity context) {
-        int WExtstorePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int ExtStorePermission = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int cameraPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA);
         List<String> listPermissionsNeeded = new ArrayList<>();
         if (cameraPermission != PackageManager.PERMISSION_GRANTED)
         {
             listPermissionsNeeded.add(Manifest.permission.CAMERA);
         }
-        if (WExtstorePermission != PackageManager.PERMISSION_GRANTED)
+        if (ExtStorePermission != PackageManager.PERMISSION_GRANTED)
         {
             listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         }
@@ -392,18 +392,18 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
             directory.mkdirs();
         }
 
-        File mypath = new File(directory, filename);
+        File myPath = new File(directory, filename);
 
         FileOutputStream fos = null;
         try {
-            fos = new FileOutputStream(mypath);
+            fos = new FileOutputStream(myPath);
             image.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.close();
         } catch (Exception e) {
             Log.e("SAVE_IMAGE", e.getMessage(), e);
         }
 
-        return mypath.getAbsolutePath();
+        return myPath.getAbsolutePath();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -492,7 +492,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
                 JSONArray tagsArr = jsonObj.getJSONObject("result").getJSONArray("tags");
                 JSONObject firstMatch = tagsArr.getJSONObject(0);
                 bestMatch = firstMatch.getJSONObject("tag").getString("en");
-                Log.i("imagga", response);
+                Log.i("Imagga", response);
             }
             catch (Exception e) {
 
@@ -503,7 +503,7 @@ public class CreateItemActivity extends AppCompatActivity implements AdapterView
         @Override
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
-            if (bestMatch != "")
+            if (!bestMatch.equals(""))
             {
                 bestMatch = bestMatch.substring(0,1).toUpperCase() + bestMatch.substring(1);
             }

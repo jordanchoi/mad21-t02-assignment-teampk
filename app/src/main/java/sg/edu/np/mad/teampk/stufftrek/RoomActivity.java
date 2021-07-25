@@ -355,6 +355,7 @@ public class RoomActivity extends AppCompatActivity {
         builder.show();
     }
 
+    // Handle the captured image or inserted existing image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -363,6 +364,7 @@ public class RoomActivity extends AppCompatActivity {
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        // saves the image and assign the path to picturePath, sets to the room object and imageview. Updates in DB.
                         picturePath = saveImage(selectedImage);
                         currentRoom.Picture = picturePath;
                         roomImage.setImageBitmap(BitmapFactory.decodeFile(currentRoom.Picture));
@@ -381,6 +383,7 @@ public class RoomActivity extends AppCompatActivity {
                                 cursor.moveToFirst();
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 picturePath = cursor.getString(columnIndex);
+                                // Sets to the room object and imageview. Updates in DB.
                                 roomImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 db.UpdateRoomPhoto(roomId, picturePath);
                                 cursor.close();
@@ -393,7 +396,7 @@ public class RoomActivity extends AppCompatActivity {
         }
     }
 
-    // Method to save image
+    // Method to save image, returns the saved path
     public String saveImage(Bitmap image)
     {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
@@ -442,5 +445,4 @@ public class RoomActivity extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
     }
-
 }

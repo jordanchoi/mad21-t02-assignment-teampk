@@ -57,21 +57,18 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         holder.locIdTV.setText("" + loc.getLocationID());
 
         // OnClickListener for the ViewHolder
-        holder.locationContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Move to the LocationDetailsActivity
-                Intent locationDetailsActivity = new Intent(context, LocationDetailsActivity.class);
+        holder.locationContainer.setOnClickListener(view -> {
+            // Move to the LocationDetailsActivity
+            Intent locationDetailsActivity = new Intent(context, LocationDetailsActivity.class);
 
-                // Pass the following information along with the intent.
-                Bundle locationInformation = new Bundle();
-                locationInformation.putString("LocationName", loc.Name);
-                locationInformation.putInt("LocationID", loc.getLocationID());
-                locationDetailsActivity.putExtras(locationInformation);
+            // Pass the following information along with the intent.
+            Bundle locationInformation = new Bundle();
+            locationInformation.putString("LocationName", loc.Name);
+            locationInformation.putInt("LocationID", loc.getLocationID());
+            locationDetailsActivity.putExtras(locationInformation);
 
-                // Trigger Activity
-                context.startActivity(locationDetailsActivity);
-            }
+            // Trigger Activity
+            context.startActivity(locationDetailsActivity);
         });
     }
 
@@ -80,7 +77,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         return locationList.size();
     }
 
-    // Nested Viewholder Class
+    // Nested ViewHolder Class
     public class LocationViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         public TextView locationName;
         public TextView locIdTV;
@@ -116,7 +113,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                         BottomSheetDialog dialog = new BottomSheetDialog(context, R.style.BottomSheetStyle);
                         dialog.setContentView(R.layout.dialog_create);
 
-
                         // Get the respective items in the view
                         TextView createTitle = dialog.findViewById(R.id.dialogTitleTV);
                         EditText createField = dialog.findViewById(R.id.dialogFieldET);
@@ -130,35 +126,27 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                         createField.setText(locationName.getText());
                         createField.setSelectAllOnFocus(true);
 
-                        dialogCancelBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialog.cancel();
+                        dialogCancelBtn.setOnClickListener(view -> dialog.cancel());
+
+                        dialogAddBtn.setOnClickListener(view -> {
+                            String locationName = createField.getText().toString();
+
+                            if(locationName.length() == 0)
+                            {
+                                errorMsgText.setText("Location name cannot be empty!");
+                                errorMsgText.setVisibility(View.VISIBLE);
                             }
-                        });
-
-                        dialogAddBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                String locationName = createField.getText().toString();
-
-                                if(locationName.length() == 0)
-                                {
-                                    errorMsgText.setText("Location name cannot be empty!");
-                                    errorMsgText.setVisibility(View.VISIBLE);
-                                }
-                                else
-                                {
-                                    DBHandler db = new DBHandler(context, null, null, 1);
-                                    int getLocationIndex = getArrayPosition(locationId);
-                                    Location loc = locationList.get(getLocationIndex);
-                                    loc.Name = locationName;
-                                    db.UpdateLocation(loc);
-                                    locationList.set(getLocationIndex, loc);
-                                    // update list
-                                    notifyItemChanged(getLocationIndex);
-                                    dialog.cancel();
-                                }
+                            else
+                            {
+                                DBHandler db = new DBHandler(context, null, null, 1);
+                                int getLocationIndex = getArrayPosition(locationId);
+                                Location loc = locationList.get(getLocationIndex);
+                                loc.Name = locationName;
+                                db.UpdateLocation(loc);
+                                locationList.set(getLocationIndex, loc);
+                                // update list
+                                notifyItemChanged(getLocationIndex);
+                                dialog.cancel();
                             }
                         });
                         Window window = dialog.getWindow();
@@ -169,21 +157,15 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\n\nAll rooms, containers, containers location will be deleted.\n\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                DBHandler db = new DBHandler(context, null, null, 1);
-                                db.DeleteLocation(locationId);
-                                locationList.remove(getArrayPosition(locationId));
-                                notifyDataSetChanged();
-                                db.close();
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                // cancels the dialog
-                                dialogInterface.cancel();
-                            }
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\n\nAll rooms, containers, containers location will be deleted.\n\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", (dialogInterface, i) -> {
+                            DBHandler db = new DBHandler(context, null, null, 1);
+                            db.DeleteLocation(locationId);
+                            locationList.remove(getArrayPosition(locationId));
+                            notifyDataSetChanged();
+                            db.close();
+                        }).setNegativeButton("Cancel", (dialogInterface, i) -> {
+                            // cancels the dialog
+                            dialogInterface.cancel();
                         });
                         AlertDialog alert = builder.create();
                         alert.show();

@@ -30,7 +30,7 @@ public class ItemsActivity extends AppCompatActivity {
 
     // Required for RecyclerView
     ItemsWithPathAdapter adapter = null;
-    RecyclerView itemrv;
+    RecyclerView itemRv;
 
     ArrayList<Item> itemList;
 
@@ -63,11 +63,11 @@ public class ItemsActivity extends AppCompatActivity {
         // Call GetAllItemFromContainer to retrieve all items in container
         itemList = db.GetAllItemFromContainer(containerID);
         // RV for Items
-        itemrv = findViewById(R.id.itemsRv);
+        itemRv = findViewById(R.id.itemsRv);
         adapter = new ItemsWithPathAdapter(this, itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
-        itemrv.setLayoutManager(lm);
-        itemrv.setAdapter(adapter);
+        itemRv.setLayoutManager(lm);
+        itemRv.setAdapter(adapter);
         // Handler for no items found
         noItemTV = findViewById(R.id.noItemsTv);
         checkEmptyI();
@@ -135,7 +135,7 @@ public class ItemsActivity extends AppCompatActivity {
             case android.R.id.home:
                 this.finish();
                 break;
-            // Add Button is selected, intent to createitemactivity to allow users to create a new Item
+            // Add Button is selected, intent to CreateItemActivity to allow users to create a new Item
             case R.id.mAdd:
                 Intent createItemActivity = new Intent(ItemsActivity.this, CreateItemActivity.class);
                 Bundle containerInformation = new Bundle();
