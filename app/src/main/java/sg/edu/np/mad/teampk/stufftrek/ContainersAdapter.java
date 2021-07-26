@@ -119,12 +119,13 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", (dialogInterface, i) -> {
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a container!\n\nThere may be items contained within this container.\n\nAll items stored within the container will be moved to the room.").setCancelable(false).setPositiveButton("Delete", (dialogInterface, i) -> {
                             DBHandler db = new DBHandler(context, null, null, 1);
                             db.DeleteContainer(cId);
                             containerList.remove(getArrayPosition(cId));
                             notifyDataSetChanged();
                             db.close();
+
                         }).setNegativeButton("Cancel", (dialogInterface, i) -> {
                             // cancels the dialog
                             dialogInterface.cancel();
