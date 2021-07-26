@@ -141,7 +141,7 @@ public class LocationDetailsActivity extends AppCompatActivity {
                 // Set the respective texts of the items in the view
                 createTitle.setText("Room Name: ");
                 dialogAddBtn.setText("Add Room");
-                createField.setText("Enter Room Name");
+                createField.setHint("Enter Room Name");
 
 
                 dialogCancelBtn.setOnClickListener(new View.OnClickListener() {

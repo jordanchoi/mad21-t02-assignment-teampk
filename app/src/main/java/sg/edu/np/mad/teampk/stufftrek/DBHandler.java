@@ -987,8 +987,15 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = \"" + path
-                    + "\" WHERE " + COLUMN_ROOMID + " = " + roomID;
+            String updateQuery;
+            if(path!=null && !path.isEmpty()){
+                updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = \"" + path
+                        + "\" WHERE " + COLUMN_ROOMID + " = " + roomID;
+            }else{
+                updateQuery = "UPDATE " + TABLE_ROOM + " SET " + COLUMN_PICTURE + " = NULL"
+                        + " WHERE " + COLUMN_ROOMID + " = " + roomID;
+            }
+
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
@@ -1003,8 +1010,15 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_ITEM + " SET "+ COLUMN_PICTURE + " = \"" + path
-                    + "\" WHERE " + COLUMN_ITEMID + " = " + itemID;
+            String updateQuery;
+            if(path!=null && !path.isEmpty()){
+                updateQuery = "UPDATE " + TABLE_ITEM + " SET "+ COLUMN_PICTURE + " = \"" + path
+                        + "\" WHERE " + COLUMN_ITEMID + " = " + itemID;
+            }else{
+                updateQuery = "UPDATE " + TABLE_ITEM + " SET "+ COLUMN_PICTURE + " = NULL"
+                        + " WHERE " + COLUMN_ITEMID + " = " + itemID;
+            }
+
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
@@ -1018,9 +1032,17 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM " +TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+containerID;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
+
         if (cursor.moveToFirst()) {
-            String updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = \"" + path
-                    + "\" WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            String updateQuery;
+            if(path!=null && !path.isEmpty()){
+                updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = \"" + path
+                        + "\" WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            }else{
+                updateQuery = "UPDATE " + TABLE_CONTAINER + " SET " + COLUMN_PICTURE + " = NULL"
+                        + " WHERE " +COLUMN_CONTAINERID +" = "+containerID;
+            }
+
             db.execSQL(updateQuery);
             cursor.close();
             result=true;
@@ -1087,6 +1109,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             String updateQuery = "UPDATE "+TABLE_CONTAINER
                     + " SET " + COLUMN_NAME + " = \"" + c.Name +"\""
+                    + " , " + COLUMN_CONTAINERCATEGORYID + " = " + c.getContainerCategoryID()
                     + " WHERE " +COLUMN_CONTAINERID +" = "+c.getContainerID();
             db.execSQL(updateQuery);
             cursor.close();
@@ -1105,6 +1128,7 @@ public class DBHandler extends SQLiteOpenHelper {
             String updateQuery = "UPDATE "+TABLE_ITEM
                     + " SET " + COLUMN_NAME + " = \"" + i.Name +"\""
                     + " , " + COLUMN_QUANTITY + " = " + i.Quantity
+                    + " , " + COLUMN_CATEGORYID + " = " + i.getCategoryID()
                     + " WHERE " +COLUMN_ITEMID +" = "+i.getItemID();
             db.execSQL(updateQuery);
             cursor.close();

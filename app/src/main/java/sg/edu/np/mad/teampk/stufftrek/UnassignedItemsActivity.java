@@ -21,6 +21,9 @@ public class UnassignedItemsActivity extends AppCompatActivity {
     TextView unassignedDesc;
     TextView unassignedItemsText;
     TextView noItemTV;
+    ArrayList<Item> itemList;
+    DBHandler db;
+    ItemsWithPathAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,30 +54,42 @@ public class UnassignedItemsActivity extends AppCompatActivity {
         unassignedItemsText.setText("Your Unassigned Items");
 
         // Construct DBHandler to retrieve DB information.
-        DBHandler db = new DBHandler(this, null, null, 1);
+       db = new DBHandler(this, null, null, 1);
 
         // Call GetAllItemFromContainer to retrieve all items in container
-        ArrayList<Item> itemList = db.GetAllUnassignedItem();
+        itemList = db.GetAllUnassignedItem();
         // RV for Items
         RecyclerView sharedRv = findViewById(R.id.sharedRv);
-        ItemsWithPathAdapter adapter = new ItemsWithPathAdapter(this,itemList);
+        adapter = new ItemsWithPathAdapter(this,itemList);
         LinearLayoutManager lm = new LinearLayoutManager(this);
         sharedRv.setLayoutManager(lm);
         sharedRv.setAdapter(adapter);
         // Handler for no items found
         noItemTV = findViewById(R.id.sharedNoItemsTv);
+        checkEmptyI();
+    }
+
+    public void checkEmptyI() {
         if (itemList.size() == 0)
         {
-            noItemTV.setText("You have no items unassigned");
+            noItemTV.setVisibility(View.VISIBLE);
         }
         else
         {
             noItemTV.setVisibility(View.GONE);
+
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //update data
+        itemList = db.GetAllUnassignedItem();
+        adapter.allItemsList = itemList;
+        adapter.notifyDataSetChanged();
+        checkEmptyI();
 
-
-
+    }
 
 
     // ActionBar items

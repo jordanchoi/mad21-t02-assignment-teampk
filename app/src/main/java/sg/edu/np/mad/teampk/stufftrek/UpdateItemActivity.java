@@ -141,6 +141,7 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
         if (i1.Picture != null)
         {
             cameraBtn.setImageBitmap(BitmapFactory.decodeFile(i1.Picture));
+            picturePath=i1.Picture;
         }
 
         // Codes for the item category spinners
@@ -247,6 +248,7 @@ public class UpdateItemActivity extends AppCompatActivity implements AdapterView
                         i1.setRoomID(roomId);
                         i1.setCategoryID(catId);
                         db.UpdateItem(i1);
+                        db.UpdateItemPhoto(i1.getItemID(),picturePath);
                         finish();
                     }
                 }

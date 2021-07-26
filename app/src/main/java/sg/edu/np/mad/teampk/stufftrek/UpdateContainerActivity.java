@@ -114,6 +114,7 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
         if (c.Picture != null)
         {
             cameraBtn.setImageBitmap(BitmapFactory.decodeFile(c.Picture));
+            picturePath=c.Picture;
         }
 
 
@@ -174,8 +175,9 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
                 {
                     c.Name=newContainerName;
                     c.Picture=picturePath;
-
+                    c.setContainerCategoryID(containerCatId);
                     db.UpdateContainer(c);
+                    db.UpdateContainerPhoto(c.getContainerID(),picturePath);
 
                     finish();
                 }
