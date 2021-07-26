@@ -125,6 +125,7 @@ public class ContainersAdapter extends RecyclerView.Adapter<ContainersAdapter.Co
                             containerList.remove(getArrayPosition(cId));
                             notifyDataSetChanged();
                             db.close();
+
                         }).setNegativeButton("Cancel", (dialogInterface, i) -> {
                             // cancels the dialog
                             dialogInterface.cancel();

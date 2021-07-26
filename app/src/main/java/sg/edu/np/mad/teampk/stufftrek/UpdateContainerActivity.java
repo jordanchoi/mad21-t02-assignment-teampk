@@ -122,9 +122,20 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
 
         ArrayList<ContainerCategory> containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
+        // If there are no container category, shows dialog and finish the activity.
+        if (containerCategoriesList.size() == 0)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(UpdateContainerActivity.this);
+            builder.setTitle("No Existing Container Category").setMessage("There are no container category found in the room where you're trying to create a container.\n\nContainers must be tagged to a container category, please create a container category first.").setCancelable(false).setNegativeButton("OK", (dialogInterface, i) -> {
+                dialogInterface.cancel();
+                finish();
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
         // ArrayList for the Spinner
         ArrayList<String> containerCatSpinnerItems = new ArrayList<String>();
-        containerCatSpinnerItems.add("Please select a container category");
 
         categorySpinner.setOnItemSelectedListener(this);
         ContainerCategory c1 = db.GetContainerCategoryWithID(c.getContainerCategoryID());
@@ -144,8 +155,8 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(dataAdapter);
 
-        //dk y nid plus 1
-        categorySpinner.setSelection(indexCC+1);
+
+        categorySpinner.setSelection(indexCC);
 
         // OnClickListener for create button
         createContainerBtn.setOnClickListener(new View.OnClickListener()
