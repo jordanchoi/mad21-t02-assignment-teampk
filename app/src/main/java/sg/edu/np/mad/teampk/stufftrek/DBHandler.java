@@ -794,7 +794,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
         if (cursor.moveToFirst()){
-            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_CONTAINERID+ " = NULL"
+            String updateQuery = "UPDATE " +TABLE_ITEM +" SET "+COLUMN_CONTAINERID+ " = NULL,"+COLUMN_CONTAINERCATEGORYID+ " = NULL"
                     +" WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
             String deleteContainerQuery = "DELETE FROM "+TABLE_CONTAINER + " WHERE " +COLUMN_CONTAINERID +" = "+ContainerID;
 

@@ -11,8 +11,8 @@
     <string name="new_container">New Container</string>
     <string name="new_container_cat">New Container Category</string>
     <!-- Authentication & User -->
-    <string name="get_started">Get Started</string>
-    <string name="skip">Skip Log In</string>
+    <string name="get_started">Login</string>
+    <string name="skip">Skip Login</string>
     <string name="sign_out">Sign Out</string>
     <string name="backup">Backup</string>
     <string name="load">Load Backup</string>
