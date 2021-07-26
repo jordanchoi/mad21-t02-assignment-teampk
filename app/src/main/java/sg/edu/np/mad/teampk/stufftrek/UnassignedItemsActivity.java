@@ -66,6 +66,7 @@ public class UnassignedItemsActivity extends AppCompatActivity {
         sharedRv.setAdapter(adapter);
         // Handler for no items found
         noItemTV = findViewById(R.id.sharedNoItemsTv);
+        noItemTV.setText("You have no unassigned items");
         checkEmptyI();
     }
 
