@@ -107,9 +107,20 @@ public class CreateContainerActivity extends AppCompatActivity implements Adapte
         db = new DBHandler(this, null, null, 1);
         ArrayList<ContainerCategory> containerCategoriesList = db.GetAllContainerCategoryFromRoom(roomId);
 
+        // If there are no container category, shows dialog and finish the activity.
+        if (containerCategoriesList.size() == 0)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateContainerActivity.this);
+            builder.setTitle("No Existing Container Category").setMessage("There are no container category found in the room where you're trying to create a container.\n\nContainers must be tagged to a container category, please create a container category first.").setCancelable(false).setNegativeButton("OK", (dialogInterface, i) -> {
+                dialogInterface.cancel();
+                finish();
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
         // ArrayList for the Spinner
         ArrayList<String> containerCatSpinnerItems = new ArrayList<String>();
-        containerCatSpinnerItems.add("Please select a container category");
 
         categorySpinner.setOnItemSelectedListener(this);
 

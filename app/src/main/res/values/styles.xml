@@ -1,7 +1,6 @@
 <resources>
     <style name="Widget.Theme.StuffTrek.MyView" parent="Theme.MaterialComponents.Light">
         <item name="android:background">@color/gray_400</item>
-        <item name="exampleColor">@color/light_blue_400</item>
     </style>
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Light">
         <!-- android:textColorPrimary is the color of the title text in the Toolbar  -->

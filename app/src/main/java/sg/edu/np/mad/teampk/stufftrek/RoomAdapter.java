@@ -119,6 +119,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.RoomViewHolder
                         // Set the respective texts of the items in the view
                         createTitle.setText("Room Name: ");
                         dialogAddBtn.setText("Update Room");
+                        createField.setHint("Enter Room Name");
                         createField.setText(roomBtn.getText());
                         createField.setSelectAllOnFocus(true);
 
