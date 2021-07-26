@@ -179,6 +179,14 @@ public class UpdateContainerActivity extends AppCompatActivity implements Adapte
                     db.UpdateContainer(c);
                     db.UpdateContainerPhoto(c.getContainerID(),picturePath);
 
+//                    finish();
+                    Intent forceOnCreate = new Intent(UpdateContainerActivity.this, RoomActivity.class);
+                    Bundle roomInfo = new Bundle();
+                    roomInfo.putString("RoomName", r.Name);
+                    roomInfo.putInt("RoomID", roomId);
+                    roomInfo.putInt("LocationID", r.getLocationID());
+                    forceOnCreate.putExtras(roomInfo);
+                    startActivity(forceOnCreate);
                     finish();
                 }
             }

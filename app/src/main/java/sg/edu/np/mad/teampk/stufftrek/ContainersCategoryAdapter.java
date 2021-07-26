@@ -29,6 +29,7 @@ public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCa
     ArrayList<ContainerCategory> containerCategoriesList;
     int locationId;
     int roomId;
+    public ContainersAdapter ca;
 
     public ContainersCategoryAdapter(Context c, ArrayList<ContainerCategory> ccList, int locId, int rmId)
     {
@@ -63,7 +64,7 @@ public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCa
         else
         {
             holder.noContainerTV.setVisibility(View.GONE);
-            ContainersAdapter ca = new ContainersAdapter(context, containerList, locationId, roomId);
+            ca = new ContainersAdapter(context, containerList, locationId, roomId);
             LinearLayoutManager lm = new LinearLayoutManager(context);
             lm.setOrientation(LinearLayoutManager.HORIZONTAL);
             holder.containerRV.setAdapter(ca);
@@ -167,7 +168,7 @@ public class ContainersCategoryAdapter extends RecyclerView.Adapter<ContainersCa
                     case 2:
                         //Do stuff
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level location!\nAll rooms, containers, containers location will be deleted.\nAny items within this location will be unassigned from its location.").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        builder.setTitle("Confirm Delete").setMessage("You are about to delete a top-level container category!\n\nAll items and containers within will be deleted.\n\n").setCancelable(false).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 DBHandler db = new DBHandler(context, null, null, 1);

@@ -168,10 +168,16 @@ public class RoomActivity extends AppCompatActivity {
         checkEmptyCC();
         checkEmptyI();
 
-        ccAdapter.containerCategoriesList = containerCategoriesList;
-        ccAdapter.notifyDataSetChanged();
         itemsAdapter.allItemsList = roomItemsList;
+        ccAdapter.containerCategoriesList = containerCategoriesList;
+        if (ccAdapter.ca != null)
+        {
+            ccAdapter.ca.notifyDataSetChanged();
+        }
+        ccAdapter.notifyDataSetChanged();
         itemsAdapter.notifyDataSetChanged();
+
+
     }
 
     // Check empty to check if any container categories exists and perform the necessary output depending on the conditions
