@@ -111,6 +111,14 @@ The goal of our application is to help our users to track their items in their h
 * Permissions
 * App data & files
 
+## Testing
+Application was test on the following mobile phones:
+* Pixel 4 XL (Android Studio Emulator)
+* Nexux 5 (Android Studio Emulator)
+* Samsung S20 Ultra
+* Samsung S20+
+* 
+
 ## Team Members Name & Student ID:
 * Choi Shu Yih, Jordan  
   * S10208161D  
