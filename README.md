@@ -8,7 +8,7 @@ Team Name: Team PK
 Members Include:
 * Choi Shu Yih, Jordan (10208161D)
 * Chua Dong En (S10202623A)
-* Chang Li Zhong Eddie (S10207896F)
+* Chang Li Zhong, Eddie (S10207896F)
 
 ## Application Logo
 <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png" width="20%">
