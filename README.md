@@ -129,7 +129,7 @@ Application was test on the following devices:
 
 * **Contributions**
   * **Features**
-    *  Full Implementation of ActionBar
+    * Full Implementation of ActionBar
     * Full Implementation of Options Menu
     * Full Implementation of Contextual Menu
     * Full Implementation of BottomSheetDialog
@@ -160,9 +160,9 @@ Application was test on the following devices:
     * Full Implementation of ItemsAdapter & ViewHolder
 
   * **Layout & Other XML Resources**
-    *  Involved for all layouts either through implementation or modification for the styling of the User Interface.
-    *  Implementation of all three menus within the menu subfolder
-    *  Modifications to colors.xml, styles.xml and themes.xml for both Light/Night versions.
+    * Involved for all layouts either through implementation or modification for the styling of the User Interface.
+    * Implementation of all three menus within the menu subfolder
+    * Modifications to colors.xml, styles.xml and themes.xml for both Light/Night versions.
 
   * **Others**
     * Publish of Application to Google Playstore
@@ -256,6 +256,7 @@ Application was test on the following devices:
 
   * **Others**
     * Testing
+    * README.md
 
 ## Appendices
 ### StuffTrek Banner
