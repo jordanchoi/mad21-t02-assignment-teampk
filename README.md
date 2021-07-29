@@ -114,7 +114,7 @@ The goal of our application is to help our users to track their items in their h
 * App data & files
 
 ## Testing
-Application was test on the following mobile phones:
+Application was test on the following devices:
 * Pixel 4 XL (Android Studio Emulator)
 * Nexux 5 (Android Studio Emulator)
 * Samsung S20 Ultra
