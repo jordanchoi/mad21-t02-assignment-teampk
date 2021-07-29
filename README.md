@@ -318,5 +318,12 @@ Dark Mode - Settings Page (mobile)     |  Light Mode - Settings Page (tablet)
 
 
 ### ER Diagram & Class Diagram
+ER Diagram (incomplete)     |  Class Diagram (incomplete)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/diagram/er-diagram.png">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/diagram/class-diagram.png">
 
+#### Disclaimer:
+It is not exhaustive, incomplete and not 100% accurate. It was developed in the initial stage of project and was not updated. It should only be used as a reference.
 
+## Copyright
+• Copyright © 2021 • Diploma in Information Technology • Mobile Application Development •  Team PK • Ngee Ann Polytechnic •
