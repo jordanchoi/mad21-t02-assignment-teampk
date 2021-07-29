@@ -72,26 +72,132 @@ You may look forward to the following;
 * Much More!
 
 User Guide:
-* Registration & Login of Account
-* Creation of Item’s Categories
-* Edit & Delete of Item’s Categories
-* Creation of Location
-* Edit & Delete of Location
-* Creation of Rooms
-* Capturing/Selection of Room Images
-* Edit & Delete of Rooms
-* Creation of Items
-* Capturing/Selection of Items Images + Object Recognition 
-* Edit & Delete of Items
-* Creation of Containers Categories
-* Edit & Delete of Container Categories
-* Creation of Containers
-* Edit & Delete of Containers
-* Searching of Items
-* View All Items in a Glance
-* View Unassigned Items in a Glance
-* Back Up to Cloud Storage
-* Sync from Cloud Storage
+#### Registration & Login of Account
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">
+Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".
+
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/email-input.jpg" width="20%">
+Once the user clicked "Login" the user will be prompted by the system to input his/her email into the input textbox.
+
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/password-input.jpg" width="20%">
+As shown in this images, the email "eddiechang321@gmail.com" is recognised. This will lead the system to prompt the user to enter their password.
+
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/home-page.jpg" width="20%">
+Once logged in, user will be first directed to the home page. Same for "Skip Login" button in the login page, it will direct the user to the home page without logging in to an account.  
+
+#### Creation of Item’s Categories
+Manage Category            |  Creation of Category  |    List of Categories
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/category.jpg" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-category.jpg" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/category-list.jpg" width="74%">
+
+In Manage Categories, users are able to create, edit, and delete categories. Users are able to create a category by clicking on the plus button on the top right corner of their device. This will activate the creation dialog and prompting the user to enter a category name. Categories are created to help the user sort their items neatly, User are able to find their items according to the category that he/she assign the item to. 
+
+#### Edit & Delete of Item’s Categories
+Edit Category            |  Delete Category
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/edit-category.jpg" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/delete-category.jpg" width="50%">
+
+In Manage Categories, Editing and Deletion of items are using the feature to swipe-to-edit and swipe-to-delete. By swiping to the delete, it will show delete. Likewise swiping to the right, it will show edit.
+
+#### Creation of Location
+Manage Location            |  Creation of Location  |    List of Location
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/location.jpg" width="75%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-location.jpg" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/location-list.jpg" width="75%">
+
+In Manage Locations, users are able to create, edit, and delete locations. Users are able to create location by clicking on the plus button on the top right corner of their device. This will activate the creation dialog and prompting the user to enter a location name. Locations are create to indicate their homes, warehouses, etc.
+
+#### Edit & Delete of Location
+Location Contextual Menu           |  Editing of Location  |    Deletion of Location
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/location-contextual.jpg" width="75%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/location-edit.jpg" width="75%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/location-delete.jpg" width="75%">
+
+Users are able to long-press on the selected locations and activate the contextual menu. In the contextual menu, users are able to edit or delete their location. By entering a new name to the selected location, the location's name will then be updated to its new name. As for deletion, upon clicking on "Delete", there will a warning message indicating that all rooms, containers, and container locations will be deleted. Upon deletion, the items that are within the deleted location, will be unassigned from its location and will be automatically moved to "Unassigned Items".
+
+#### Creation of Rooms
+Menu in Location           |  Creation of Room  |    List of Rooms
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-location-menu.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-room.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/room-list.jpg">
+
+Inside location, users are able to create rooms and items within the location. User are able to create rooms and items by clicking on the "3 dots" button on the top right corner of their device and activate the menu. The list of rooms are horizontally scrollable which enhances the user experience dynamics and prevent the page from scrolling too far bottom vertically if there are many rooms and items in the location.
+
+#### Capturing/Selection of Room Images
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/room-photo.jpg" width="20%">
+Users are able to capture or select an image of their room to visually indicate the room as well.
+
+#### Edit & Delete of Rooms
+Room Contextual Menu           |  Editing of Room  |    Deletion of Room
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/room-contextual.jpg" width="75%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/room-edit.jpg" width="78%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/room-delete.jpg" width="75%">
+
+Users are able to long-press on the selected rooms and activate the contextual menu. In the contextual menu, users are able to edit or delete their rooms. By entering a new name to the selected room, the room's name will then be updated to its new name. As for deletion, upon clicking on "Delete", there will be a warning message indicating that the user is about the delete a room which may container containers and items. Upon deletion, the items that are within the delete room, will be unassigned from its location and will be be automatically moved to "Unassigned Items".
+
+#### Creation of Items
+Menu in Room            |  Creation of Items  |    List of Items
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-item.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/item-list.jpg" width="65%">
+
+Inside rooms, users are able to create container categories, containers, and items. Container categories are the catogeries of the containers, categories such as, wardobe, main cabinet, drawer, etc. Containers are containers within the categories, containers such as, drawer in wardrobe, drawer in cabinet, storage box in drawer, etc.
+
+#### Capturing/Selection of Items Images + Object Recognition
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/item-list.jpg" width="20%">
+Users are able to capture or select an image of their items to visually indicate the items as well.
+
+#### Edit & Delete of Item
+Item Contextual Menu           |  Editing of Item  |    Deletion of Item
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/item-contextual.jpg" width="63%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/item-edit.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/item-delete.jpg">
+
+Users are able to long-press on the selected item and activate the contextual menu. In the contextual menu, users are able to edit or delete their items. By entering a new name to the selected item, the item's name will then be updated to its new name. As for deletion, upon clicking on "Delete", there will be a warning message indicating that the selected item will be deleted and this action is irreversible. 
+
+#### Creation of Containers Categories
+Menu in Room            |  Creation of Container Categories  |    List of Container Categories
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container-category.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-list.jpg">
+
+Same for items, users are to create a container category by activating the menu in rooms and create container categories.
+
+#### Edit & Delete of Container Categories
+Container Category Contextual Menu           |  Editing of Container Category  |    Deletion of Container Category
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-contextual.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-edit.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-delete.jpg">
+
+Users are able to long-press on the selected container category and activate the contextual menu. In the contextual menu, users are able to edit or delete their container category. By entering a new name to the selected container category, the container category's name will then be updated to its new name. As for deletion, upon clicking on "Delete", there will be a warning message indicating that all items and containers within will be deleted.
+
+#### Creation of Containers
+Menu in Room            |  Creation of Container  |    List of Container
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-list.jpg">
+
+Same for items and container categories, users are to create a container by activating the menu in rooms and create container.
+
+#### Edit & Delete of Containers
+Container Contextual Menu           |  Editing of Container Category  |    Deletion of Container Category
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-contextual.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-edit.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-delete.jpg" width="65%">
+
+#### Searching of Items
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/search.jpg" width="20%">
+Users are able to search their items in the search function. Upon conduction a search, the function will return the user the results container the item's name, category, quantitiy, and location.
+
+#### View Unassigned Items in a Glance
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/items-unassigned-location.jpg" width="20%">
+Users are able to view all their items in the "All Items" tab at the home page. Items that are unassign to any location is due to deletion of location, room, container category, and container.
+
+#### View All Items in a Glance
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/all-items.jpg" width="20%">
+Users are able to view all their items in the "All Items" tab at the home page. Items that are assigned or unassigned to any locations will be shown in "All Items".
+
+#### Settings Menu
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/setting.jpg" width="20%">
+In settings, users will be able to sign out, backup their data to the database, or load their previous saved.
+
+#### Back Up to Cloud Storage
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/backup.jpg" width="20%">
+Upon clicking on "Backup", the current data will be saved to the databased and returning the user a success message indicating "Firebase backup success".
+
+#### Load Back Up from Cloud Storage
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/backup-loaded.jpg" width="20%">
+Upon clicking on "Load Backup", the previous saved data will be loaded to the user and return the user a success message indicating "Firebase load backup success".
 
 ## Design Rationale (UI & UX)
 The goal of our application is to help our users to track their items in their household to prevent misplace or valuables going missing. StuffTrek is designed using a modern design layout, while retaining simplicity to prevent complications for our users. StuffTrek includes the following colour modes:
