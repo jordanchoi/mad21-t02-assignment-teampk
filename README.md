@@ -256,7 +256,11 @@ Application was test on the following mobile phones:
     * Testing
 
 ## Appendices
+### StuffTrek Banner
 ![StuffTrek Banner](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg?raw=true)
-* Attach Wireframes
+* Attach Wireframes  
+
+### StuffTrek Screenshot
 ![StuffTrek Screenshot](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark mode/splash-screen.png?raw=true)
-* Attach Class Diagram & ER Diagram
+* Attach Class Diagram & ER Diagram  
+
