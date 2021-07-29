@@ -2,7 +2,7 @@
 Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek  
 https://play.google.com/store/apps/details?id=sg.edu.np.mad.teampk.stufftrek
 
-Tutorial Group: P02  
+Tutorial Group: P02 / T02  
 Lecturer: Mr Wesley Teo WQ  
 Team Name: Team PK  
 Members Include:
