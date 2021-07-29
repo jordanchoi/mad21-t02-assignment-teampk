@@ -261,6 +261,6 @@ Application was test on the following mobile phones:
 * Attach Wireframes  
 
 ### StuffTrek Screenshot
-![StuffTrek Screenshot](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark mode/splash-screen.png?raw=true)
+![StuffTrek Screenshot](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/splash-screen.png?raw=true)
 * Attach Class Diagram & ER Diagram  
 
