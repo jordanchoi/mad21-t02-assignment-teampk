@@ -241,7 +241,7 @@ The goal of our application is to help our users to track their items in their h
     * string.xml
     * styles.xml
     * activity_search.xml
-    * vh_category.xml1
+    * vh_category.xml
 
   * **Others**
     * Testing
