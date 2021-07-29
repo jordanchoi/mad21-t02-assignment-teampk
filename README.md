@@ -6,7 +6,7 @@ Tutorial Group: P02
 Lecturer: Mr Wesley Teo WQ  
 Team Name: Team PK  
 Members Include:
-* Choi Shu Yih, Jordan (10208161D)
+* Choi Shu Yih, Jordan (S10208161D)
 * Chua Dong En (S10202623A)
 * Chang Li Zhong, Eddie (S10207896F)
 
