@@ -42,9 +42,10 @@ For users who prefers a dark theme, we have it ready for you!
  * **Creation, Display, Edit and Deletion of Category, Locations, Rooms, Container Categories and Items.**  
 The core feature of our application allows you to perform basic creation, display, edit and delete of the objects mentioned above!
 
-Creation can be achieved through the menu in the ActionBar. 
 
-Edit & Delete can be performed through a long tap (Location, Room, Container, Container Category & Item) or through swiping right (Delete) or left (Edit) for the item’s category.
+	Creation can be achieved through the menu in the ActionBar.
+
+	Edit & Delete can be performed through a long tap (Location, Room, Container, Container Category & Item) or through swiping right (Delete) or left (Edit) for the item’s category.
 
  * **SQLite Local Database**  
 All data and images are stored locally unless backed up to the cloud after successful authentication!
@@ -88,6 +89,24 @@ User Guide:
 * View Unassigned Items in a Glance
 * Back Up to Cloud Storage
 * Sync from Cloud Storage
+
+## Design Rationale (UI & UX)
+* Overall
+* Light Theme
+* Night Theme
+
+## Instances of Core Topics Implemented:
+* Camera2
+* Intents & Intent Filters
+* RecyclerView
+* Night Theme
+* Spinners
+* App Bar
+* Toast
+* Dialogs
+* Handling Bitmaps
+* Permissions
+* App data & files
 
 ## Team Members Name & Student ID:
 * Choi Shu Yih, Jordan  
@@ -149,18 +168,18 @@ User Guide:
     * Full implementation of Firebase
         * Firebase Auth (Sign In)
         * Firebase Cloud Storage (Backup, Load Backup)
-	  * Partial Implementation of Contextual Menu & Handlers Within
+    * Partial Implementation of Contextual Menu & Handlers Within
         * Room (Create)
-    	  * ContainerCategory (Update, Delete)
-   	    * Container (Update, Delete)
-   	    * Item (Update, Delete)    
-	  * Database (Design - Implementation - Backup)
-	  * Reading of LocationDetails
+        * ContainerCategory (Update, Delete)
+        * Container (Update, Delete)
+        * Item (Update, Delete)    
+    * Database (Design - Implementation - Backup)
+    * Reading of LocationDetails
 
   * **Activities & Classess**
     * Full Implementation of Object Model Classes (Location, Room, Category, Container, ContainerCategory, Item)
     * Full Implementation of LocationDetailsActivity
-	  * Full Implementation of UnassignedItemsActivity
+    * Full Implementation of UnassignedItemsActivity
     * Full Implementation of FireBaseSignInActivity
     * Full Implementation of DBHandler
     * Full Implementation of SettingsActivity
@@ -174,27 +193,27 @@ User Guide:
         * LocationDetailsActivity (OnResume Refresh)
         * RoomActivity (OnResume Refresh)
         * ItemsActivity (OnResume Refresh)
-	  * BottomSheetDialog
+    * BottomSheetDialog
         * Create Room
         * Update Item
         * Update ContainerCategory
         * Update Category
 
   * **Layout & Other XML Resources**
-     * colors.xml, strings.xml
-	   * items	
-     * Initial firebase_sign_in
-	   * location_details
-	   * Initial settings
-	   * Initial vh_room
+  	* colors.xml, strings.xml
+	* items	
+	* Initial firebase_sign_in
+	* location_details
+	* Initial settings
+	* Initial vh_room
 
   * **Others**
-     * Assisting publication of Application
-	   * Initial Wireframe
-	   * Initial Idea
-	   * Testing
-	   * Fixing
-	   * Refactoring of layout widget names
+  	* Assisting publication of Application
+	* Initial Wireframe
+	* Initial Idea
+	* Testing
+	* Fixing
+	* Refactoring of layout widget names
 
 ## Team Members Name & Student ID:
 * Chang Li Zhong Eddie 
@@ -204,22 +223,22 @@ User Guide:
 * **Contributions**
   * **Features**
     * Full implementation of Search Feature in SearchActivity
-	  * Full implementation of Category (Creation, Update, Deletion)
-	  * Conceptualization of App Icon
+    * Full implementation of Category (Creation, Update, Deletion)
+    * Conceptualization of App Icon
 
   * **Activities & Classess**
     * Full Implementation of CategoryActivity
-	  * Full Implementation of CategoryActivity (swipe-to-edit)
-	  * Full Implementation of CategoryActivity (swipe-to-delete)
-	  * Full Implementation of CreateCategory BottomSheetDialog
-	  * Full Implementation of Search Function   
+    * Full Implementation of CategoryActivity (swipe-to-edit)
+    * Full Implementation of CategoryActivity (swipe-to-delete)
+    * Full Implementation of CreateCategory BottomSheetDialog
+    * Full Implementation of Search Function   
 
   * **Layout & Other XML Resources**
     * colors.xml
-	  * string.xml
-	  * styles.xml
-	  * activity_search.xml
-	  * vh_category.xml1
+    * string.xml
+    * styles.xml
+    * activity_search.xml
+    * vh_category.xml1
 
   * **Others**
     * Testing
