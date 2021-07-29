@@ -232,7 +232,7 @@ Application was test on the following devices:
 ## Team Members Name & Student ID:
 * Chang Li Zhong Eddie 
   * S10207896F 
-  * Application Developer, UI & UX Designer
+  * Application Developer, UI & UX Designer, Documentarian
 
 * **Contributions**
   * **Features**
