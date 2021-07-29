@@ -11,7 +11,7 @@ Members Include:
 * Chang Li Zhong Eddie (S10207896F)
 
 ## Application Logo
-![StuffTrek Logo](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png?raw=true)
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png" width="20%">
 
 ## Application Description
 Often misplace your stuff at home? Let us help! StuffTrek allows you to track where you’ve placed your stuff within your residence. Structured according to a typical home, record each of your items according to their storage location. 
@@ -259,7 +259,7 @@ Application was test on the following mobile phones:
 
 ## Appendices
 ### StuffTrek Banner
-![StuffTrek Banner](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg?raw=true)
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg">
 
 ### StuffTrek Wireframes
 Splash-Screen    |  Home Page    |  Search
