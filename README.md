@@ -9,7 +9,7 @@ Lecturer: Mr Wesley Teo WQ
 Team Name: Team PK
 
 ## Application Logo
-![StuffTrek](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png?raw=true)
+![StuffTrek Logo](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png?raw=true)
 
 ## Application Description
 Often misplace your stuff at home? Let us help! StuffTrek allows you to track where you’ve placed your stuff within your residence. Structured according to a typical home, record each of your items according to their storage location. 
@@ -256,7 +256,7 @@ Application was test on the following mobile phones:
     * Testing
 
 ## Appendices
-* Attach Banners
+![StuffTrek Banner](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg?raw=true)
 * Attach Wireframes
-* Attach Screenshots
+![StuffTrek Screenshot](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark mode/splash-screen.png?raw=true)
 * Attach Class Diagram & ER Diagram
