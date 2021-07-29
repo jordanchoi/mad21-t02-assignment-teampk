@@ -152,7 +152,7 @@ Users are able to long-press on the selected item and activate the contextual me
 #### Creation of Containers Categories
 Menu in Room            |  Creation of Container Categories  |    List of Container Categories
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container-category.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-list.jpg">
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg" width="70%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container-category.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-category-list.jpg">
 
 Same for items, users are to create a container category by activating the menu in rooms and create container categories.
 
@@ -166,7 +166,7 @@ Users are able to long-press on the selected container category and activate the
 #### Creation of Containers
 Menu in Room            |  Creation of Container  |    List of Container
 :-------------------------:|:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-list.jpg">
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/inside-room-menu.jpg" width="70%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/create-container.jpg" width="65%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/container-list.jpg">
 
 Same for items and container categories, users are to create a container by activating the menu in rooms and create container.
 
