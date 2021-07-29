@@ -2,11 +2,13 @@
 Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek  
 https://play.google.com/store/apps/details?id=sg.edu.np.mad.teampk.stufftrek
 
-It is jointly developed and designed by Jordan Choi, Dong En, and Eddie Chang.
-
 Tutorial Group: P02  
 Lecturer: Mr Wesley Teo WQ  
 Team Name: Team PK
+Team Members:
+* Choi Shu Yih, Jordan (10208161D)
+* Chua Dong En (S10202623A)
+* Chang Li Zhong Eddie (S10207896F)
 
 ## Application Logo
 ![StuffTrek Logo](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/app-icons/playstore.png?raw=true)
