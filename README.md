@@ -257,6 +257,7 @@ Application was test on the following devices:
   * **Others**
     * Testing
     * README.md
+    * User Guide
 
 ## Appendices
 ### StuffTrek Banner
