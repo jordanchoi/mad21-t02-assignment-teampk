@@ -1,5 +1,6 @@
 # mad21-t02-assignment-teampk
-Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek
+Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek  
+https://play.google.com/store/apps/details?id=sg.edu.np.mad.teampk.stufftrek
 
 It is jointly developed and designed by Jordan Choi, Dong En, and Eddie Chang.
 
@@ -7,8 +8,8 @@ Tutorial Group: P02
 Lecturer: Mr Wesley Teo WQ  
 Team Name: Team PK
 
-## Appication Logo
-![StuffTrek Logo](/desktop/AppIcons/playstore.png)
+## Application Logo
+![StuffTrek Logo](/AppIcons/playstore.png)
 
 ## Application Description
 Often misplace your stuff at home? Let us help! StuffTrek allows you to track where you’ve placed your stuff within your residence. Structured according to a typical home, record each of your items according to their storage location. 
@@ -91,9 +92,11 @@ User Guide:
 * Sync from Cloud Storage
 
 ## Design Rationale (UI & UX)
-* Overall
+The goal of our application is to help our users to track their items in their household to prevent misplace or valuables going missing. StuffTrek is designed using a modern design layout, while retaining simplicity to prevent complications for our users. StuffTrek includes the following colour modes:
 * Light Theme
+   * White (#FFFFFF) & Turquoise (#7CCBCE)
 * Night Theme
+   * Black (#000000) & Gold (#FFC107)
 
 ## Instances of Core Topics Implemented:
 * Camera2
@@ -110,8 +113,8 @@ User Guide:
 
 ## Team Members Name & Student ID:
 * Choi Shu Yih, Jordan  
-  - S10208161D  
-  - Leader, Application Developer, UI & UX Designer & Overall Project IC
+  * S10208161D  
+  * Leader, Application Developer, UI & UX Designer & Overall Project IC
 
 * **Contributions**
   * **Features**
@@ -160,8 +163,8 @@ User Guide:
 
 ## Team Members Name & Student ID:
 * Chua Dong En 
-  - S10202623A  
-  - Database Developer & Application Developer
+  * S10202623A  
+  * Database Developer & Application Developer
 
 * **Contributions**
   * **Features**
@@ -217,8 +220,8 @@ User Guide:
 
 ## Team Members Name & Student ID:
 * Chang Li Zhong Eddie 
-  - S10207896F 
-  - Application Developer, UI & UX Designer
+  * S10207896F 
+  * Application Developer, UI & UX Designer
 
 * **Contributions**
   * **Features**
