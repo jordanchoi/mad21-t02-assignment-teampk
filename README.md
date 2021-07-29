@@ -121,6 +121,7 @@ Application was test on the following devices:
 * Samsung S20+
 * Samsung Galaxy Tab S7
 * Samsung Galaxy Tab A7
+* Sony Xperia 1 (J9110)
 
 ## Team Members Name & Student ID:
 * Choi Shu Yih, Jordan  
