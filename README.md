@@ -261,6 +261,44 @@ Application was test on the following mobile phones:
 * Attach Wireframes  
 
 ### StuffTrek Screenshot
-![StuffTrek Screenshot](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/splash-screen.png?raw=true)
+#### Splash-Screen
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/splash-screen.png" width="20%">
+
+#### Home page
+Dark Mode - Home Page (mobile)     |  Light Mode - Home Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/home-page.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/home-page.png">
+
+#### Location
+Dark Mode - Location Page (mobile)     |  Light Mode - Location Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/location.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/location-activity.png">
+
+#### Room
+Dark Mode - Room Page (mobile)     |  Light Mode - Room Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/room.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/room.png">
+
+#### Search
+Dark Mode - Search Page (mobile)     |  Light Mode - Search Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/search.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/search.png">
+
+#### Category
+Dark Mode - Category Page (mobile)     |  Light Mode - Category Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/category-activity.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/category-activity.png">
+
+#### All Items
+Dark Mode - All Items Page (mobile)     |  Light Mode - All Items Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/all-items.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/all-items.png">
+
+#### Settings
+Dark Mode - Settings Page (mobile)     |  Light Mode - Settings Page (tablet)
+:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/setting.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/setting.png">
+
+
 * Attach Class Diagram & ER Diagram  
 
