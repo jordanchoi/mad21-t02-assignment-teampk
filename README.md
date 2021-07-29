@@ -259,26 +259,18 @@ Application was test on the following mobile phones:
 ### StuffTrek Banner
 ![StuffTrek Banner](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg?raw=true)
 
-### Stuff Wireframes
-Home Page    |  Search
-:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/home-page.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/search.jpg">
+### StuffTrek Wireframes
+Splash-Screen    |  Home Page    |  Search
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/splash-screen.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/home-page.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/search.jpg">
 
-Location     |  Create Location
-:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/location.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/location-bottom-dialog.jpg">
+Location     |  Create Location     |  Room     |  Room Menu
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/location.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/location-bottom-dialog.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/room-2.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/room-menu.jpg">
 
-Room     |  Room Menu
-:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/room-2.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/room-menu.jpg">
-
-Category     |  Create Category 
-:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/category-activity.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/category-bottom-dialog.jpg">
-
-Item     |  Create Item 
-:-------------------------:|:-------------------------:
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/item-image.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/create-item.jpg">
+Category     |  Create Category      |   Item     |  Create Item 
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/category-activity.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/category-bottom-dialog.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/item-image.jpg">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/wireframe/create-item.jpg">
 
 Category Container     |  Create Container 
 :-------------------------:|:-------------------------:
@@ -325,5 +317,6 @@ Dark Mode - Settings Page (mobile)     |  Light Mode - Settings Page (tablet)
 <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/dark-mode/setting.png" width="50%">  |  <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/light-mode/setting.png">
 
 
-* Attach Class Diagram & ER Diagram  
+### ER Diagram & Class Diagram
+
 
