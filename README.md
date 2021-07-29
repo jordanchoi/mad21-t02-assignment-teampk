@@ -117,7 +117,8 @@ Application was test on the following mobile phones:
 * Nexux 5 (Android Studio Emulator)
 * Samsung S20 Ultra
 * Samsung S20+
-* 
+* Samsung Galaxy Tab S7
+* Samsung Galaxy Tab A7
 
 ## Team Members Name & Student ID:
 * Choi Shu Yih, Jordan  
