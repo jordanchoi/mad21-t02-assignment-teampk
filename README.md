@@ -258,7 +258,8 @@ Application was test on the following mobile phones:
 ## Appendices
 ### StuffTrek Banner
 ![StuffTrek Banner](https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg?raw=true)
-* Attach Wireframes  
+
+### Stuff Wireframes
 
 ### StuffTrek Screenshot
 #### Splash-Screen
