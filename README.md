@@ -5,7 +5,7 @@ https://play.google.com/store/apps/details?id=sg.edu.np.mad.teampk.stufftrek
 Tutorial Group: P02  
 Lecturer: Mr Wesley Teo WQ  
 Team Name: Team PK  
-Team Members:
+Members Include:
 * Choi Shu Yih, Jordan (10208161D)
 * Chua Dong En (S10202623A)
 * Chang Li Zhong Eddie (S10207896F)
