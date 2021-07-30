@@ -1,11 +1,17 @@
-# mad21-t02-assignment-teampk
-Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek  
+#StuffTrek - An Android Application - mad21-t02-assignment-teampk
+Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek
+
+<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg">
+
+Playstore URL:
 https://play.google.com/store/apps/details?id=sg.edu.np.mad.teampk.stufftrek
 
-Tutorial Group: P02 / T02  
-Lecturer: Mr Wesley Teo WQ  
-Team Name: Team PK  
-Members Include:
+Tutorial Group: T02/P02
+Lecturer: Mr Wesley Teo WQ
+Module: Mobile Applications Development I (MAD I)
+
+Team Name: Team PK
+The Team:
 * Choi Shu Yih, Jordan (S10208161D)
 * Chua Dong En (S10202623A)
 * Chang Li Zhong, Eddie (S10207896F)
@@ -368,7 +374,7 @@ Application was test on the following devices:
 
 ## Appendices
 ### StuffTrek Banner
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg">
+
 
 ### StuffTrek Wireframes
 Splash-Screen    |  Home Page    |  Search
