@@ -1,4 +1,5 @@
-#StuffTrek - An Android Application - mad21-t02-assignment-teampk
+# StuffTrek - An Android Application - mad21-t02-assignment-teampk
+
 Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek
 
 <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/screenshot/banner.jpg">
