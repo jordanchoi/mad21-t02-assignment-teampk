@@ -86,25 +86,7 @@ You may look forward to the following;
 | <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="70%">  | Upon initial loading of the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".  |
 | <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/email-input.jpg" width="70%"> | Once the user clicked "Login" the user will be prompted by the system to input his/her email into the input textbox. |
 | <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/password-input.jpg" width="70%"> | As shown in this images, the email "eddiechang321@gmail.com" is a valid credentials, thus the user will be prompted to enter their password. If the email does not exist, they will be redirected to another activity for registration. |
-| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/home-page.jpg" width="70%"> | Upon successful login or registration, the user will be redirected to this page consists of the menu. Clicking on the "Skip Login" button also redirects to this screen.
-
-| #### Registration & Login of Account  | Instructions |
-| ------------- | ------------- |
-| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="70%">  | Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".  |
-
-
-#### Registration & Login of Account
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">
-Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".
-
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/email-input.jpg" width="20%">
-Once the user clicked "Login" the user will be prompted by the system to input his/her email into the input textbox.
-
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/password-input.jpg" width="20%">
-As shown in this images, the email "eddiechang321@gmail.com" is recognised. This will lead the system to prompt the user to enter their password.
-
-<img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/home-page.jpg" width="20%">
-Once logged in, user will be first directed to the home page. Same for "Skip Login" button in the login page, it will direct the user to the home page without logging in to an account.  
+| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/home-page.jpg" width="70%"> | Upon successful login or registration, the user will be redirected to this page consists of the menu. Clicking on the "Skip Login" button also redirects to this screen. |
 
 #### Creation of Item’s Categories
 Manage Category            |  Creation of Category  |    List of Categories
@@ -286,6 +268,7 @@ Application was test on the following devices:
     * Initial Implementation of ContainersCategoryAdapter & ViewHolder
     * Initial Implementation of ContainersAdapter & ViewHolder
     * Full Implementation of ItemsAdapter & ViewHolder
+    * Partial Implementation of RoomAdapter & ViewHolder
 
   * **Layout & Other XML Resources**
     * Involved for all layouts either through implementation or modification for the styling of the User Interface.
