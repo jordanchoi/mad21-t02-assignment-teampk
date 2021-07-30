@@ -1,4 +1,5 @@
-# StuffTrek - An Android Application - mad21-t02-assignment-teampk
+# StuffTrek - An Android Application
+## mad21-t02-assignment-teampk
 
 Assignment Repository for MAD AY2021 - T02 of TeamPK. Android Application - StuffTrek
 
@@ -78,7 +79,13 @@ You may look forward to the following;
 * Cloud Storage of Object Images
 * Much More!
 
-User Guide:
+## User Guide:
+
+| #### Registration & Login of Account  | Instructions |
+| ------------- | ------------- |
+| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">l  | Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".  |
+| Content Cell  | Content Cell  |
+
 #### Registration & Login of Account
 <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">
 Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".
