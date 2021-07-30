@@ -83,8 +83,7 @@ You may look forward to the following;
 
 | #### Registration & Login of Account  | Instructions |
 | ------------- | ------------- |
-| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">l  | Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".  |
-| Content Cell  | Content Cell  |
+| <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="100%">l  | Upon loading the application, users will be directed to the login page will contains two buttons - "Login" & "Skip Login".  |
 
 #### Registration & Login of Account
 <img src="https://github.com/jordanchoi/mad21-t02-assignment-teampk/blob/master/user-guide/login-page.jpg" width="20%">
